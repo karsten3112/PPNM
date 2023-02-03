@@ -1,9 +1,10 @@
 using static System.Console;
 using static System.Math;
-using static Vec;
 
-class Main{
+class main{
 	
 	static void Main(){
+	 Write("hello\n");
+	 Vec v = new Vec();
 	}
 }

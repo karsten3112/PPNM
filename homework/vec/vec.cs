@@ -1,7 +1,7 @@
 using static System.Console;
 using static System.Math;
 
-class Vec{
+public class Vec{
 	double x;
 	double y;
 	double z;
