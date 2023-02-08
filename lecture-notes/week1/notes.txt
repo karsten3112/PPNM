@@ -1,0 +1,29 @@
+: sign in make files means dependency. And whatever is to the left is the target, so (target	:	dependent);
+The Makefiles holds the recipy for creating certain files.
+
+Example:
+Out.txt		:		main.exe
+	mono main.exe > Out.txt
+
+main.exe	:		main.cs
+	mcs main.cs -out:main.exe -target:exe
+
+clean:
+	rm --force Out.txt main.exe
+
+> Means redirection, so main.exe is redirectet to Out.txt in the example.
+The "clean" command cleans out unnessecary mess created while making of the file.
+
+test-shell:
+	echo $$0
+
+When running main we can explicitly tell the target by declaring the target in the Makefile via: make target;
+example:
+	make Out.txt
+
+You can set default target in Makefile via the keyword default:
+example: 
+	default: test-shell Out.txt
+
+Be careful when making the Makefile, as the return type of the Main function may break the make of Makefile.
+	Therefore make sure that the main function returns 0.
