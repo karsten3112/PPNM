@@ -1,4 +1,8 @@
-out.txt : calculate.exe
-	mono calculate.exe > out.txt
-calculate.exe : calculate.cs
-	mcs calculate.cs
+Out.txt: main.exe
+	mono main.exe > Out.txt
+
+sfuns.dll: sfuns.cs
+	mcs -target:library -out:sfuns.dll sfuns.cs
+
+main.exe: main.cs sfuns.dll
+	mcs main.cs -out:main.exe -reference:sfuns.dll main.cs

@@ -1,53 +1,105 @@
-using static System.Math;
 using static System.Console;
+using static System.Math;
 
-class epsilon{
-	static int i = 0;
+class eps{
 	static int max = int.MaxValue;
 	static int min = int.MinValue;
+	static int i = 1;
+	static double eps_float = Pow(2, -23);
+	static double eps_double = Pow(2, -52);
 	static double x = 1.0;
-	static float y =1.0f; //We typecast 1.0 into float by the suffix "f, F"
-		
+	static float y = 1.0f;
+
+	static double tiny = eps_double/2;
+	static double sumA, sumB = 0;
+	
 	static void Main(){
-		while(i + 1 > i) {
+		while(i+1 > i){
 			i++;
 		}
-		WriteLine($"my max int from loop = {i}	|and|		max int from int.MaxValue = {max}");
+		WriteLine($"THE MAX INT FROM LOOP = {i}");
+		WriteLine("COMPARING INT FROM LOOP WITH INT.MAX");
 		compareint(i, max);
-		
-		i = 0;
-		
-		while(i - 1 < i){
+		i = 1;
+		while(i-1 < i){
 			i--;
 		}
-		WriteLine($"my min int from loop = {i}		|and|		min int from int.Minvalue = {min}");
+		WriteLine($"THE MIN INT FROM LOOP = {i}");
+		WriteLine("COMPARING INT FROM LOOP WITH INT.MIN");
 		compareint(i, min);
-		
-		machine_eps(); //We run function for determining epsilon- "Machine precicision" and compare the precision of float and double types.
+
+		WriteLine("#################");
+		WriteLine("COMPUTING MACHINE EPSILON");
+		machine_eps();
+
+		WriteLine("#################");
+		sumfunc();
+		WriteLine($"sumA = {sumA}");
+		WriteLine($"sumB = {sumB}");
+
+		WriteLine("#################");
+		WriteLine("For a = 1.07, b = 1.08");
+		WriteLine($"{approx(1.07, 1.08)}");
+		WriteLine("For a = 1.00, b = 1.00 + 1e-12");
+		WriteLine($"{approx(1.00, 1e-12 + 1.00)}");
 	}
 
-	public static void compareint(int a, int b){
-		if(i == a){
-			WriteLine("SUCCES... THEY ARE THE SAME VALUE");
+	public static void compareint(int val1, int val2){
+		if(val1 == val2){
+			WriteLine("SUCCESS... THE TWO INTEGERS ARE THE SAME");
 		} else {
-			WriteLine("FALSE... THEY ARE NOT THE SAME VALUE");
+			WriteLine("FALSE... THE TWO INTEGERS ARE NOT THE SAME");
 		}
 	}
 
 	public static void machine_eps(){
-		int p = 0;
-		while(1 + x != 1){
-			p++;				 //We keep dividing x by 2 until 1 + x = 1, since x will be approximated to zero by the machine
+		while(1+x != 1){
 			x/=2;
 		}
-		WriteLine(x); 
-		WriteLine(p);
-		p = 0;
-		while(1 + y != 1){
-			p++;
-			y/=2;
+		x = x*2;
+		WriteLine($"THE PRECISION OF TYPE DOUBLE: {x}");
+		WriteLine($"SHOULD BE THE SAME AS: 2^(-52) = {eps_double}");
+		while((float)(1f + y) != 1){
+			y/=2f;
 		}
-		WriteLine(y);
-		WriteLine(p);
+		y = y*2;
+		WriteLine($"THE PRECISION OF TYPE FLOAT: {y}");
+		WriteLine($"SHOULD BE THE SAME AS: 2^(-23) = {eps_float}");
+		
 	}
+
+	public static void sumfunc(){
+		int n =(int)1E6;
+		i = 0;
+		while(i != n + 1){
+			if(i == 0){
+				sumA+=1;
+				sumB+=tiny;
+				i++;
+			} if(i == n) {
+				sumB+=1;
+				sumA+=tiny;
+				i++;
+			} else {
+				sumA+=tiny;
+				sumB+=tiny;
+				i++;
+			}
+		}
+	}
+
+	public static bool approx(double a, double b, double tau=1e-9, double epsilon=1e-9){
+			WriteLine(a);
+			WriteLine(b);
+			if(Abs(a-b) < tau || Abs(a-b)/(Abs(a) + Abs(b)) < epsilon){
+				return true;
+			} else {
+				return false;
+			}
+	}
+	
 }
+
+
+
+

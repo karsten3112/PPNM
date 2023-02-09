@@ -1,0 +1,21 @@
+using static System.Math;
+using static System.Console;
+
+public static class sfuns{
+	public static double gamma(double x, bool ln = false){
+		if(x < 0){
+			return PI/Sin(PI*x)/gamma(1-x);
+		}
+		if(x < 9){
+			return gamma(x + 1)/x;
+		}
+		double lngamma = x*Log(x+1/(12*x-1/(x*10)))-x+Log(2*PI/x)/2;
+		if(ln == false){
+			return Exp(lngamma);
+		}
+		else {
+			return lngamma;
+		}
+	}
+	
+}
