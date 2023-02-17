@@ -5,7 +5,7 @@ public class vec{
 	double x;
 	double y;
 	double z;
-	
+
 	public vec(){
 		x = 0.0;
 		y = 0.0;
@@ -34,11 +34,11 @@ public class vec{
 	public static vec operator+(vec u, vec v){
 		return new vec(v.x + u.x, v.y + u.y, v.z + u.z);
 	}
-	
+
 	public static vec operator-(vec u, vec v){
-		return new vec(u.x - v.x, u.y - v.y, u.z - v.z); 
+		return new vec(u.x - v.x, u.y - v.y, u.z - v.z);
 	}
-	
+
 	public static vec operator-(vec v){
 		return new vec(-v.x, -v.y, -v.z);
 	}
@@ -55,7 +55,7 @@ public class vec{
 	}
 
 	public static double norm(vec c){
-		return Sqrt(c.x*c.x + c.y*c.y + c.z*c.z); 	
+		return Sqrt(c.x*c.x + c.y*c.y + c.z*c.z);
 	}
 
 	public static bool approx(double a, double b, double tau=1e-9, double epsilon=1e-9){
@@ -65,7 +65,7 @@ public class vec{
  			 return false;
  			 }
 	}
-	
+
 	public bool approx(vec a){
 		if(approx(this.x, a.x) && approx(this.y, a.y) && approx(this.z, a.z)){
 			return true;
@@ -79,5 +79,5 @@ public class vec{
 		} else {
 			return false;
 		}
-	}	
+	}
 }

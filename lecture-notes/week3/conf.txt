@@ -1,0 +1,16 @@
+set autoindent
+set boldtext
+set titlecolor white,blue
+set tabsize 4
+set linenumbers
+syntax "cs" "\.cs$"
+magic "Cs "
+comment "//"
+color yellow "\<(foreach|for|else|while|finally|if|is|return|this)\>"
+color brightred "\<(bool|byte|sbyte|char|decimal|double|float|int|uint|long|ulong|new|object|short|ushort|string|base|void)\>"
+color brightcyan "\<(as|break|case|catch|checked|continue|default|finally|filly|fixed|goto|lock|switch|throw|unchecked)\>"
+color brightgreen "\<(abstract|class|const|delegate|enum|event|explicit|extern|implicit|in|internal|interface|namespace|operator|out|override|params|private|protected|public|readonly|ref|sealed|sizeof|struct|typeof|virtual|volatile)\>"
+color brightcyan "\<(true|false|null|static|const|using)\>"
+color blue "//.*"
+color blue start="/\*" end="\*/"
+color brightblue start="/\*\*" end="\*/"
