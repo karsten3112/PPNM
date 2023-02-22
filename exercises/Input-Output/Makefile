@@ -1,4 +1,4 @@
-Out.txt: main.exe
+out.txt: main.exe
 	mono main.exe
 
 input.dll: input.cs
