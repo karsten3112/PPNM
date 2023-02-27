@@ -1,0 +1,12 @@
+set terminal svg
+set output "3D plot"
+
+set title "3D-plot.svg"
+set xrange [-5.0:5.0]
+set yrange [-5.0:5.0]
+set zrange [0:6]
+set pm3d
+set hidden3d
+set palette model HSV rgbformulae 3,2,2
+set view 60, 300	
+splot "cgamma.data" with lines

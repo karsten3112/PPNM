@@ -2,7 +2,10 @@ set terminal svg
 set output "Gamma.svg"
 set xlabel "x"
 set ylabel "y"
+set tics out
 set title "Gamma function"
+set xzeroaxis
+set yzeroaxis
+set key bottom right
 
-plot [0:6] [0:150] "gamma.data" with lines, \ 
-	"factorial.data"
+plot [-5:5][-5:5] "rgamma.data" with lines linetype 2 title "theory"

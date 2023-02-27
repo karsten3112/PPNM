@@ -1,20 +1,22 @@
-gamma svg: gamma.gpi gamma.data factorials.data
-	gnuplot $<
-	
-gamma.data: main.exe
-	mono $< > $@
+DIR = $(HOME)/repos/PPNM/matlib/complex
 
-main.exe: main.cs sfuns.dll
-	mcs main.cs -target:exe -reference:sfuns.dll -out:main.exe
 
-sfuns.dll: gamma.cs erf.cs
+gamma.svg: cgamma.data rgamma.data erf.data
+	gnuplot cgamma.gpi gamma.gpi erf.gpi
+
+rgamma.data: main.exe
+	mono main.exe -rgamma:rgamma.data
+
+erf.data: main.exe
+	mono main.exe -erf:erf.data
+
+
+cgamma.data: main.exe
+	mono main.exe -cgamma:cgamma.data
+
+
+main.exe: main.cs lib.dll
+	mcs main.cs -target:exe -reference:$(filter %.dll, $^) -out:main.exe
+
+lib.dll: gamma.cs erf.cs IOhandle.cs $(DIR)/cmath.cs $(DIR)/complex.cs
 	mcs -target:library -out:$@ $^
-
-factorials.data: Makefile
-	>$@
-	echo 0 1 >>$@
-	echo 1 1 >>$@
-	echo 2 2 >>$@
-	echo 3 6 >>$@
-	echo 4 24 >>$@
-	echo 5 120 >>$@

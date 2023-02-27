@@ -3,7 +3,7 @@ using static System.Console;
 using static System.Math;
 
 public static partial class sfuns{
-	static double erf(double x){
+	public static double erf(double x){
 		if(x<0){
 			return -erf(-x);
 		}
