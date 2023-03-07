@@ -1,4 +1,4 @@
-set terminal svg
+set terminal svg background "white"
 set output "error.svg"
 set key bottom right
 set xlabel "x"
