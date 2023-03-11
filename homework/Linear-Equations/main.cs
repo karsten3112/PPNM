@@ -12,6 +12,9 @@ class main{
 		WriteLine("********************");
 		WriteLine("TESTING SOLVE METHOD FOR Ax=b SYSTEM");
 		test_solve();
+		WriteLine("********************");
+		WriteLine("TESTING INVERSE METHOD FOR MATRIX A");
+		test_inverse();
 	}
 
 	public static void test_decomp(){
@@ -70,4 +73,29 @@ class main{
 		vector f = A*R*solution;
 		f.print();
 	}
+
+	public static void test_inverse(){
+		int N = rnd.Next(1,4);
+        matrix A = new matrix(N, N);
+		matrix R = new matrix(N, N);
+        for(int i = 0; i < N; i++){
+            for(int j = 0; j < N; j++){
+                 A[i,j] = rnd.Next(0,15);
+            }
+        }
+        WriteLine("THE RANDOM A MATRIX");
+        matrix P = A.copy();
+        A.print();
+        double[] norms = QRGS.decomp(A, R);
+		//for(int i = 0; i < A.size1; i++){
+		//	R[i] *= norms[i];
+		//}
+        matrix inv = QRGS.inverse(A, R);
+		WriteLine("THE INVERSE OF A");
+        inv.print();
+        WriteLine("THE PRODUCT OF A^⁻1A = I");
+		matrix C = A*P;
+		C.print();
+	}
+
 }
