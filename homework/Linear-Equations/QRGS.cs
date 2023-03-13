@@ -3,19 +3,20 @@ using static System.Console;
 using System;
 
 public static class QRGS{
-	public static double[] decomp(matrix a, matrix r){
-		double[] norms = new double[a.size2];
+
+	public static (matrix, matrix) decomp(matrix a){
+		matrix Q = a.copy();
+		matrix r = new matrix(a.size2, a.size2);
 		for(int i = 0; i < a.size2; i++){
 			double v_norm = Sqrt(a[i].dot(a[i]));
-			a[i] /= v_norm;
-			r[i,i] = Sqrt(a[i].dot(a[i]));
-			norms[i] = v_norm;
+			Q[i] = a[i]/v_norm;
+			r[i,i] = v_norm;
 			for(int j = i + 1; j < a.size2; j++){
-				a[j] -= a[i].dot(a[j])*a[i];
-				r[i,j] = a[i].dot(a[j]);
+				r[i, j] = Q[i].dot(a[j]);
+				a[j] = a[j] - Q[i].dot(a[j])*Q[i];
 			}
 		}
-		return norms;
+		return (Q,r);
 	}
 	public static vector solve(matrix Q, matrix R, vector b){
 			vector y = new vector(b.size);
