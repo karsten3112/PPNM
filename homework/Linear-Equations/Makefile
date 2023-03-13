@@ -1,8 +1,15 @@
 DIR1 = $(HOME)/repos/PPNM/matlib/complex
 DIR2 = $(HOME)/repos/PPNM/homework/Linear-Equations/matrix-classes
 
-Out.txt: main.exe
-	mono main.exe -out:Out.txt
+#Out.txt: main.exe
+#	mono main.exe -QRGS-test -out:Out.txt
+
+out.times.data : main.exe
+	>$@
+	for N in $$(seq 100 20 200); do \
+		time --format "$$N %e" --output $@ --append \
+		mono $< -TimeIt:$$N 1>out 2>err ;\
+	done 
 
 main.exe: main.cs cmath.dll QRGS.dll matrix.dll
 	mcs main.cs $(addprefix -reference:,$(filter %.dll,$^))
