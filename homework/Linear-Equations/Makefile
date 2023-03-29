@@ -10,7 +10,11 @@ Test.txt: main.exe
 
 out.times.data : main.exe
 	>$@
+<<<<<<< HEAD
+	for N in $$(seq 10 20 700); do \
+=======
 	for N in $$(seq 100 20 700); do \
+>>>>>>> 37a904b3bdbbd53692d2ec23ffb93dcdf3983fbb
 		time --format "$$N %e" --output $@ --append \
 		mono $< -TimeIt:$$N ;\
 	done 
