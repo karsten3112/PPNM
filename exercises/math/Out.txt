@@ -1,0 +1,51 @@
+sqrt(2) = 1.4142135623731
+sqrt(2)² = 2 , should be equal to 2
+--------------------------
+2^(1/5) = 1.14869835499704
+(2^(1/5))^5 = 2 , should be equal to 2
+--------------------------
+e^(Pi) = 23.1406926327793
+ln(e^(Pi)) = 3.14159265358979 , should be equal to Pi=3.14159....
+--------------------------
+(Pi)^(e) = 22.459157718361
+Log((Pi)^(e)) = 2.71828182845905 , should be equalt to exp=2.7182....
+
+===============================
+
+Calculating gamma-function values
+gamma(1) = 0.999999989064903
+Precision within 6 decimals
+gamma(1) = 1
+--------------------------
+gamma(2) = 0.999999989064903
+Precision within 6 decimals
+gamma(2) = 1
+--------------------------
+gamma(3) = 1.99999997812981
+Precision within 6 decimals
+gamma(3) = 2
+--------------------------
+gamma(10) = 362879.997652015
+Precision within 6 decimals
+gamma(10) = 362879.997652
+--------------------------
+
+===============================
+
+Calculating lngamma-function values
+lngamma(1) = -1.09350976051914E-08
+Precision within 6 decimals
+lngamma(1) = 0
+--------------------------
+lngamma(2) = -1.09350976051914E-08
+Precision within 6 decimals
+lngamma(2) = 0
+--------------------------
+lngamma(3) = 0.693147169624848
+Precision within 6 decimals
+lngamma(3) = 0.693147
+--------------------------
+lngamma(10) = 12.8018274736111
+Precision within 6 decimals
+lngamma(10) = 12.801827
+--------------------------

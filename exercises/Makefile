@@ -1,4 +1,4 @@
-DIR = $(HOME)/repos/PPNM/matlib/complex
+DIR = ../../matlib/complex
 
 cmath.dll: $(DIR)/cmath.cs $(DIR)/complex.cs
 	mcs -target:library -out:./cmath.dll $^

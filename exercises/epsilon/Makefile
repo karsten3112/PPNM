@@ -1,5 +1,5 @@
-Out.txt: eps.exe
-	mono eps.exe > Out.txt
+Out.txt: main.exe
+	mono main.exe > Out.txt
 
-eps.exe: eps.cs
-	mcs eps.cs
+main.exe: main.cs
+	mcs main.cs
