@@ -1,11 +1,20 @@
 set terminal svg background "white"
-set output "Fit.svg"
-set xlabel "N"
-set ylabel "t [s]"
-set tics out
-set title "Fit of n^3 function to O(n) data"
+set output "Plot.svg"
+set xlabel "N" font "Times New Roman, 18"
+set ylabel "t [s]" font "Times New Roman, 18"
+set tics out font "Times New Roman, 15"
+set title "Fit of O(n^3) and O(n^2) function to operation time data" font "Times New Roman, 20"
+set fit quiet
+set fit logfile '/dev/null'
+
+
+set style line 1 lw 0.8 lc rgb "red" lt 1 ps 0.60 pt 13 pi 1
+
+set style line 2 lw 2 lc rgb "blue"
+set style line 3 lw 2 lc rgb "black"
 
 set key bottom right
+set grid
 
 a = 0.0001
 b = 0.0001
@@ -17,4 +26,8 @@ g(x) = b*x**2
 fit f(x) "out.times.data" via a
 fit g(x) "out.times.data" via b
 
-plot[0:750][0:2.5] "out.times.data", f(x), g(x)
+plot[0:720][0:2.5] g(x) title "O(n^2)" ls 2, \
+	f(x) title "O(n^3)" ls 3, \
+	"out.times.data" title "Data" w lp ls 1
+
+

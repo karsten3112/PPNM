@@ -5,7 +5,7 @@ public class Vec{
 	double x;
 	double y;
 	double z;
-	
+
 	public Vec(){
 		x = 0.0;
 		y = 0.0;
@@ -29,11 +29,11 @@ public class Vec{
 	public static Vec operator+(Vec u, Vec v){
 		return new Vec(v.x + u.x, v.y + u.y, v.z + u.z);
 	}
-	
+
 	public static Vec operator-(Vec u, Vec v){
-		return new Vec(u.x - v.x, u.y - v.y, u.z - v.z); 
+		return new Vec(u.x - v.x, u.y - v.y, u.z - v.z);
 	}
-	
+
 	public static Vec operator-(Vec v){
 		return new Vec(-v.x, -v.y, -v.z);
 	}

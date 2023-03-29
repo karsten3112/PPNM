@@ -1,4 +1,4 @@
-out.txt: main.exe
+Out.txt: main.exe
 	mono main.exe
 
 IOhandle.dll: IOhandle.cs

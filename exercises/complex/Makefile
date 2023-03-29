@@ -1,7 +1,7 @@
-DIR = $(HOME)/repos/PPNM/matlib/complex
+DIR = ../../matlib/complex
 
 Out.txt: main.exe
-	mono main.exe
+	mono main.exe > Out.txt
 
 main.exe: main.cs cmath.dll
 	mcs main.cs -reference:cmath.dll -out:main.exe -target:exe

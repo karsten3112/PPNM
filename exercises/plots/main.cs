@@ -4,7 +4,7 @@ using static System.Math;
 
 class main{
 	public static int sample = 1000;
-	public static int csample = 10000;
+	public static int csample = 22500;
 	static void Main(string[] args){
 		foreach(string arg in args){
 			string[] inp = arg.Split(":");
