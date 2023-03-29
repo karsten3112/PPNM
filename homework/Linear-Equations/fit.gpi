@@ -1,0 +1,20 @@
+set terminal svg background "white"
+set output "Fit.svg"
+set xlabel "N"
+set ylabel "t [s]"
+set tics out
+set title "Fit of n^3 function to O(n) data"
+
+set key bottom right
+
+a = 0.0001
+b = 0.0001
+
+
+f(x) = a*x**3
+g(x) = b*x**2
+
+fit f(x) "out.times.data" via a
+fit g(x) "out.times.data" via b
+
+plot[0:750][0:2.5] "out.times.data", f(x), g(x)

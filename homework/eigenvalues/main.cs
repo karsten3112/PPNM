@@ -4,10 +4,9 @@ using static System.Math;
 
 class main{
 	static void Main(){
+		matrix A = new matrix(2,2);
+		EVD evd = new EVD(A);
 		WriteLine("hej");
-	}
-	public static void timesJ(matrix A, int p, int q, double theta){
-
 	}
 
 }

@@ -1,0 +1,92 @@
+TESTING QR-DECOMP FOR 2 PSEUDO-RANDOM nxm MATRICES
+THE RANDOM MATRIX A
+
+       5.6 
+      1.81 
+       2.5 
+      9.47 
+      3.49 
+THE ORTHONORMAL Q MATRIX
+
+     0.469 
+     0.151 
+     0.209 
+     0.793 
+     0.292 
+THE U-TRIANGULAR R MATRIX
+
+        12 
+PRODUCT OF Q*R = A
+
+       5.6 
+      1.81 
+       2.5 
+      9.47 
+      3.49 
+PRODUCT OF Q^TQ = I
+
+         1 
+TEST NR. 1 DONE
+THE RANDOM MATRIX A
+
+     0.303      0.821       9.04 
+      1.23       8.55       7.58 
+      4.76       2.16       5.84 
+      4.99      0.807       9.94 
+      4.56       5.13       5.46 
+THE ORTHONORMAL Q MATRIX
+
+    0.0362     0.0721       0.86 
+     0.148      0.908      0.116 
+     0.569     -0.135     -0.135 
+     0.596     -0.313      0.348 
+     0.545      0.233     -0.329 
+THE U-TRIANGULAR R MATRIX
+
+      8.36        5.8       13.7 
+         0       8.48       4.91 
+         0          0       9.53 
+PRODUCT OF Q*R = A
+
+     0.303      0.821       9.04 
+      1.23       8.55       7.58 
+      4.76       2.16       5.84 
+      4.99      0.807       9.94 
+      4.56       5.13       5.46 
+PRODUCT OF Q^TQ = I
+
+         1  -1.67e-16  -2.22e-16 
+ -1.67e-16          1  -1.39e-17 
+ -2.22e-16  -1.39e-17          1 
+TEST NR. 2 DONE
+********************
+TESTING SOLVE METHOD FOR Ax=b SYSTEM
+THE RANDOM A MATRIX
+
+         4          3 
+         0         10 
+THE RANDOM b VECTOR
+         7          7 
+SOLUTION x TO Ry=Q^T*b
+      1.23        0.7 
+PRODUCT OF Q*R*x=b
+         7          7 
+PRODUCT OF A*x=b
+         7          7 
+********************
+TESTING INVERSE METHOD FOR MATRIX A
+THE RANDOM NxN MATRIX A;
+
+         7          6         12 
+         9         12          8 
+        12          9          7 
+THE INVERSE MATRIX B OF A
+
+   -0.0253     -0.139      0.203 
+   -0.0696        0.2      -0.11 
+     0.133     -0.019    -0.0633 
+PRODUCT OF A*B=I
+
+         1   1.11e-16   2.22e-16 
+         0          1   1.11e-16 
+         0   2.22e-16          1 
