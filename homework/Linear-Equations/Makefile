@@ -6,7 +6,7 @@ DIR2 = $(HOME)/repos/PPNM/homework/Linear-Equations/matrix-classes
 
 out.times.data : main.exe
 	>$@
-	for N in $$(seq 100 20 200); do \
+	for N in $$(seq 10 20 700); do \
 		time --format "$$N %e" --output $@ --append \
 		mono $< -TimeIt:$$N 1>out 2>err ;\
 	done 
