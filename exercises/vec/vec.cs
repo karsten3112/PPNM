@@ -2,9 +2,9 @@ using static System.Console;
 using static System.Math;
 
 public class vec{
-	double x;
-	double y;
-	double z;
+	public double x;
+	public double y;
+	public double z;
 
 	public vec(){
 		x = 0.0;
@@ -23,7 +23,7 @@ public class vec{
 	}
 
 	public override string ToString(){
-		return $"The vector has the entries: x = {this.x}, y = {this.y}, z = {this.z}";
+		return $"x = {this.x}, y = {this.y}, z = {this.z}";
 	}
 
 
@@ -61,8 +61,16 @@ public class vec{
 		return new vec(x_d, y_d, z_d);
 	}
 
+	public vec vec_prod(vec a){
+		return vec_prod(this, a);
+	}
+
 	public static double norm(vec c){
 		return Sqrt(c.x*c.x + c.y*c.y + c.z*c.z);
+	}
+
+	public double norm(){
+		return norm(this);
 	}
 
 	public static bool approx(double a, double b, double tau=1e-9, double epsilon=1e-9){

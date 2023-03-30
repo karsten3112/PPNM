@@ -1,5 +1,145 @@
-The vector has the entries: x = 0, y = 0, z = 0
-The vector has the entries: x = 1, y = 2, z = 3
-The vector has the entries: x = 3, y = 0, z = 5
-18
-The vector has the entries: x = 2, y = 4, z = 6
+Testing all methods for 18 pseudo-random vectors
+The pseudo random vector a
+a with entries; x = 1.24334292078546, y = 0.553719885905143, z = 2.33505339936123
+The pseudo random vector b
+b with entries; x = 3.85802061010991, y = 3.28759446893241, z = 2.16391300650496
+Testing vector scalar multiplication operator
+Passed...
+Testing vector addition and subtraction operators
+Passed...
+Testing dot product
+Passed...
+Testing cross-product
+Passed...
+Testing norm of vectors
+Passed...
+Test nr. 1 Done
+########################################################
+The pseudo random vector a
+a with entries; x = 4.71931138062818, y = 0.506332267777218, z = 3.21227777666053
+The pseudo random vector b
+b with entries; x = 0.143184063557155, y = 1.24014572763822, z = 1.6005506583492
+Testing vector scalar multiplication operator
+Passed...
+Testing vector addition and subtraction operators
+Passed...
+Testing dot product
+Passed...
+Testing cross-product
+Passed...
+Testing norm of vectors
+Passed...
+Test nr. 2 Done
+########################################################
+The pseudo random vector a
+a with entries; x = 3.41061559431749, y = 3.27443943511436, z = 1.41364611983935
+The pseudo random vector b
+b with entries; x = 3.07673204134998, y = 3.52125767782389, z = 3.50898337713861
+Testing vector scalar multiplication operator
+Passed...
+Testing vector addition and subtraction operators
+Passed...
+Testing dot product
+Passed...
+Testing cross-product
+Passed...
+Testing norm of vectors
+Passed...
+Test nr. 3 Done
+########################################################
+The pseudo random vector a
+a with entries; x = 0.466942403217285, y = 0.804535928556945, z = 1.9098553885286
+The pseudo random vector b
+b with entries; x = 3.98973848623677, y = 0.84733576553284, z = 3.96891811348913
+Testing vector scalar multiplication operator
+Passed...
+Testing vector addition and subtraction operators
+Passed...
+Testing dot product
+Passed...
+Testing cross-product
+Passed...
+Testing norm of vectors
+Passed...
+Test nr. 4 Done
+########################################################
+The pseudo random vector a
+a with entries; x = 4.11514215130133, y = 4.4323477029951, z = 2.78151157907281
+The pseudo random vector b
+b with entries; x = 3.58367003667339, y = 3.49647916084923, z = 0.0680720131229945
+Testing vector scalar multiplication operator
+Passed...
+Testing vector addition and subtraction operators
+Passed...
+Testing dot product
+Passed...
+Testing cross-product
+Passed...
+Testing norm of vectors
+Passed...
+Test nr. 5 Done
+########################################################
+The pseudo random vector a
+a with entries; x = 4.03150802433095, y = 4.29371799542276, z = 0.312516624253484
+The pseudo random vector b
+b with entries; x = 2.57196876805833, y = 2.62629122129934, z = 1.36412579164101
+Testing vector scalar multiplication operator
+Passed...
+Testing vector addition and subtraction operators
+Passed...
+Testing dot product
+Passed...
+Testing cross-product
+Passed...
+Testing norm of vectors
+Passed...
+Test nr. 6 Done
+########################################################
+The pseudo random vector a
+a with entries; x = 3.4555221388375, y = 1.93307742100818, z = 2.17166963832996
+The pseudo random vector b
+b with entries; x = 3.37702765053931, y = 3.38690836838768, z = 2.36437341308425
+Testing vector scalar multiplication operator
+Passed...
+Testing vector addition and subtraction operators
+Passed...
+Testing dot product
+Passed...
+Testing cross-product
+Passed...
+Testing norm of vectors
+Passed...
+Test nr. 7 Done
+########################################################
+The pseudo random vector a
+a with entries; x = 1.76742055302831, y = 2.63126323122124, z = 0.847136434562102
+The pseudo random vector b
+b with entries; x = 1.73293906111873, y = 3.45847482255589, z = 1.97571549889432
+Testing vector scalar multiplication operator
+Passed...
+Testing vector addition and subtraction operators
+Passed...
+Testing dot product
+Passed...
+Testing cross-product
+Passed...
+Testing norm of vectors
+Passed...
+Test nr. 8 Done
+########################################################
+The pseudo random vector a
+a with entries; x = 4.7491839573482, y = 0.425198010832629, z = 4.86828212387314
+The pseudo random vector b
+b with entries; x = 2.44025870339957, y = 3.19499489301583, z = 0.234277607050854
+Testing vector scalar multiplication operator
+Passed...
+Testing vector addition and subtraction operators
+Passed...
+Testing dot product
+Passed...
+Testing cross-product
+Passed...
+Testing norm of vectors
+Passed...
+Test nr. 9 Done
+########################################################
