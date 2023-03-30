@@ -6,7 +6,9 @@ class main{
 	static Random rnd = new System.Random(1);
 
 	static void Main(){
-		WriteLine("Testing all methods for 18 pseudo-random vectors");
+		WriteLine("TESTING ALL METHODS AND OPERATORS FOR 18 PSEUDO-RANDOM VECTORS");
+		WriteLine("------------------------------------------------------------------------");
+		WriteLine("");
 		for(int i = 0; i < 9; i++){
 			vec a = new vec(rnd.NextDouble()*5, rnd.NextDouble()*5, rnd.NextDouble()*5);
 			vec b = new vec(rnd.NextDouble()*5, rnd.NextDouble()*5, rnd.NextDouble()*5);

@@ -1,4 +1,6 @@
-Testing all methods for 18 pseudo-random vectors
+TESTING ALL METHODS AND OPERATORS FOR 18 PSEUDO-RANDOM VECTORS
+------------------------------------------------------------------------
+
 The pseudo random vector a
 a with entries; x = 1.24334292078546, y = 0.553719885905143, z = 2.33505339936123
 The pseudo random vector b
