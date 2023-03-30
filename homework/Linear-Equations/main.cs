@@ -21,7 +21,7 @@ class main{
 			if(inp[0] == "-TimeIt"){
 				int size = int.Parse(inp[1]);
 				matrix A = new matrix(size, size);
-				(matrix Q, matrix R) = QRGS.decomp(A);
+				QRGS.decomp(A);
 			}
 		}
 	}
@@ -55,6 +55,13 @@ class main{
             WriteLine("PRODUCT OF Q^TQ = I");
             matrix d = Q.transpose()*Q;
             d.print();
+            WriteLine("TESTING IF Q^T*Q IS APPROXIMATELY I");
+			matrix A2 =  new matrix(d.size1, d.size1);
+			A2.setid();
+			bool s = d.approx(A2);
+	        if(s == true){
+				WriteLine("TRUE, THEY ARE THE SAME WITHIN 9 DECIMAL POINTS");
+			}
             WriteLine($"TEST NR. {k + 1} DONE");
 		}
     }
@@ -107,6 +114,13 @@ class main{
 		WriteLine("PRODUCT OF A*B=I");
 		matrix C = A*B;
 		C.print();
+		WriteLine("TESTING IF A*B IS APPROXIMATELY I");
+		matrix A2 =  new matrix(N,N);
+		A2.setid();
+		bool s = C.approx(A2);
+		if(s == true){
+			WriteLine("TRUE, THEY ARE THE SAME WITHIN 9 DECIMAL POINTS");
+		}
 		}
 	}
 
