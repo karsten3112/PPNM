@@ -1,24 +1,37 @@
-THE MAX INT FROM LOOP = 2147483647
-COMPARING INT FROM LOOP WITH INT.MAX
-SUCCESS... THE TWO INTEGERS ARE THE SAME
-THE MIN INT FROM LOOP = -2147483648
-COMPARING INT FROM LOOP WITH INT.MIN
-SUCCESS... THE TWO INTEGERS ARE THE SAME
-#################
-COMPUTING MACHINE EPSILON
-THE PRECISION OF TYPE DOUBLE: 2.22044604925031E-16
-SHOULD BE THE SAME AS: 2^(-52) = 2.22044604925031E-16
-THE PRECISION OF TYPE FLOAT: 1.192093E-07
-SHOULD BE THE SAME AS: 2^(-23) = 1.19209289550781E-07
-#################
+The max integer from loop = 2147483647
+Comparing with int.MaxValue
+Comparing....
+TRUE... the two integers have the same value
+#####################################
+The min integer from loop = -2147483648
+Comparing with int.MinValue
+Comparing....
+TRUE... the two integers have the same value
+#####################################
+Computing machine epsilon
+The Precision of the type double; 2.22044604925031E-16
+Should be the same as; 2^(-52) = 2.22044604925031E-16
+Comparing......
+TRUE.... they have the same value
+The Precision of the type float; 1.192093E-07
+Should be the same as; 2^(-23) = 1.19209289550781E-07
+Comparing......
+TRUE.... they have the same value
+#####################################
+Calculating the two different sums, sumA and SumB
 sumA = 1
 sumB = 1.00000000011102
-#################
+Comparing the two sums
+Comparing......
+FALSE.... The two sums are not the same
+Which is expected since double and float types always will be rounded to the nearest representable value, due to their binary representation
+For example numbers like; pi, sqrt(2), exp(1) ... - cannot be represented via double or float types
+Meaning since sumA=1 from the beginning it will always be rounded to 1, because since we add half of machine epsilon in each term, which is not representable.
+#####################################
+Comparing two doubles method with relative acc; 1e-9 and absolute acc 1e-9
 For a = 1.07, b = 1.08
-1.07
-1.08
+Comparing......
 False
 For a = 1.00, b = 1.00 + 1e-12
-1
-1.000000000001
+Comparing......
 True

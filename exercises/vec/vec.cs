@@ -18,6 +18,10 @@ public class vec{
 		z = c;
 	}
 
+	public void print(string s=""){
+		Write(s);WriteLine($"{this.x} {this.y} {this.z}");
+	}
+
 	public override string ToString(){
 		return $"The vector has the entries: x = {this.x}, y = {this.y}, z = {this.z}";
 	}
@@ -47,6 +51,9 @@ public class vec{
 		return this.x*a.x + this.y*a.y + this.z*a.z;
 	}
 
+	public static double dot(vec a, vec b){
+		return a.dot(b);
+	}
 	public static vec vec_prod(vec c, vec u){
 		double x_d = c.y*u.z - c.z*u.y;
 		double y_d = c.z*u.x - c.x*u.z;
