@@ -1,6 +1,7 @@
 N=1e8
 
 TIME = time --portability --append --output $@
+
 Out.txt: main.exe Makefile
 	>$@
 	$(TIME) mono $< -terms:$N -threads:1 >>$@
