@@ -1,3 +1,0 @@
--input:hej
-hej
-vi fik input, og anden side;
