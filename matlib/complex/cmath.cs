@@ -49,4 +49,16 @@ public static void print(this complex z, string s)
 public static void printf(this complex z,string s)
 	{Console.WriteLine(s,z.Re,z.Im);}
 
+public static complex sinh(complex z){
+	complex result = (exp(z) - exp(-z))/2.0;
+	return result;
+}
+
+public static complex cosh(complex z){
+	complex result = (exp(z) + exp(-z))/2.0;
+	return result;
+}
+
+
+
 }// cmath

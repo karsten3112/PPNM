@@ -7,6 +7,8 @@ class main{
 	static complex var2 = new complex(0,1);
 
 	public static void Main(string[] args){
+		WriteLine("Testing different calculations with complex numbers");
+		WriteLine("");
 		complex sqrti = cmath.sqrt(var2);
 		complex sqrtn = cmath.sqrt(-var1);
 		complex exi = cmath.exp(var2);
@@ -60,5 +62,23 @@ class main{
 		WriteLine(sinip);
 		WriteLine("sin(i*pi) = i*sinh(pi) (should be) - comparing....");
 		WriteLine($"{sinip.approx(var2*(cmath.exp(PI)-cmath.exp(-PI))/2.0)}");
+
+		WriteLine("===================================================");
+		WriteLine("Implementing complex sinh(z) and cosh(z) functions and testing");
+		WriteLine("cosh(a+bi) = 1/2*(exp(a+bi) + exp(-a-bi)) (should be)");
+		complex coshi = cmath.cosh(var1 + var2);
+		WriteLine("Calculating cosh(1 + i) ....");
+		WriteLine(coshi);
+		WriteLine("Comparing....");
+		WriteLine($"{coshi.approx(1/2.0*(cmath.exp(var1 + var2) + cmath.exp(-var1 - var2)))}");
+
+		WriteLine("---------------------------------------------------");
+		WriteLine("sinh(a+bi) = 1/2*(exp(a+bi) - exp(-a-bi)) (should be)");
+		complex sinhi = cmath.sinh(var1 + var2);
+		WriteLine("Calculating sinh(1 + i) ....");
+		WriteLine(sinhi);
+		WriteLine("Comparing....");
+		WriteLine($"{sinhi.approx(1/2.0*(cmath.exp(var1 + var2) - cmath.exp(-var1 - var2)))}");
+
 	}
 }
