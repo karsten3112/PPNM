@@ -47,11 +47,11 @@ public class linspline{
 		for(int j = 0; j+1 < k; j++){
 			dy = y[j+1] - y[j];
 			dx = x[j+1] - x[j];
-			sum+= y[j]*(x[j+1] - x[j]) + dy/dx*(x[j+1] - x[j])*(x[j+1] - x[j])/2.0;
+			sum+= y[j]*(x[j+1] - x[j]) + dy/dx*(x[j+1] - x[j])*(x[j+1] - x[j])*0.5;
 		}
 		dy = y[k+1] - y[k];
 		dx = x[k+1] - x[k];
-		sum+= y[k]*(z - x[k]) + dy/dx*(z - x[k])*(z - x[k])/2.0;
+		sum+= y[k]*(z - x[k]) + dy/dx*(z - x[k])*(z - x[k])*0.5;
 		return sum;
 	}
 }

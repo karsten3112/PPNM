@@ -14,8 +14,8 @@ class main{
 				WriteLine("");
 				(vector zinpt, vector d) = gendat(50, -PI, PI);
 				linspline spline = new linspline(xs, ys, zinpt); 
-				for(int i = 0; i < zinpt.size; i++){
-					WriteLine($"{zinpt[i]} {spline.z[i]}");
+				for(int i = 0; i < xs.size; i++){
+					WriteLine($"{xs[i]} {spline.z[i]}");
         		}
         		WriteLine("");
         		WriteLine("");
