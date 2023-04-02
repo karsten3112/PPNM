@@ -19,9 +19,7 @@ class main{
 		}
 		if(dr != 0 && rmax != 0){
 			matrix H = Hamilton(rmax, dr);
-			(matrix w, matrix Psis) = jacobi.cyclic_EVD(H);
-			matrix PsisT = Psis.transpose();
-			matrix Es = PsisT*H*Psis;
+			(vector Es, matrix Psis) = jacobi.cyclic_EVD(H);
 			Es.print();
 		}
 	}
@@ -33,15 +31,6 @@ class main{
 		A[1,1] = 1.0;
 		WriteLine("THE MATRIX A");
 		A.print();
-		(matrix w, matrix v) = jacobi.cyclic_EVD(A);
-		WriteLine("matrix v containing eigenvektors");
-		v.print();
-		matrix vT = v.transpose();
-		matrix I = v*vT;
-		WriteLine("matrix D containing eigenvalues");
-		matrix D = vT*A*v;
-		D.print();
-		matrix s = v*D*vT;
 
 	}
 

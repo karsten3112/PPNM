@@ -6,7 +6,7 @@ Test.txt: main.exe
 	mono main.exe -test:1 > Test.txt
 
 plots.txt: main.exe
-	mono main.exe -rmax:4 -dr:0.5 > plots.txt
+	mono main.exe -rmax:9 -dr:0.3 > plots.txt
 
 main.exe: main.cs matrix.dll jacobi.dll
 	mcs main.cs $(addprefix -reference:,$(filter %.dll,$^))

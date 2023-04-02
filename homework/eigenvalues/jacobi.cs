@@ -4,14 +4,20 @@ using System;
 
 public static class jacobi{
 
-	public static (matrix, matrix) cyclic_EVD(matrix A, double eps=1e-12){
+	public static (vector, matrix) cyclic_EVD(matrix A, double eps=1e-20){
 		matrix w = A.copy();
 		matrix V = matrix.id(A.size1);
+		vector vs = new vector(A.size1);
 		bool stat = true;
 		while(stat){
 			(stat, w, V) = convergence(w, V, eps);
 		}
-		return (w, V);
+		matrix Vtrans = V.transpose();
+		matrix D = Vtrans*A*V;
+		for(int i = 0; i < D.size1;i++){
+			vs[i] = D[i,i];
+		}
+		return (vs, w);
 	}
 
 	public static (bool, matrix, matrix) convergence(matrix A, matrix B, double eps=1e-12){
