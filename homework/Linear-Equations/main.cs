@@ -28,7 +28,7 @@ class main{
 
 	public static void test_decomp(){
 		for(int k = 0; k < 2; k++){
-			int n = 0;
+				int n = 0;
 			int m = 0;
 			while(n <= m){
 				n = rnd.Next(2,6);

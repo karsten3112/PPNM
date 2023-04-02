@@ -1,14 +1,18 @@
-DIR1 = ../../matlib/complex
-DIR2 = ../../homework/eigenvalues/matrix-classes
+DIR = ../../homework/eigenvalues/matrix-classes
 
-Out.txt: main.exe
-	mono $^ > Out.txt
+all:Test.txt plots.txt
 
-main.exe: cmath.dll matrix.dll EVD.dll
+Test.txt: main.exe
+	mono main.exe -test:1 > Test.txt
+
+plots.txt: main.exe
+	mono main.exe -rmax:4 -dr:0.5 > plots.txt
+
+main.exe: main.cs matrix.dll jacobi.dll
 	mcs main.cs $(addprefix -reference:,$(filter %.dll,$^))
 
-matrix.dll: $(DIR2)/vector.cs $(DIR2)/matrix.cs
+matrix.dll: $(DIR)/vector.cs $(DIR)/matrix.cs
 	mcs -target:library -out:matrix.dll $^
 
-EVD.dll: EVD.cs matrix.dll
-	mcs EVD.cs -reference:matrix.dll -target:library -out:EVD.dll
+jacobi.dll: jacobi.cs matrix.dll
+	mcs jacobi.cs -reference:matrix.dll -target:library -out:jacobi.dll
