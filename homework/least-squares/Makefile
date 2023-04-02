@@ -1,8 +1,13 @@
 DIR = ../../matlib/matrix
 
 
-Out.txt: main.exe
-	mono main.exe -input:data.txt > Out.txt
+all: Plot.svg
+
+Plot.svg: plot.gpi data.txt fit.data
+	gnuplot plot.gpi
+
+fit.data: main.exe
+	mono main.exe -input:data.txt > fit.data
 
 main.exe: main.cs LTSQ.dll matrix.dll QRGS.dll IOhandle.dll
 	mcs main.cs $(addprefix -reference:,$(filter %.dll,$^)) 

@@ -26,11 +26,25 @@ class main{
 			dyvec = new vector(xs.Length);
 			for(int i = 0; i < xs.Length; i++){
 				xvec[i] = xs[i];
-				yvec[i] = ys[i];
-				dyvec[i] = dys[i];
+				yvec[i] = Log(ys[i]);
+				dyvec[i] = dys[i]/ys[i];
 			}
-			vector cs = LTSQ.lsfit(fs, xvec, yvec, dyvec);
+			(vector cs, matrix cov) = LTSQ.lsfit(fs, xvec, yvec, dyvec);
+			double uncer1 = Sqrt(cov[0,0]); double uncer2 = Sqrt(cov[1,1]);
+			gendata(1, 16, 400, cs);
+			gendata(1, 16, 400, cs, uncer1, uncer2);
+			gendata(1, 16, 400, cs, -uncer1, -uncer2);
 		}
-		
+
+	}
+	public static void gendata(double start, double end, int num, vector c, double uncer1=0, double uncer2=0){
+		double dx = (end - start)/(num+1);
+		for(int i = 1; i <= num+1; i++){
+			double xval = dx*i;
+			double yval = Exp(c[0]+uncer1)*Exp((c[1]+uncer2)*xval);
+			WriteLine($"{xval}	{yval}");
+		}
+		WriteLine("");
+		WriteLine("");
 	}
 }
