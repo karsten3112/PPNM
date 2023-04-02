@@ -7,7 +7,7 @@ Plot.svg: plot.gpi data.txt fit.data
 	gnuplot plot.gpi
 
 fit.data: main.exe
-	mono main.exe -input:data.txt > fit.data
+	mono main.exe -input:data.txt -output:Hlife.txt > fit.data #Using data.txt as the data provided in assignment.
 
 main.exe: main.cs LTSQ.dll matrix.dll QRGS.dll IOhandle.dll
 	mcs main.cs $(addprefix -reference:,$(filter %.dll,$^)) 

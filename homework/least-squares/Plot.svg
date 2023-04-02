@@ -111,7 +111,7 @@
 <g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M81.53,93.80 L464.53,93.80 M557.43,93.80 L565.82,93.80  '/></g>
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M81.53,93.80 L397.41,93.80 M557.43,93.80 L565.82,93.80  '/></g>
 <g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -189,7 +189,7 @@
 <g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M452.82,413.40 L452.82,66.01  '/></g>
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M452.82,413.40 L452.82,147.01 M452.82,75.01 L452.82,66.01  '/></g>
 <g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -226,12 +226,12 @@
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
-	<g id="gnuplot_plot_1" ><title>fit</title>
+	<g id="gnuplot_plot_1" ><title>f(t)</title>
 <g fill="none" color="#FFFFFF" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(498.09,87.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
-		<text><tspan font-family="Arial" >fit</tspan></text>
+		<text><tspan font-family="Arial" >f(t)</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
@@ -285,10 +285,10 @@
 		L532.77,393.73 L533.98,393.94 L535.18,394.15 L536.39,394.36 L537.60,394.57 L538.81,394.78 L540.02,394.98 L541.22,395.19
 		L542.43,395.39 L543.64,395.59 L544.85,395.80 L546.05,396.00 L547.26,396.19 L548.47,396.39 L549.68,396.59  '/></g>
 	</g>
-	<g id="gnuplot_plot_2" ><title>fit</title>
+	<g id="gnuplot_plot_2" ><title>f(t)+delf(t)</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(498.09,105.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
-		<text><tspan font-family="Arial" >fit</tspan></text>
+		<text><tspan font-family="Arial" >f(t)+delf(t)</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
@@ -342,10 +342,10 @@
 		L540.02,390.26 L541.22,390.48 L542.43,390.71 L543.64,390.93 L544.85,391.15 L546.05,391.37 L547.26,391.59 L548.47,391.81
 		L549.68,392.02  '/></g>
 	</g>
-	<g id="gnuplot_plot_3" ><title>fit</title>
+	<g id="gnuplot_plot_3" ><title>f(t)-delf(t)</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(498.09,123.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
-		<text><tspan font-family="Arial" >fit</tspan></text>
+		<text><tspan font-family="Arial" >f(t)-delf(t)</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
@@ -442,7 +442,7 @@
 	<path stroke='black'  d='M81.53,66.01 L81.53,413.40 L565.82,413.40 L565.82,66.01 L81.53,66.01 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(323.67,33.51)" stroke="none" fill="black" font-family="Times New Roman" font-size="20.00"  text-anchor="middle">
-		<text><tspan font-family="Times New Roman" >Fit of O(n</tspan><tspan font-family="Times New Roman"  font-size="16.0" dy="-10.00px">3</tspan><tspan font-family="Times New Roman"  font-size="20.0" dy="10.00px">) and O(n</tspan><tspan font-family="Times New Roman"  font-size="16.0" dy="-10.00px">2</tspan><tspan font-family="Times New Roman"  font-size="20.0" dy="10.00px">) function to operation time data</tspan></text>
+		<text><tspan font-family="Times New Roman" >Least-Squares fit of 224-Ra decay data</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">

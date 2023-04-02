@@ -4,6 +4,7 @@ using static System.Math;
 
 class main{
 	static string input_file;
+	static string output_file;
 	static vector xvec;
 	static vector yvec;
 	static vector dyvec;
@@ -17,6 +18,9 @@ class main{
 			string[] input = arg.Split(":");
 			if(input[0] == "-input"){
 				input_file = input[1];
+			}
+			if(input[0] == "-output"){
+				output_file = input[1];
 			}
 		}
 		if(input_file != null){
@@ -34,6 +38,7 @@ class main{
 			gendata(1, 16, 400, cs);
 			gendata(1, 16, 400, cs, uncer1, uncer2);
 			gendata(1, 16, 400, cs, -uncer1, -uncer2);
+			hl(-cs[1], -uncer2);
 		}
 
 	}
@@ -46,5 +51,17 @@ class main{
 		}
 		WriteLine("");
 		WriteLine("");
+	}
+	public static void hl(double c, double uncer){
+		string[] vals = new string[8];
+		vals[0] = "calculated values of half-life time T = ln(2)/lambda";
+		vals[1] = "without uncertainties on lambda;";
+		vals[2] = $"T = {Log(2)/c} days";
+		vals[3] = "-----------------------------------------------";
+		vals[4] = "with uncertainties;";
+		vals[5] = $"T± = {Log(2)/(c-uncer)} < {Log(2)/c} < {Log(2)/(c+uncer)} days";
+		vals[6] = "According to Google the current determined half-life time is T=3.631±0.0002 days";
+		vals[7] = "Which does not lie in our interval of uncertainty meaning the fits and data has gotten a lot better since";
+		IOhandle.write(output_file, vals);
 	}
 }
