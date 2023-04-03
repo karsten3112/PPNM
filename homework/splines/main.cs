@@ -25,10 +25,22 @@ class main{
 
 
         	}
-			if(arg == "qspline"){
+			if(arg == "-qspline"){
+				(vector xs, vector ys, vector y1s) = qdata();
+				for(int i = 0; i < xs.size; i++){
+					WriteLine($"{xs[i]}	{y1s[i]}");
+				}
+				WriteLine("");
+				WriteLine("");
 
+				qspline spline = new qspline(xs, y1s);
+				(vector xp, vector l) = gendat(50, 1, 5);
+				for(int i = 0; i < xp.size; i++){
+					double z = spline.evaluate(xp[i]);
+					WriteLine($"{xp[i]}	{z}");
+				}
 			}
-			if(arg == "cspline"){
+			if(arg == "-cspline"){
 
 			}
         }
@@ -43,6 +55,18 @@ class main{
 			xdat[i] = xi;
 			ydat[i] = Cos(2*xi);
 		}
-		return (xdat, ydat);
+	return (xdat, ydat);
+	}
+
+	public static (vector, vector, vector) qdata(int size=5){
+		vector x = new vector(size);
+		vector y = new vector(size);
+		vector y1 = new vector(size);
+		for(int i = 0; i<size; i++){
+			x[i] = i + 1;
+			y[i] = x[i];
+			y1[i] = x[i]*x[i];
+		}
+	return (x, y, y1);
 	}
 }
