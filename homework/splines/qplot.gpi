@@ -12,5 +12,5 @@ set style line 2 lw 1.2 lc rgb "green" lt 1
 set style line 3 lw 1.2 lc rgb "blue" lt 1
 
 
-plot[0:6][0:30] "qplot.data" index 0 title "points" ls 1, \
+plot[-8:8][-5:30] "qplot.data" index 0 title "points" ls 1, \
 				"qplot.data" index 1 with lines title "qspline" ls 2

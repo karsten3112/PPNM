@@ -26,7 +26,7 @@ class main{
 
         	}
 			if(arg == "-qspline"){
-				(vector xs, vector ys, vector y1s) = qdata();
+				(vector xs, vector ys, vector y1s) = qdata(6);
 				for(int i = 0; i < xs.size; i++){
 					WriteLine($"{xs[i]}	{y1s[i]}");
 				}
@@ -34,7 +34,7 @@ class main{
 				WriteLine("");
 
 				qspline spline = new qspline(xs, y1s);
-				(vector xp, vector l) = gendat(50, 1, 5);
+				(vector xp, vector l) = gendat(500, -6, 6);
 				for(int i = 0; i < xp.size; i++){
 					double z = spline.evaluate(xp[i]);
 					WriteLine($"{xp[i]}	{z}");
@@ -59,13 +59,16 @@ class main{
 	}
 
 	public static (vector, vector, vector) qdata(int size=5){
-		vector x = new vector(size);
-		vector y = new vector(size);
-		vector y1 = new vector(size);
-		for(int i = 0; i<size; i++){
-			x[i] = i + 1;
-			y[i] = x[i];
-			y1[i] = x[i]*x[i];
+		vector x = new vector(2*size);
+		vector y = new vector(2*size);
+		vector y1 = new vector(2*size);
+		for(int i = 0; i < size; i++){
+			x[i] = (i - size);
+			y1[i] = 1*(i)*(i);
+		}
+		for(int i = 0; i < size; i++){
+			x[i+size] = i + 1;
+			y1[i+size] = 1*(i+1-size)*(i+1-size);
 		}
 	return (x, y, y1);
 	}
