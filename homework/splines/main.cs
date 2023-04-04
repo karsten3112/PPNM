@@ -34,7 +34,7 @@ class main{
 				WriteLine("");
 
 				qspline spline = new qspline(xs, y1s);
-				(vector xp, vector l) = gendat(500, -6, 6);
+				(vector xp, vector l) = gendat(500, -1, 1);
 				for(int i = 0; i < xp.size; i++){
 					double z = spline.evaluate(xp[i]);
 					WriteLine($"{xp[i]}	{z}");
@@ -62,14 +62,14 @@ class main{
 		vector x = new vector(2*size);
 		vector y = new vector(2*size);
 		vector y1 = new vector(2*size);
-		for(int i = 0; i < size; i++){
-			x[i] = (i - size);
-			y1[i] = 1*(i)*(i);
+		for(int i = 0; i <size; i++){
+			x[i] = -1 + 0.2*i;
+			y1[i] = Exp(1.5*x[i]);
 		}
-		for(int i = 0; i < size; i++){
-			x[i+size] = i + 1;
-			y1[i+size] = 1*(i+1-size)*(i+1-size);
-		}
+		for(int i = 0; i< size; i++){
+			x[i+size] = 0.2 + 0.2*i;
+			y1[i+size] = Exp(-1.5*x[i+size]);
+		} 
 	return (x, y, y1);
 	}
 }
