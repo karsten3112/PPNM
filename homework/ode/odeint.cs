@@ -7,7 +7,7 @@ public class odeint{
 	public double initx; public vector inity;
 	public vector yfinal;
 
-	public odeint(Func<double, vector, vector> F, double x, vector y, double xend, bool record=false, double h=0.01, double acc=1e-2, double eps=1e-2, double maxstep=0.01){
+	public odeint(Func<double, vector, vector> F, double x, vector y, double xend, bool record=false, double h=0.01, double maxstep=0.01, double acc=1e-2, double eps=1e-2){
 		this.initx = x; this.inity = y.copy();
 		vector yf = driver(F, this.initx, this.inity, xend, h, acc, eps, record, maxstep);
 		this.yfinal = yf;
@@ -72,9 +72,6 @@ public class odeint{
 					factor = Min(factor, tol[i]/Abs(err[i]));
 				}
 			h*=Min(Pow(factor,0.25)*0.95, 2);
-			}
-			if(h>maxstep){
-				h = maxstep*0.95;
 			}
 		}while(true);
 	}
