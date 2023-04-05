@@ -50,7 +50,7 @@ class main{
 				Func<double, double> erf = delegate(double z){
 					return erf1(z, f1);
 				};
-				double start = -3.0, end = 3.0; int npoints = 100; double dx = (end - start)/npoints;
+				double start = -3.0, end = 3.0; int npoints = 50; double dx = (end - start)/npoints;
 				for(int i = 0; i < npoints; i++){
 					double xdat = start + i*dx;
 					double ydat = erf(xdat);
