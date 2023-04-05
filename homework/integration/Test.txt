@@ -1,0 +1,26 @@
+Calculating the integrals with abs. precission; 1e-3 and rel. prec.; 1e-3
+-------------------------------------------------------------------
+Integral nr. 1 should be 0.666666666666667 - Calculating via our integration method
+I = 0.666953909054655
+Checking with approx method
+Comparing......
+True
+-------------------------------------------------------------------
+Integral nr. 2 should be 2 - Calculating via our integration method
+I = 1.99996150007805
+Checking with approx method
+Comparing......
+True
+-------------------------------------------------------------------
+Integral nr. 3 should be 3.14159265358979 - Calculating via our integration method
+I = 3.14183457802727
+Checking with approx method
+Comparing......
+True
+-------------------------------------------------------------------
+Integral nr. 4 should be -4 - Calculating via our integration method
+I = -3.99991705899915
+Checking with approx method
+Comparing......
+True
+-------------------------------------------------------------------
