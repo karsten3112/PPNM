@@ -5,12 +5,12 @@ using System;
 public class odeint{
 	public genlist<double> xs; public genlist<vector> ys;
 	public double initx; public vector inity;
+	public vector yfinal;
 
-	public odeint(Func<double, vector, vector> F, double x, vector y, double xend, double h=0.01, double acc=0.01, double eps=0.01, genlist<double> xlist=null, genlist<vector> ylist=null){
+	public odeint(Func<double, vector, vector> F, double x, vector y, double xend, bool record=false, double h=0.01, double acc=1e-2, double eps=1e-2, double maxstep=0.01){
 		this.initx = x; this.inity = y.copy();
-		(genlist<double> xf, genlist<vector> yf) = driver(F, this.initx, this.inity, xend, h, acc, eps);
-		this.xs = xf;
-		this.ys = yf;
+		vector yf = driver(F, this.initx, this.inity, xend, h, acc, eps, record, maxstep);
+		this.yfinal = yf;
 	}
 
 	public (vector, vector) rkstep12(Func<double, vector, vector> F, double x, vector y, double h){
@@ -21,42 +21,61 @@ public class odeint{
 		return (yh, err);
 	}
 
-	public (vector, vector) rkstep45(Func<double, vector, vector> F, double x, vector y, double h){
-		vector k1 = F(x,y);
-		vector k2 = F(x+(0.25)*h, y + 0.25*k1)*h; //Numbers coming from the Fehlberg butcher table in the ODE chapter
-		vector k3 = F(x+(3.0/8.0)*h, y + (3.0/32.0)*k1 + (9.0/32.0)*k2)*h;
-		vector k4 = F(x+(12.0/13.0)*h, y + (1932.0/2197.0)*k1 - (7200.0/2197.0)*k2 + (7296.0/2197.0)*k3)*h;
-		vector k5 = F(x+h, y + (439.0/216.0)*k1 - (8)*k2 + (3680.0/513.0)*k3 - (845.0/4104.0)*k4)*h;
-		vector k6 = F(x+(0.5)*h, y - (8.0/27.0)*k1 + (2)*k2 - (3544.0/2565.0)*k3 + (1859.0/4104.0)*k4 - (11.0/40.0)*k5)*h;
+	public (vector, vector) rkfstep45(Func<double, vector, vector> F, double x, vector y, double h){
+		vector k1 = h*F(x,y);
+		vector k2 = h*F(x+(0.25)*h, y + 0.25*k1); //Numbers coming from the Fehlberg butcher table in the ODE chapter
+		vector k3 = h*F(x+(3.0/8.0)*h, y + (3.0/32.0)*k1 + (9.0/32.0)*k2);
+		vector k4 = h*F(x+(12.0/13.0)*h, y + (1932.0/2197.0)*k1 - (7200.0/2197.0)*k2 + (7296.0/2197.0)*k3);
+		vector k5 = h*F(x+h, y + (439.0/216.0)*k1 - (8.0)*k2 + (3680.0/513.0)*k3 - (845.0/4104.0)*k4);
+		vector k6 = h*F(x+(0.5)*h, y - (8.0/27.0)*k1 + (2.0)*k2 - (3544.0/2565.0)*k3 + (1859.0/4104.0)*k4 - (11.0/40.0)*k5);
 
-		vector yh = y + (k1*(25.0/216.0) + k3*(1408.0/2565.0) + k4*(2197.0/4104.0) - k5*(1.0/5.0))*h;
-		vector err = h*((25.0/216.0 - 16.0/216.0)*k1 + (2197.0/4104.0 - 6656.0/12825.0)*k3 + (2197.0/4104.0 - 28561.0/56430.0)*k4 - (1.0/5.0 + 9.0/50.0)*k5 - (2.0/55.0)*k6);
+		vector yh = y + (k1*(25.0/216.0) + k3*(1408.0/2565.0) + k4*(2197.0/4104.0) - k5*(1.0/5.0));
+		vector err = ((16.0/135.0 - 25.0/216.0)*k1 + (6656.0/12825.0- 1408.0/2565.0)*k3 + (28561.0/56430.0 - 2197.0/4104.0)*k4 + (1.0/5.0 - 9.0/50.0)*k5 + (2.0/55.0)*k6);
 		return (yh, err);
 	}
 
-	public (genlist<double>, genlist<vector>) driver(Func<double, vector, vector> F, double xinit, vector yinit, double xend, double h, double acc, double eps){
+	public vector driver(Func<double, vector, vector> F, double xinit, vector yinit, double xend, double h, double acc, double eps, bool record, double maxstep){
 		if(xinit > xend){
 			throw new ArgumentException("startpoint larger than end point");
 		}
-		double x = xinit; vector y = yinit;
-		genlist<double> xres = new genlist<double>(); xres.add(xinit);
-		genlist<vector> yres = new genlist<vector>(); yres.add(yinit);
+		double x = xinit; vector y = yinit; vector tol = new vector(yinit.size);
+		if(record == true){
+			this.xs = new genlist<double>(); this.xs.add(x);
+			this.ys = new genlist<vector>(); this.ys.add(y);
+		}
 		do{
+			bool append = true;
 			if(x>=xend){
-				return (xres, yres);
+				return y;
 			}
 			if(x+h > xend){
-				h = xend -x;
+				h = xend - x;
 			}
-			(vector yh, vector err) = rkstep12(F, x, y, h);
-			double tol = (acc + eps*yh.norm())*Sqrt(h/(xend-xinit));
-			double erv = err.norm();
-			if(erv <= tol){
+			(vector yh, vector err) = rkfstep45(F, x, y, h);
+			for(int i = 0; i < yh.size; i++){
+				tol[i] = (acc + eps*Abs(yh[i]))*Sqrt(h/(xend-xinit));
+			}
+			for(int i = 0; i < err.size; i++){
+				if(Abs(err[i]) > tol[i]){
+					append = false;
+				}
+			}
+			if(append == true){
 				x+=h; y=yh;
-				xres.add(x);
-				yres.add(y);
+				if(record == true){
+					this.xs.add(x);
+					this.ys.add(y);
+				}
+			} else {
+				double factor = tol[0]/Abs(err[0]);
+				for(int i = 1; i < err.size; i++){
+					factor = Min(factor, tol[i]/Abs(err[i]));
+				}
+			h*=Min(Pow(factor,0.25)*0.95, 2);
 			}
-		h*=Min(Pow(tol/erv,0.25)*0.95, 2);
+			if(h>maxstep){
+				h = maxstep*0.95;
+			}
 		}while(true);
 	}
 }

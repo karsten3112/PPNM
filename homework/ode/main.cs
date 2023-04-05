@@ -7,13 +7,13 @@ class main{
 	static void Main(){
 		Func<double,vector,vector> F = delegate(double t,vector y){
 			double theta=y[0]; double omega=y[1];
-			return new vector(omega,-b*omega-c*Sin(theta));
+			return new vector(omega,-theta);
 		};
 
 		vector yinit = new vector(PI-0.1,0.1);
 		double xinit = 0.0;
 		double xend = 10.0;
-		odeint solve = new odeint(F,xinit,yinit,xend);
+		odeint solve = new odeint(F,xinit,yinit,xend, true);
 		genlist<double> ts = solve.xs;
 		genlist<vector> ys = solve.ys;
 		for(int i = 0; i < ts.size; i++){
