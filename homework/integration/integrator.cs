@@ -6,8 +6,8 @@ public static class integrator{
 	public static double[] ws = {2.0/6.0, 1.0/6.0, 1.0/6.0, 2.0/6.0};
 	public static double[] vs = {1.0/4.0, 1.0/4.0, 1.0/4.0, 1.0/4.0};
 	public static double[] xs = {1.0/6.0, 2.0/6.0, 4.0/6.0, 5.0/6.0};
-	public static int count = 0;
-	
+
+
 	public static double q4calc(Func<double, double> f, double a, double b, double acc=1e-4, double eps=1e-4, Double f2=Double.NaN, Double f3=Double.NaN){
 		double h = b - a;
 		//if(h<1e-13){
@@ -34,7 +34,29 @@ public static class integrator{
 			n++;
 			return f(z);
 		};
-		return (q4calc(ft, a, b, acc, eps), n);
+		if(Double.IsNegativeInfinity(a) && !Double.IsPositiveInfinity(b)){
+			Func<double, double> fn = delegate(double t){
+				return ft(b-(1-t)/t)/t/t;
+			};
+			n=0;
+			return (q4calc(fn, 0,1,acc,eps), n);
+		}
+		if(!Double.IsNegativeInfinity(a) && Double.IsPositiveInfinity(b)){
+			Func<double, double> fn = delegate(double t){
+				return ft(a+(1-t)/t)/t/t;
+			};
+			n=0;
+			return (q4calc(fn, 0,1,acc,eps), n);
+		}
+		if(Double.IsNegativeInfinity(a) && Double.IsPositiveInfinity(b)){
+			Func<double, double> fn = delegate(double t){ 
+				return (ft((1-t)/t) + ft(-(1-t)/t))/t/t;
+			};
+			n=0;
+			return (q4calc(fn, 0,1, acc,eps), n);
+		} else {
+			return (q4calc(ft, a, b, acc, eps), n);
+		}
 	}
 
 	public static (double, int) CCtrans(Func<double, double> f, double a, double b, double acc=1e-4, double eps=1e-4){
