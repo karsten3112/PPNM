@@ -1,26 +1,29 @@
-Calculating the integrals with abs. precission; 1e-3 and rel. prec.; 1e-3
+Calculating the integrals with abs. precission; 1e-4 and rel. prec.; 1e-4
 -------------------------------------------------------------------
-Integral nr. 1 should be 0.666666666666667 - Calculating via our integration method
-I = 0.666953909054655
+Integral nr. 1 of sqrt(x) | should be 0.666666666666667 - Calculating via our integration methods
+From regular q4; I = 0.666680932893738 nr. of splits = 40
+From CC-trans; I = 0.666666552998899 nr. of splits = 64
 Checking with approx method
 Comparing......
 True
 -------------------------------------------------------------------
-Integral nr. 2 should be 2 - Calculating via our integration method
-I = 1.99996150007805
+Integral nr. 2 of 1/sqrt(x) | should be 2 - Calculating via our integration methods
+From regular q4; I = 1.99999738796403 nr. of splits = 17140
+From CC-trans; I = 1.9999998903107 nr. of splits = 52
 Checking with approx method
 Comparing......
 True
 -------------------------------------------------------------------
-Integral nr. 3 should be 3.14159265358979 - Calculating via our integration method
-I = 3.14183457802727
+Integral nr. 3 of 4*sqrt(1-x^2) | should be 3.14159265358979 - Calculating via our integration methods
+From regular q4; I = 3.14159750770263 nr. of splits = 80
+From CC-trans; I = 3.14159266117462 nr. of splits = 120
 Checking with approx method
 Comparing......
 True
 -------------------------------------------------------------------
-Integral nr. 4 should be -4 - Calculating via our integration method
-I = -3.99991705899915
+Integral nr. 4 of ln(x)/sqrt(x) | should be -4 - Calculating via our integration methods
+From regular q4; I = -3.99999834899021 nr. of splits = 29972
+From CC-trans; I = -3.99999813339603 nr. of splits = 272
 Checking with approx method
 Comparing......
 True
--------------------------------------------------------------------
