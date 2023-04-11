@@ -39,9 +39,14 @@ class main{
 				}
 			}
 			if(arg == "-cspline"){
-				(vector xs, vector ys, vector y1s) = qdata(6);
-				cspline spline = new cspline(xs, y1s);
-				(vector xp, vector l) = gendat(500, -1, 1);
+				(vector xs, vector ys) = gendat(8, -PI, PI);
+				for(int i = 0; i < xs.size; i++){
+					WriteLine($"{xs[i]}	{ys[i]}");
+				}
+				cspline spline = new cspline(xs, ys);
+				WriteLine("");
+				WriteLine("");
+				(vector xp, vector l) = gendat(500, -PI, PI);
 				for(int i = 0; i < xp.size; i++){
 					double z = spline.evaluate(xp[i]);
 					WriteLine($"{xp[i]}	{z}");
@@ -73,7 +78,7 @@ class main{
 		for(int i = 0; i< size; i++){
 			x[i+size] = 0.2 + 0.2*i;
 			y1[i+size] = Exp(-1.5*x[i+size]);
-		} 
+		}
 	return (x, y, y1);
 	}
 }
