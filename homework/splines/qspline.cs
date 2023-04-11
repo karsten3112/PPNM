@@ -61,24 +61,16 @@ public class qspline{
 		dx = x[1] - x[2];
 		dx1 = x[0] - x[1];
 		cs[0] = (pi1 - pi - cs[1]*dx1)/dx;
-        return cs;
+    return cs;
     }
-
-	public vector calcps(vector x, vector y){
-		int n = x.size - 1;
-		vector ps = new vector(n);
-		double dx = 0; double pi = 0; double dy = 0;
-		for(int i = 0; i+1 < x.size; i++){
-			dx = x[i+1] - x[i];
-			dy = y[i+1] - y[i];
-			pi = dy/dx;
-			ps[i] = pi;
+	public static vector calcps(vector x, vector y){
+		vector p = new vector(x.size - 1);
+		for(int i = 0; i < x.size-1; i++){
+			double dy = y[i+1] - y[i];
+			double dx = x[i+1] - x[i];
+			p[i] = dy/dx;
 		}
-		dx = x[n] - x[n-1];
-		dy = y[n] - y[n-1];
-		pi = dy/dx;
-		ps[n-1] = pi;
-		return ps;
+	return p;
 	}
 
 	public vector calcbs(vector c, vector p, vector x){

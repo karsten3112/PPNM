@@ -1,12 +1,18 @@
 DIR = ../../matlib/matrix
 
-all:Linplot.svg Qplot.svg
+all:Linplot.svg Qplot.svg Cplot.svg
 
 Linplot.svg: linplot.gpi linplot.data
 	gnuplot linplot.gpi
 
 linplot.data: main.exe
 	mono main.exe -linspline > linplot.data
+
+Cplot.svg: cplot.gpi cplot.data
+	gnuplot cplot.gpi
+
+cplot.data: main.exe
+	mono main.exe -cspline > cplot.data
 
 
 Qplot.svg: qplot.gpi qplot.data

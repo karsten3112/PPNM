@@ -39,7 +39,13 @@ class main{
 				}
 			}
 			if(arg == "-cspline"){
-
+				(vector xs, vector ys, vector y1s) = qdata(6);
+				cspline spline = new cspline(xs, y1s);
+				(vector xp, vector l) = gendat(500, -1, 1);
+				for(int i = 0; i < xp.size; i++){
+					double z = spline.evaluate(xp[i]);
+					WriteLine($"{xp[i]}	{z}");
+				}
 			}
         }
 	}
