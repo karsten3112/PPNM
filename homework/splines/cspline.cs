@@ -22,17 +22,23 @@ public class cspline{
 	}
 
 	public (matrix, vector) Gauss_elim(matrix A, vector b){
-		matrix Q = new matrix(A.size1, A.size2);
+		int n = A.size1;
+		matrix Q = new matrix(n, n);
 		Q.setid();
-		vector D = new vector(b.size);
-		for(int i = 0; i < A.size1; i++){
+		vector D = new vector(n);
+		for(int i = 0; i < A.size1-1; i++){
 			if(i == 0){
 				Q[i,i] = A[i,i];
 				D[i] = b[i];
+				Q[i,i+1] = A[i,i+1];
 			} else {
-				Q[i,i] = A[i,i] - A[i-1,i]/Q[i-1,i-1];
+				//double w = A[i,i]/Q[i-1,i-1];
+				Q[i,i] = A[i,i] - Q[i-1,i]/Q[i-1,i-1];
 				D[i] = b[i] - D[i-1]/Q[i-1,i-1];
+				Q[i,i+1] = A[i,i+1];
 			}
+		Q[n-1,n-1] = A[n-1,n-1] - Q[n-2,n-1]/Q[n-2,n-2];
+		D[n-1] = b[n-1] - D[n-2]/Q[n-2,n-2];
 		}
 		return (Q, D);
 	}
