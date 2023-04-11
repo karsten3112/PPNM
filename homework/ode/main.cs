@@ -10,7 +10,7 @@ class main{
 		foreach(string arg in args){
 			if(arg == "-Tbody"){
 				vector yinit = new vector(12);
-				double tinit = 0.0; double tend = 6.32591398;
+				double tinit = 0.0; double tend = 6.32591398; //initial-conditions given from the paper in the assignment.
 				yinit[0] = 0.97000436; yinit[1] = -0.24308753;
 				yinit[2] = -yinit[0]; yinit[3] = -yinit[1];
 				yinit[4] = 0.0; yinit[5] = 0.0;

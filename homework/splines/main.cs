@@ -6,24 +6,22 @@ class main{
 	static void Main(string[] args){
 			foreach(string arg in args){
 			if(arg == "-linspline"){
-				(vector xs, vector ys) = gendat(50, -PI, PI);
+				(vector xs, vector ys) = gendat(8, -PI, PI);
 				for(int i = 0; i < xs.size; i++){
 					WriteLine($"{xs[i]}	{ys[i]}");
 				}
+				(vector zinpt, vector d) = gendat(500, -PI, PI);
+				linspline spline = new linspline(xs, ys);
 				WriteLine("");
 				WriteLine("");
-				(vector zinpt, vector d) = gendat(50, -PI, PI);
-				linspline spline = new linspline(xs, ys, zinpt); 
-				for(int i = 0; i < xs.size; i++){
-					WriteLine($"{xs[i]} {spline.z[i]}");
-        		}
-        		WriteLine("");
-        		WriteLine("");
-        		for(int i = 0; i < zinpt.size; i++){
-        			WriteLine($"{zinpt[i]} {spline.linInteg(xs, ys, zinpt[i])}");
-        		}
-
-
+				for(int i = 0; i < zinpt.size; i++){
+					WriteLine($"{zinpt[i]}	{spline.evaluate(zinpt[i])}");
+				}
+				WriteLine("");
+				WriteLine("");
+				for(int i = 0; i < zinpt.size; i++){
+					WriteLine($"{zinpt[i]}	{spline.linInteg(zinpt[i])}");
+				}
         	}
 			if(arg == "-qspline"){
 				(vector xs, vector ys, vector y1s) = qdata(6);
@@ -48,9 +46,9 @@ class main{
 
 	public static (vector, vector) gendat(int size, double start=0.0, double end=10.0){
 		double dx = (end - start)/size;
-		vector xdat = new vector(size);
-		vector ydat = new vector(size);
-		for(int i = 0; i < size; i++){
+		vector xdat = new vector(size + 1);
+		vector ydat = new vector(size + 1);
+		for(int i = 0; i < size + 1; i++){
 			double xi = start + dx*i;
 			xdat[i] = xi;
 			ydat[i] = Cos(2*xi);

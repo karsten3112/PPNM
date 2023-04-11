@@ -2,17 +2,16 @@ using static System.Math;
 using System;
 
 public class linspline{
-	public vector x;
-	public vector y;
-	public vector z;
+	public vector xs;
+	public vector ys;
+	public vector ps;
+	public vector cs; //Making vector of constants after integration demanding continuity
 
-	public linspline(vector xs, vector ys, vector zs){
-		x = xs;
-		y = ys;
-		z = new vector(zs.size);
-		for(int i = 0; i < zs.size; i++){
-			z[i] = lininterp(xs, ys, zs[i]);
-		}
+	public linspline(vector x, vector y, double cinit=0.0){
+		this.xs = x;
+		this.ys = y;
+		this.ps = calcps(this.xs, this.ys);
+		this.cs = calccs(this.xs,this.ys, this.ps, cinit);
 	}
 
 	public static int binsearch(vector x, double z){
@@ -30,28 +29,35 @@ public class linspline{
 		}
 		return i;
 	}
-	public static double lininterp(vector x, vector y, double z){
-		int i = binsearch(x, z);
-		double dy = y[i+1] - y[i];
-		double dx = x[i+1] - x[i];
-		if(dx > 0.0){
-			return y[i] + dy/dx*(z - x[i]);
-		} else {
-			throw new Exception("dx is strictly positive");
+	public static vector calcps(vector x, vector y){
+		vector p = new vector(x.size - 1);
+		for(int i = 0; i < x.size-1; i++){
+			double dy = y[i+1] - y[i];
+			double dx = x[i+1] - x[i];
+			p[i] = dy/dx;
 		}
+		return p;
 	}
 
-	public double linInteg(vector x, vector y, double z){
-		int k = binsearch(x, z);
-		double sum = 0; double dy; double dx;
-		for(int j = 0; j+1 < k; j++){
-			dy = y[j+1] - y[j];
-			dx = x[j+1] - x[j];
-			sum+= y[j]*(x[j+1] - x[j]) + dy/dx*(x[j+1] - x[j])*(x[j+1] - x[j])*0.5;
+	public double evaluate(double z){
+		int k = binsearch(this.xs, z);
+		return this.ys[k] + this.ps[k]*(z - this.xs[k]);
+	}
+
+	public static vector calccs(vector xs, vector ys, vector ps, double cinit){ //Calculating cs given a certain starting condition and demanding continuity
+		vector result = new vector(xs.size-1);
+		for(int i = 0; i < xs.size-1; i++){
+			if(i == 0){
+				result[i] = cinit;
+			} else {
+				result[i] = ys[i-1]*(xs[i] - xs[i-1]) + ps[i-1]*(xs[i] - xs[i-1])*(xs[i] - xs[i-1])*0.5 + result[i-1];
+			}
 		}
-		dy = y[k+1] - y[k];
-		dx = x[k+1] - x[k];
-		sum+= y[k]*(z - x[k]) + dy/dx*(z - x[k])*(z - x[k])*0.5;
-		return sum;
+		return result;
+	}
+
+	public double linInteg(double z){
+		int k = binsearch(this.xs, z);
+		return this.ys[k]*(z - this.xs[k]) + this.ps[k]*(z - this.xs[k])*(z - this.xs[k])*0.5 + this.cs[k];
 	}
 }
