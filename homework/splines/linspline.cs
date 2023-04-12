@@ -5,13 +5,13 @@ public class linspline{
 	public vector xs;
 	public vector ys;
 	public vector ps;
-	public vector cs; //Making vector of constants after integration demanding continuity
+	public vector cs = null; //Making vector of constants after integration demanding continuity
+	public double cinit =  0.0;
 
-	public linspline(vector x, vector y, double cinit=0.0){
+	public linspline(vector x, vector y){
 		this.xs = x;
 		this.ys = y;
 		this.ps = calcps(this.xs, this.ys);
-		this.cs = calccs(this.xs,this.ys, this.ps, cinit);
 	}
 
 	public static int binsearch(vector x, double z){
@@ -56,7 +56,10 @@ public class linspline{
 		return result;
 	}
 
-	public double linInteg(double z){
+	public double linInteg(double z, double cinit=0.0){
+		if(this.cs == null || cinit != this.cinit){
+			this.cs = calccs(this.xs, this.ys, this.ps, cinit);
+		}
 		int k = binsearch(this.xs, z);
 		return this.ys[k]*(z - this.xs[k]) + this.ps[k]*(z - this.xs[k])*(z - this.xs[k])*0.5 + this.cs[k];
 	}

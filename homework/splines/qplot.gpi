@@ -1,9 +1,9 @@
 set terminal svg background "white"
 set output "QPlot.svg"
 set xlabel "x" font "Times New Roman, 18"
-set ylabel "cos(2x)" font "Times New Roman, 18"
+set ylabel "y" font "Times New Roman, 18"
 set tics out font "Times New Roman, 15"
-set title "Linear Interpolation and integration" font "Times New Roman, 20"
+set title "Quadtratic-Spline" font "Times New Roman, 20"
 set grid
  
 set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
@@ -13,4 +13,5 @@ set style line 3 lw 1.2 lc rgb "blue" lt 1
 
 
 plot[-1.2:1.2][0.1:1.2] "qplot.data" index 0 title "points" ls 1, \
-				"qplot.data" index 1 with lines title "qspline" ls 2
+				"qplot.data" index 1 with lines title "qspline" ls 2, \
+				#"qplot.data" index 2  title "derivative" ls 3, \

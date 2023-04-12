@@ -37,6 +37,12 @@ class main{
 					double z = spline.evaluate(xp[i]);
 					WriteLine($"{xp[i]}	{z}");
 				}
+				WriteLine("");
+				WriteLine("");
+				for(int i = 0; i < xp.size; i++){
+					double z = spline.derivative(xp[i]);
+					WriteLine($"{xp[i]}	{z}");
+				}
 			}
 			if(arg == "-cspline"){
 				(vector xs, vector ys) = gendat(8, -PI, PI);

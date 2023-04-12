@@ -3,74 +3,65 @@ using System;
 
 
 public class qspline{
-	public vector x; public vector y;
-	public vector b; public vector c; public vector p;
-	public qspline(vector xs, vector ys){
-		this.x = xs.copy(); this.y = ys.copy();
-		this.p = calcps(this.x, this.y);
-		vector cf = forward_recC(this.x, this.y, this.p); //only runs on a forward recursion for the moment
-		vector cb = backward_recC(this.x, this.y, this.p);
-		this.c = 0.5*(cf+cb);
-		this.b = calcbs(this.c, this.p, this.x);
+	public vector xs; public vector ys;
+	public vector bs; public vector cs; public vector ps;
+	public vector dxs;
+
+	public qspline(vector x, vector y){
+		this.xs = x.copy();
+		this.ys = y.copy();
+		this.ps = calcps(this.xs, this.ys);
+		this.dxs = calcdxs(this.xs);
+		vector cf = forward_recC(this.dxs, this.ps); //only runs on a forward recursion for the moment
+		vector cb = backward_recC(this.dxs, this.ps);
+		this.cs = 0.5*(cb+cf);
+		this.bs = calcbs(this.cs, this.ps, this.xs);
 	}
 
-	public vector forward_recC(vector x, vector y, vector p){
-		int n = x.size - 1;
+	public vector forward_recC(vector dx, vector p){
+		int n = dx.size-1;
 		vector cs = new vector(n);
-		double pi = 0; double pi1 = 0; double dx = 0; double dx1 = 0;
-		for(int i = 0; i + 2 < x.size; i++){
+		for(int i = 0; i < n; i++){
 			if(i == 0){
 				cs[i] = 0;
-				dx1 = x[i+2] - x[i+1];
-				pi1 = p[i+1];
 			} else {
-				pi = pi1; //We use the values from last recursion
-				dx = dx1;
-				dx1 = x[i+2] - x[i+1];
-				pi1 = p[i+1];
-				cs[i] = (pi1 - pi - cs[i-1]*dx)/dx1;
+				cs[i] = (p[i] - p[i-1] - cs[i-1]*dx[i-1])/dx[i];
 			}
 		}
-		dx1 = x[n] - x[n-1];
-		pi1 = p[n-1];
-		dx = x[n-1] - x[n-2];
-		pi = p[n-2];
-		cs[n-1] = (pi1 - pi - cs[n-2]*dx)/dx1;
-		return cs;
+		cs[n-1] = (p[n-1] - p[n-2] - cs[n-2]*dx[n-2])/dx[n-1];
+	return cs;
 	}
 
-	public vector backward_recC(vector x, vector y, vector p){
-		int n = x.size - 1;
+	public vector backward_recC(vector dx, vector p){
+		int n = dx.size-1;
         vector cs = new vector(n);
-        double pi = 0; double pi1 = 0; double dx = 0; double dx1 = 0;
-        for(int i = x.size - 2; i > 0; i--){
-			if(i == x.size - 2){
+        for(int i = n-1; i > 0; i--){
+			if(i == n-1){
 				cs[i] = 0.0;
-				pi1 = p[i-1];
-				dx1 = x[i-1] - x[i];
 			} else {
-				pi = pi1;
-				dx = dx1;
-				pi1 = p[i-1];
-				dx1 = x[i-1] - x[i];
-				cs[i] = (pi1 - pi - cs[i+1]*dx1)/dx;
+				cs[i] = (p[i+1] - p[i] - cs[i+1]*dx[i+1])/dx[i];
 			}
 		}
-		pi1 = p[0];
-		pi = p[1];
-		dx = x[1] - x[2];
-		dx1 = x[0] - x[1];
-		cs[0] = (pi1 - pi - cs[1]*dx1)/dx;
+		cs[0] = (p[1] - p[0] - cs[1]*dx[1])/dx[0];
     return cs;
     }
+
+	public static vector calcdxs(vector x){
+		vector dxs = new vector(x.size-1);
+		for(int i = 0; i < x.size-1; i++){
+			dxs[i] = x[i+1] - x[i];
+		}
+		return dxs;
+	}
+
 	public static vector calcps(vector x, vector y){
-		vector p = new vector(x.size - 1);
+		vector ps = new vector(x.size - 1);
 		for(int i = 0; i < x.size-1; i++){
 			double dy = y[i+1] - y[i];
 			double dx = x[i+1] - x[i];
-			p[i] = dy/dx;
+			ps[i] = dy/dx;
 		}
-	return p;
+	return ps;
 	}
 
 	public vector calcbs(vector c, vector p, vector x){
@@ -80,24 +71,24 @@ public class qspline{
 			dx = x[i+1] - x[i];
 			bs[i] = p[i] - c[i]*dx;
 		}
-		return bs;
+	return bs;
 	}
 
 	public double evaluate(double z){
-		int k = binsearch(this.x, z);
-		double result = this.y[k] + this.b[k]*(z - this.x[k]) + this.c[k]*(z - this.x[k])*(z - this.x[k]);
-		return result;
+		int k = binsearch(this.xs, z);
+		double result = this.ys[k] + this.bs[k]*(z - this.xs[k]) + this.cs[k]*(z - this.xs[k])*(z - this.xs[k]);
+	return result;
 	}
 
 	public double derivative(double z){
-		int k = binsearch(this.x, z);
-		double result = this.b[k]*(z - this.x[k]) + 2*this.c[k]*(z - this.x[k]);
-		return result;
+		int k = binsearch(this.xs, z);
+		double result = this.bs[k] + 2*this.cs[k]*(z - this.xs[k]);
+	return result;
 	}
 
 	public double integral(double z){
-		int k = binsearch(this.x, z);
-		double result = this.y[k]*(z - this.x[k]) + this.b[k]*(z - this.x[k])*(z - this.x[k])/2 + this.c[k]*(z - this.x[k])*(z - this.x[k])*(z - this.x[k])/3;
+		int k = binsearch(this.xs, z);
+		double result = this.ys[k]*(z - this.xs[k]) + this.bs[k]*(z - this.xs[k])*(z - this.xs[k])/2 + this.cs[k]*(z - this.xs[k])*(z - this.xs[k])*(z - this.xs[k])/3;
 		return result;
 	}
 
