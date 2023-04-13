@@ -24,7 +24,7 @@ class main{
 				genlist<double> ts = solve.xs;
 				genlist<vector> ys = solve.ys;
 				for(int i = 0; i < ts.size; i++){
-					WriteLine($"{ys[i][4]}	{ys[i][5]}");
+					WriteLine($"{ys[i][0]}	{ys[i][1]}	{ys[i][2]}	{ys[i][3]}	{ys[i][4]}	{ys[i][5]}");
 				}
 			}
 			if(arg == "-harmosc"){

@@ -1,14 +1,22 @@
-set terminal svg background "white"
-set output "Tbody.svg"
+set term gif animate loop 0
+set output "Tbody.gif"
+
 set xlabel "x" font "Times New Roman, 18"
 set ylabel "y" font "Times New Roman, 18"
 set tics out font "Times New Roman, 15"
 set title "Stable 3-Body Orbit" font "Times New Roman, 20"
 set grid
  
-set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
- 
-set style line 2 lw 1.2 lc rgb "green" lt 1
-set style line 3 lw 1.2 lc rgb "blue" lt 1
+set style line 1 lc rgb "green" pt 7 ps 3
+set style line 2 lc rgb "blue" pt 7 ps 3
+set style line 3 lc rgb "red" pt 7 ps 3
 
-plot[-1.1:1.1][-1.1:1.1] "tbody.data" with lines title "1-whole period of planet-1"
+set style line 4 lc rgb "black" lt 1 lw 2
+
+do for [int=1:640:10]{
+	plot[-1.1:1.1][-1.1:1.1] "tbody.data" using 1:2 with lines ls 4 title "", \
+		"tbody.data" using 1:2 every ::int::int with points ls 1 title "Planet 1", \
+		"tbody.data" using 3:4 every ::int::int with points ls 2 title "Planet 2", \
+		"tbody.data" using 5:6 every ::int::int with points ls 3 title "Planet 3", \
+
+}
