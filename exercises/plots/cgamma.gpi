@@ -1,7 +1,13 @@
 set terminal png background "white"
-set output "3D plot"
+set output "3D-plot.png"
 
-set title "3D-plot.png"
+set title "Complex Gamma-function - |G(z)|" font "Times New Roman, 18"
+set xlabel "Re(z)" font "Times New Roman, 18" offset 1.5
+set ylabel "Im(z)" font "Times New Roman, 18" offset -2.5
+set zlabel "|G(z)|" font "Times New Roman, 18" offset 1.5
+set tics out font "Times New Roman, 18"
+set grid
+
 set xrange [-5.0:5.0]
 set yrange [-5.0:5.0]
 set zrange [0:6]
@@ -9,4 +15,4 @@ set pm3d
 set hidden3d
 set palette model HSV rgbformulae 3,2,2
 set view 60, 300	
-splot "cgamma.data" with lines
+splot "cgamma.data" with lines title ""

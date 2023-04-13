@@ -1,19 +1,26 @@
 DIR = $(HOME)/repos/PPNM/matlib/complex
 
 
+all: Erf.svg Gamma.svg Cgamma.svg
 
-gamma.svg: cgamma.data rgamma.data erf.data
-	gnuplot cgamma.gpi gamma.gpi erf.gpi
 
-rgamma.data: main.exe
-	mono main.exe -rgamma:rgamma.data
+Gamma.svg: gamma.data gamma.gpi
+	gnuplot gamma.gpi
 
-erf.data: main.exe
-	mono main.exe -erf:erf.data
+gamma.data: main.exe
+	mono main.exe -rgamma:gamma.data
 
+Cgamma.svg: cgamma.data cgamma.gpi
+	gnuplot cgamma.gpi
 
 cgamma.data: main.exe
 	mono main.exe -cgamma:cgamma.data
+
+Erf.svg: erf.data erf.gpi
+	gnuplot erf.gpi
+
+erf.data: main.exe
+	mono main.exe -erf:erf.data
 
 
 main.exe: main.cs lib.dll

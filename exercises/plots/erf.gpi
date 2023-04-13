@@ -1,11 +1,15 @@
 set terminal svg background "white"
-set output "error.svg"
+set output "Erf.svg"
 set key bottom right
-set xlabel "x"
-set ylabel "erf(x)"
+
+set xlabel "x" font "Times New Roman, 18"
+set ylabel "erf(x)" font "Times New Roman, 18"
+set tics in font "Times New Roman, 18"
+set grid
+
 set xzeroaxis
 set yzeroaxis
 
-set title "errorfunction"
+set title "Error-function" font "Times New Roman, 18"
 
 plot [-3:3][-1.05:1.05] "erf.data" with lines linetype 2 title "theory" 
