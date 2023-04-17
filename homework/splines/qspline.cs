@@ -5,21 +5,21 @@ using System;
 public class qspline{
 	public vector xs; public vector ys;
 	public vector bs; public vector cs; public vector ps;
-	public vector dxs;
+	public vector ds = null; public double dinit = 0.0;
 
 	public qspline(vector x, vector y){
 		this.xs = x.copy();
 		this.ys = y.copy();
 		this.ps = calcps(this.xs, this.ys);
-		this.dxs = calcdxs(this.xs);
-		vector cf = forward_recC(this.dxs, this.ps); //only runs on a forward recursion for the moment
-		vector cb = backward_recC(this.dxs, this.ps);
+		vector dxs = calcdxs(this.xs);
+		vector cf = forward_recC(dxs, this.ps);
+		vector cb = backward_recC(dxs, this.ps);
 		this.cs = 0.5*(cb+cf);
 		this.bs = calcbs(this.cs, this.ps, this.xs);
 	}
 
 	public vector forward_recC(vector dx, vector p){
-		int n = dx.size-1;
+		int n = dx.size;
 		vector cs = new vector(n);
 		for(int i = 0; i < n; i++){
 			if(i == 0){
@@ -33,7 +33,7 @@ public class qspline{
 	}
 
 	public vector backward_recC(vector dx, vector p){
-		int n = dx.size-1;
+		int n = dx.size;
         vector cs = new vector(n);
         for(int i = n-1; i > 0; i--){
 			if(i == n-1){
@@ -86,9 +86,24 @@ public class qspline{
 	return result;
 	}
 
-	public double integral(double z){
+	public double integrate(double z, double ins=0.0){
+		if(this.ds == null || this.dinit != ins){
+			this.ds = calcds(this.xs,this.ys,this.bs,this.cs,ins);
+		}
 		int k = binsearch(this.xs, z);
-		double result = this.ys[k]*(z - this.xs[k]) + this.bs[k]*(z - this.xs[k])*(z - this.xs[k])/2 + this.cs[k]*(z - this.xs[k])*(z - this.xs[k])*(z - this.xs[k])/3;
+		double result = this.ys[k]*(z - this.xs[k]) + this.bs[k]*(z - this.xs[k])*(z - this.xs[k])/2.0 + this.cs[k]*(z - this.xs[k])*(z - this.xs[k])*(z - this.xs[k])/3.0 + this.ds[k];
+		return result;
+	}
+
+	public static vector calcds(vector xs, vector ys, vector bs, vector cs, double dinit){
+		vector result = new vector(xs.size-1);
+		for(int i = 0; i < xs.size-1; i++){
+			if(i == 0){
+				result[i] = dinit;
+			} else {
+				result[i] = result[i-1] + ys[i-1]*(xs[i]-xs[i-1]) + 0.5*bs[i-1]*(xs[i]-xs[i-1])*(xs[i]-xs[i-1]) + cs[i-1]*(xs[i]-xs[i-1])*(xs[i]-xs[i-1])*(xs[i]-xs[i-1])/3.0;
+			}
+		}
 		return result;
 	}
 

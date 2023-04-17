@@ -56,7 +56,7 @@ public class linspline{
 		return result;
 	}
 
-	public double linInteg(double z, double cinit=0.0){
+	public double integrate(double z, double cinit=0.0){
 		if(this.cs == null || cinit != this.cinit){
 			this.cs = calccs(this.xs, this.ys, this.ps, cinit);
 		}

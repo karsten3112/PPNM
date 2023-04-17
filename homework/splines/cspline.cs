@@ -8,6 +8,7 @@ public class cspline{
 	public vector ps; public vector hs;
 	public vector cs; public vector ds; public vector bs;
 	public matrix A; public vector B;
+	public double ein = 0.0; public vector es = null;
 
 	public cspline(vector x, vector y){
 		this.xs = x.copy(); this.ys = y.copy();
@@ -32,7 +33,6 @@ public class cspline{
 				D[i] = b[i];
 				Q[i,i+1] = A[i,i+1];
 			} else {
-				//double w = A[i,i]/Q[i-1,i-1];
 				Q[i,i] = A[i,i] - Q[i-1,i]/Q[i-1,i-1];
 				D[i] = b[i] - D[i-1]/Q[i-1,i-1];
 				Q[i,i+1] = A[i,i+1];
@@ -44,7 +44,7 @@ public class cspline{
 	}
 
 
-	public vector backsub(matrix A, vector b){ //Matrix A is already upper triangular.
+	public vector backsub(matrix A, vector b){
 		vector y = new vector(b.size);
 		for(int i = b.size - 1; i >= 0; i--){
 			double sum = 0;
@@ -146,7 +146,34 @@ public class cspline{
 	public double evaluate(double z){
 		int k = binsearch(this.xs, z);
 		double result = this.ys[k] + this.bs[k]*(z - this.xs[k]) + this.cs[k]*(z - this.xs[k])*(z - this.xs[k]) + this.ds[k]*(z - this.xs[k])*(z - this.xs[k])*(z - this.xs[k]);
-		return result;
+	return result;
+	}
+
+	public double derivative(double z){
+		int k = binsearch(this.xs, z);
+		double result = this.bs[k] + 2.0*this.cs[k]*(z - this.xs[k]) + 3.0*this.ds[k]*(z - this.xs[k])*(z - this.xs[k]);
+	return result;
+	}
+
+	public double integrate(double z, double einit=0.0){
+		if(this.es == null || this.ein != einit){
+			this.es = calces(this.xs, this.ys, this.bs, this.cs, this.ds, einit);
+		}
+		int k = binsearch(this.xs, z);
+		double result = this.ys[k]*(z-this.xs[k]) + this.bs[k]*(z-this.xs[k])*(z-this.xs[k])/2.0 + this.cs[k]*(z-this.xs[k])*(z-this.xs[k])*(z-this.xs[k])/3.0 + this.ds[k]*(z-this.xs[k])*(z-this.xs[k])*(z-this.xs[k])*(z-this.xs[k])/4.0 + this.es[k];
+	return result;
+	}
+
+	public vector calces(vector xs, vector ys, vector bs, vector cs, vector ds, double init){
+		vector result = new vector(bs.size);
+		for(int i = 0; i < xs.size -1; i++){
+			if(i == 0){
+				result[i] = init;
+			} else {
+				result[i] = result[i-1]+ys[i-1]*(xs[i]-xs[i-1])+bs[i-1]*(xs[i]-xs[i-1])*(xs[i]-xs[i-1])/2.0+cs[i-1]*(xs[i]-xs[i-1])*(xs[i]-xs[i-1])*(xs[i]-xs[i-1])/3.0+ds[i-1]*(xs[i]-xs[i-1])*(xs[i]-xs[i-1])*(xs[i]-xs[i-1])*(xs[i]-xs[i-1])/4.0;
+			}
+		}
+	return result;
 	}
 
 }
