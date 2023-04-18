@@ -20,7 +20,8 @@ class main{
 		if(dr != 0 && rmax != 0){
 			matrix H = Hamilton(rmax, dr);
 			(vector Es, matrix Psis) = jacobi.cyclic_EVD(H);
-			Es.print();
+			double E0 = Es[0];
+			WriteLine($"{rmax}	{E0}");
 		}
 	}
 	static void jacobi_test(int num){

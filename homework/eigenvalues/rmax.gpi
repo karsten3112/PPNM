@@ -1,0 +1,2 @@
+set terminal svg background "white"
+set output "Rmax.svg"
