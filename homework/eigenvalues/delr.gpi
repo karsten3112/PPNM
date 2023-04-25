@@ -1,8 +1,8 @@
 set terminal svg background "white"
-set output "Rmax.svg"
+set output "DelR.svg"
 set grid
 set tics out font "Times New Roman, 15"
-set xlabel "rmax" font "Times New Roman, 18"
+set xlabel "dr" font "Times New Roman, 18"
 set ylabel "E" font "Times New Roman, 18"
 
 
@@ -12,6 +12,6 @@ set style line 1 lw 1.2 lc rgb "black" lt 1 ps 1 pt 13 pi 1
 set style line 2 lw 1.2 lc rgb "red" lt 1
 
 
-plot[2:8][-0.7:0.05] "rmax.data" using 1:3 ls 1 title "convergence", \
-						"rmax.data" using 1:3 ls 1 with lines title "", \
+plot[0.2:1][-0.5:-0.3] "delr.data" using 2:3 ls 1 title "convergence", \
+						"delr.data" using 2:3 ls 1 with lines title "", \
 						f(x) ls 2 with lines title "exact"
