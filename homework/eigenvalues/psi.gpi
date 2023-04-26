@@ -7,9 +7,13 @@ set ylabel "E" font "Times New Roman, 18"
 
 
 f(x) = -13.6/27.211
-
-set style line 1 lw 1.2 lc rgb "black" lt 1 ps 1 pt 13 pi 1
-set style line 2 lw 1.2 lc rgb "red" lt 1
+g(x) = 2*x*exp(-x)
 
 
-plot[0:7][0:1] "psi.data" using 1:2 ls 2 with lines, \
+set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.5 pt 13 pi 1
+set style line 2 lw 1.2 lc rgb "red" lt 1 ps 0.5 pt 13 pi 1
+
+
+plot[0:7][0:1] "psi.data" using 1:2 ls 2 with lines title "", \
+				g(x) ls 1 with lines title "exact", \
+				"psi.data" using 1:2 ls 2 with points title "calculated"

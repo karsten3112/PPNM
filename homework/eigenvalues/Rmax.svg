@@ -256,20 +256,31 @@
 <g fill="none" color="#FFFFFF" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
+	<g transform="translate(498.09,39.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+		<text><tspan font-family="Arial" >convergence</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
+	<use xlink:href='#gpPt12' transform='translate(81.53,106.77) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(162.25,264.59) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(242.96,296.30) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(323.68,303.41) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(404.39,304.98) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(527.76,36.01) scale(4.50)' color='rgb(  0,   0,   0)'/>
 </g>
 	</g>
 	<g id="gnuplot_plot_2" ><title>gnuplot_plot_2</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
-</g>
+	<path stroke='rgb(  0,   0,   0)'  d='M81.53,106.77 L162.25,264.59 L242.96,296.30 L323.68,303.41 L404.39,304.98  '/></g>
 	</g>
 	<g id="gnuplot_plot_3" ><title>exact</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(498.09,39.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+	<g transform="translate(498.09,57.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
 		<text><tspan font-family="Arial" >exact</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(255,   0,   0)'  d='M506.48,36.01 L549.04,36.01 M81.53,307.86 L86.42,307.86 L91.31,307.86 L96.21,307.86 L101.10,307.86 L105.99,307.86
+	<path stroke='rgb(255,   0,   0)'  d='M506.48,54.01 L549.04,54.01 M81.53,307.86 L86.42,307.86 L91.31,307.86 L96.21,307.86 L101.10,307.86 L105.99,307.86
 		L110.88,307.86 L115.77,307.86 L120.66,307.86 L125.56,307.86 L130.45,307.86 L135.34,307.86 L140.23,307.86 L145.12,307.86
 		L150.02,307.86 L154.91,307.86 L159.80,307.86 L164.69,307.86 L169.58,307.86 L174.47,307.86 L179.37,307.86 L184.26,307.86
 		L189.15,307.86 L194.04,307.86 L198.93,307.86 L203.83,307.86 L208.72,307.86 L213.61,307.86 L218.50,307.86 L223.39,307.86

@@ -11,7 +11,7 @@ Rmax.svg: rmax.gpi rmax.data
 rmax.data: main.exe
 	>$@
 	for N in $$(seq 2 1 6); do \
-		mono main.exe -rmax:"$$N" -dr:3 >> rmax.data;\
+		mono main.exe -rmax:"$$N" -dr:2 >> rmax.data;\
 	done
 
 DelR.svg: delr.gpi delr.data

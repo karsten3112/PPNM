@@ -17,8 +17,19 @@ class main{
 				jacobi_test(int.Parse(input[1]));
 			}
 			if(input[0] == "-Psi"){
-				matrix H = Hamilton(10.0, 0.3);
+				matrix H = Hamilton(10.0, 0.2);
+				EVD eigen = new EVD(H);
+				matrix Psis = eigen.V;
+				for(int i = 0; i < Psis.size1; i++){
+					WriteLine($"{(i+1)*0.2}	{Psis[i,0]/Sqrt(0.2)}");
+				}
 			}
+		}
+		if(dr != 0 && rmax != 0){
+			matrix H = Hamilton(rmax, dr);
+			EVD eigen = new EVD(H);
+			vector Es = eigen.W;
+			WriteLine($"{dr}	{rmax}	{Es[0]}");
 		}
 	}
 

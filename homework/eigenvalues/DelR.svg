@@ -243,20 +243,36 @@
 <g fill="none" color="#FFFFFF" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
+	<g transform="translate(498.09,39.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+		<text><tspan font-family="Arial" >convergence</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
+	<use xlink:href='#gpPt12' transform='translate(89.92,396.32) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(149.41,381.55) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(208.90,365.50) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(268.38,349.31) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(327.87,324.35) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(387.36,302.59) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(446.85,275.74) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(506.33,241.18) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(565.82,228.71) scale(4.50)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt12' transform='translate(527.76,36.01) scale(4.50)' color='rgb(  0,   0,   0)'/>
 </g>
 	</g>
 	<g id="gnuplot_plot_2" ><title>gnuplot_plot_2</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
-</g>
+	<path stroke='rgb(  0,   0,   0)'  d='M89.92,396.32 L149.41,381.55 L208.90,365.50 L268.38,349.31 L327.87,324.35 L387.36,302.59 L446.85,275.74 L506.33,241.18
+		L565.82,228.71  '/></g>
 	</g>
 	<g id="gnuplot_plot_3" ><title>exact</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(498.09,39.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+	<g transform="translate(498.09,57.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
 		<text><tspan font-family="Arial" >exact</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(255,   0,   0)'  d='M506.48,36.01 L549.04,36.01 M89.92,413.00 L94.73,413.00 L99.53,413.00 L104.34,413.00 L109.15,413.00 L113.96,413.00
+	<path stroke='rgb(255,   0,   0)'  d='M506.48,54.01 L549.04,54.01 M89.92,413.00 L94.73,413.00 L99.53,413.00 L104.34,413.00 L109.15,413.00 L113.96,413.00
 		L118.76,413.00 L123.57,413.00 L128.38,413.00 L133.18,413.00 L137.99,413.00 L142.80,413.00 L147.60,413.00 L152.41,413.00
 		L157.22,413.00 L162.03,413.00 L166.83,413.00 L171.64,413.00 L176.45,413.00 L181.25,413.00 L186.06,413.00 L190.87,413.00
 		L195.68,413.00 L200.48,413.00 L205.29,413.00 L210.10,413.00 L214.90,413.00 L219.71,413.00 L224.52,413.00 L229.33,413.00
