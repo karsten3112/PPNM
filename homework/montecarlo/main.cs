@@ -41,21 +41,6 @@ class main{
 				(double res, double err) = montecarlo.plainMC(f, a, b, 10000000);
 				WriteLine(res);
 			}
-			if(inp[0] == "-debug"){
-				for(int i = 0; i < 100;i++){
-					WriteLine($"{corput(i, 2)}");
-				}
-			}
 		}
 	}
-	public static double corput(int n, int b){
-         double q = 0.0; double bk = (double)1.0/b;
-         while(n > 0){
-             q+= (n % b)*bk;
-             n/=b;
-             bk/=b;
-         }
-         return q;
-     }
-
 }

@@ -1,13 +1,10 @@
 DIR = ../../matlib/matrix
 
-all:QuasiMC.svg Out.txt PlainMC.svg
+all:QuasiMC.svg PlainMC.svg
 
 QuasiMC.svg: quasi.gpi quasi.data
 	gnuplot quasi.gpi
-
-Out.txt: main.exe
-	mono main.exe -debug > Out.txt
-
+	
 quasi.data: main.exe
 	mono main.exe -tQuasiMC > quasi.data
 
