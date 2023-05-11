@@ -1,7 +1,22 @@
 DIR = ../../matlib/matrix
 
+all:QuasiMC.svg Out.txt PlainMC.svg
+
+QuasiMC.svg: quasi.gpi quasi.data
+	gnuplot quasi.gpi
+
 Out.txt: main.exe
-	mono main.exe > Out.txt
+	mono main.exe -debug > Out.txt
+
+quasi.data: main.exe
+	mono main.exe -tQuasiMC > quasi.data
+
+PlainMC.svg: plain.gpi plain.data
+	gnuplot plain.gpi
+
+plain.data: main.exe
+	mono main.exe -tPlainMC > plain.data
+
 
 main.exe: main.cs matrix.dll mc.dll
 	mcs main.cs $(addprefix -reference:,$(filter %.dll,$^)) -target:exe -out:main.exe
