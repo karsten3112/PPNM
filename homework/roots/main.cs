@@ -34,7 +34,32 @@ class main{
 			(vector e, int count) = shooting(rmin, rmax, Einit);
 			WriteLine($"{e[0]}	{rmin}	{rmax}");
 		}
+		if(inp[0] == "-Eigplot"){
+			rmin = 1e-1;
+			rmax = 10.0;
+			vector yinit = new vector(rmin - rmin*rmin, 1.0-2.0*rmin);
+			Func<vector, vector> M = delegate(vector z){
+				double E = z[0];
+				Func<double, vector, vector> diffeq = delegate(double r, vector ys){
+					vector res = new vector(ys.size); double x1 = ys[0]; double x2 = ys[1];
+					res[0] = x2;
+					res[1] = -2.0*(E*x1 + x1/r);
+					return res;
+				};
+				odeint solution = new odeint(diffeq, rmin, yinit, rmax);
+				double F = solution.ys[0][0];
+				vector result = new vector(F);
+			return result;
+			};
+			vector delE = new vector(1.5/300.0);
+			vector Einit = new vector(-0.75);
+			for(int i = 0; i < 300; i++){
+				vector res = M(Einit);
+				WriteLine($"{Einit[0]}	{res[0]}");
+				Einit+=delE;
+			}
 		}
+	}
 	}
 
 	public static (vector, int) shooting(double rmin, double rmax, vector einit){

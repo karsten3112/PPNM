@@ -3,13 +3,20 @@ DIR2 = ../Linear-Equations
 DIR3 = ../ode
 DIR4 = ../../exercises/generic-list
 
-all:Out.txt En.txt
+all:Out.txt En.txt Aux.svg
 
 En.txt: main.exe
 	mono main.exe -Shooting: > En.txt
 
 Out.txt: main.exe
 	mono main.exe -Test: > Out.txt
+
+Aux.svg: aux.gpi aux.data
+	gnuplot aux.gpi
+
+aux.data: main.exe
+	mono main.exe -Eigplot: > aux.data 
+
 
 main.exe: main.cs rootfinder.dll lib.dll
 	mcs main.cs $(addprefix -reference:,$(filter %.dll,$^)) -target:exe -out:main.exe
