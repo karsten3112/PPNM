@@ -23,7 +23,7 @@ class main{
 			};
 			double x1 = 0.83;
 			vector xinit = new vector(x1, x1);
-			(vector xf, int count) = rootf.newton(db, xinit);
+			(vector xf, int count) = rootf.newton(f, xinit);
 			WriteLine(count);
 			xf.print();
 		}
