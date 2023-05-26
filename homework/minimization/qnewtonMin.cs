@@ -3,10 +3,10 @@ using static System.Math;
 using System;
 
 
-public partial class qnewton{
+public partial class qnewtonMin{
 	public vector delx; public vector xs;
 	public int count;
-	public qnewton(Func<vector, double> f, vector xinit, double acc=1e-3, int maxiter=5000){
+	public qnewtonMin(Func<vector, double> f, vector xinit, double acc=1e-3, int maxiter=5000){
 		(vector xf, int counts) = findmin(f, xinit, acc, maxiter);
 		this.xs = xf.copy();
 		this.count = counts;
@@ -20,14 +20,13 @@ public partial class qnewton{
 		B.setid();
 		do{
 			i++;
-			bool search = true;
 			gradf = gradient(f, xs);
 			delx = -B*gradf;
 			double lambda = 1.0;
 			while(true){
 				if(f(xs + lambda*delx) < f(xs)){
-					xs = xs + lambda*delx;
 					B = B + SR1upd(f, B, xs, lambda*delx);
+					xs = xs + lambda*delx;
 					break;
 				}
 				lambda/=2.0;
@@ -42,10 +41,10 @@ public partial class qnewton{
 	return (xs, i);
 	}
 
-	public matrix SR1upd(Func<vector, double> f, matrix B, vector xs, vector delx, double eps=1e-6){
+	public matrix Broyden(Func<vector, double> f, matrix B, vector xs, vector delx, double eps=1e-6){ //Regular Broyden update
 		vector s = delx;
 		matrix delB = new matrix(xs.size, xs.size);
-		vector y = gradient(f, xs + s) - gradient(f, xs); //Måske er fejlen her idet gradienten, bliver regnet et step længere fremme.
+		vector y = gradient(f, xs + s) - gradient(f, xs);
 		vector u = s - B*y;
 		double prod = s.dot(y);
 		if(Abs(prod) < Pow(2.0,-26.0)){
@@ -59,6 +58,23 @@ public partial class qnewton{
 		delB = cd*l;
 		return delB;
 	}
+
+	public matrix SR1upd(Func<vector, double> f, matrix B, vector xs, vector delx, double eps=1e-6){ //Symmetric rank-1 update
+		vector s = delx;
+		matrix delB = new matrix(xs.size, xs.size);
+		vector y = gradient(f, xs + s) - gradient(f, xs);
+		vector u = s - B*y;
+		double prod = u.dot(y);
+		if(Abs(prod) < Pow(2.0,-26.0)){
+			prod = Pow(2.0,-26.0);
+		}
+		matrix un = new matrix(u.size, 1); //Smart way to transpose vectors?
+		un[0] = u;
+		matrix ut = un.transpose();
+		delB = un*ut/prod;
+	return delB;
+	}
+
 
 	public vector gradient(Func<vector, double> f, vector xs){
 		vector grad = new vector(xs.size);
