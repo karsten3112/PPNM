@@ -1,0 +1,16 @@
+set terminal svg background "white"
+set output "Tab.svg"
+set xlabel "x" font "Times New Roman, 18"
+set ylabel "y" font "Times New Roman, 18"
+set tics out font "Times New Roman, 15"
+set title "Neural-Network prediction" font "Times New Roman, 20"
+set grid
+ 
+set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
+ 
+set style line 2 lw 1.2 lc rgb "green" lt 1
+set style line 3 lw 1.2 lc rgb "blue" lt 1
+
+
+plot "tab.data" index 0 with points ls 1 title "tabulated points", \
+	"tab.data" index 1 with lines ls 2 title "Neural network"
