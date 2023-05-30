@@ -11,7 +11,7 @@ class main{
 		for(int i = 0; i < xs.size; i++){
 			WriteLine($"{xs[i]}	{ys[i]}");
 		}
-		ann network = new ann(3);
+		ann network = new ann(6);
 		network.train(xs, ys);
 		vector ps = network.ps;
 		Func<double, double> res = delegate(double z){

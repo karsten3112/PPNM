@@ -5,7 +5,7 @@ using static System.Math;
 public class ann{
 	public int n; public vector ps;
 	public vector binits;
-	static Random rnd = new System.Random();
+	static Random rnd = new System.Random(1);
 	Func<double, double> f = delegate(double z){
 		return z*Exp(-z*z);
 	};
@@ -28,7 +28,7 @@ public class ann{
 			for(int i = 0; i < dim; i++){
 				sum+=(response(x[i], z) - y[i])*(response(x[i], z) - y[i]);
 			}
-			return sum;
+			return sum/dim;
 		};
 		do{
 			vector zinit = new vector(3*this.n);
