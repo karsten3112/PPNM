@@ -255,7 +255,7 @@
 	<path stroke='black'  d='M81.53,66.01 L81.53,413.40 L565.82,413.40 L565.82,66.01 L81.53,66.01 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(21.13,239.71) rotate(270)" stroke="none" fill="black" font-family="Times New Roman" font-size="18.00"  text-anchor="middle">
-		<text><tspan font-family="Times New Roman" >cos(2x)</tspan></text>
+		<text><tspan font-family="Times New Roman" >y</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -265,12 +265,12 @@
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
-	<g id="gnuplot_plot_1" ><title>points</title>
+	<g id="gnuplot_plot_1" ><title>points - cos(2x)</title>
 <g fill="none" color="#FFFFFF" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(498.09,87.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
-		<text><tspan font-family="Arial" >points</tspan></text>
+		<text><tspan font-family="Arial" >points - cos(2x)</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
@@ -532,7 +532,7 @@
 	<path stroke='black'  d='M81.53,66.01 L81.53,413.40 L565.82,413.40 L565.82,66.01 L81.53,66.01 Z  '/></g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(323.67,33.51)" stroke="none" fill="black" font-family="Times New Roman" font-size="20.00"  text-anchor="middle">
-		<text><tspan font-family="Times New Roman" >Cubic interpolation</tspan></text>
+		<text><tspan font-family="Times New Roman" >Cubic-Spline</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">

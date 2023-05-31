@@ -1,17 +1,18 @@
 set terminal svg background "white"
 set output "Rmax.svg"
 set grid
+set title "Convergence for several r_{max}'s" font "Times New Roman, 20"
 set tics out font "Times New Roman, 15"
-set xlabel "rmax" font "Times New Roman, 18"
-set ylabel "E" font "Times New Roman, 18"
+set xlabel "rmax [Bohr-radii]" font "Times New Roman, 18"
+set ylabel "E [Hartree]" font "Times New Roman, 18"
 
 
 f(x) = -13.6/27.211
 
-set style line 1 lw 1.2 lc rgb "black" lt 1 ps 1 pt 13 pi 1
+set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.5 pt 13 pi 1
 set style line 2 lw 1.2 lc rgb "red" lt 1
 
 
-plot[2:8][-0.7:0.05] "rmax.data" using 2:3 ls 1 title "convergence", \
+plot[2:8][-0.7:0.05] "rmax.data" using 2:3 ls 1 title "Calculated E_{0}", \
 						"rmax.data" using 2:3 ls 1 with lines title "", \
-						f(x) ls 2 with lines title "exact"
+						f(x) ls 2 with lines title "Exact E_{0}"

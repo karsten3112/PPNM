@@ -3,14 +3,14 @@ DIR = ../../homework/eigenvalues/matrix-classes
 all:Test.txt Rmax.svg DelR.svg Psi.svg
 
 Test.txt: main.exe
-	mono main.exe -test:1
+	mono main.exe -test: > Test.txt
 
 Rmax.svg: rmax.gpi rmax.data
 	gnuplot rmax.gpi
 
 rmax.data: main.exe
 	>$@
-	for N in $$(seq 2 1 6); do \
+	for N in $$(seq 2 1 8); do \
 		mono main.exe -rmax:"$$N" -dr:2 >> rmax.data;\
 	done
 

@@ -5,15 +5,17 @@ using System;
 
 public class EVD{
 	public vector W; public matrix V;
+	public matrix Y;
 
 	public EVD(matrix M){
 		matrix C = M.copy();
-		(vector W1, matrix V1) = cyclic(C);
+		(vector W1, matrix V1, matrix Y1) = cyclic(C);
 		this.W = W1;
 		this.V = V1;
+		this.Y = Y1;
 	}
 
-	public static (vector, matrix) cyclic(matrix M){
+	public static (vector, matrix, matrix) cyclic(matrix M){
 		bool change = true; bool check = false; double theta = 0;
 		vector eigvec = new vector(M.size1);
 		matrix V = new matrix(M.size1, M.size1);
@@ -35,7 +37,8 @@ public class EVD{
 		for(int i = 0; i < M.size1;i++){
 			eigvec[i] = M[i,i];
 		}
-		return (eigvec, V);
+		matrix G = M.copy();
+		return (eigvec, V, G);
 	}
 
 	public static void timesJ(matrix A, int p, int q, double theta){
