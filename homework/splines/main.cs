@@ -53,6 +53,26 @@ class main{
 					WriteLine($"{xp[i]}	{z1}	{z2}	{z3}");
 				}
 			}
+
+			if(arg == "-compare"){
+				vector xp = xdat(6, -5, 5);
+				vector yp = comp(xp);
+				for(int i = 0; i < xp.size; i++){
+					WriteLine($"{xp[i]}	{yp[i]}");
+				}
+				WriteLine("");
+				WriteLine("");
+				linspline spline1 = new linspline(xp, yp);
+				qspline spline2 = new qspline(xp, yp);
+				cspline spline3 = new cspline(xp, yp);
+				vector xe  = xdat(500, -5, 5);
+				for(int i = 0; i < xe.size; i++){
+					double p1 = spline1.evaluate(xe[i]);
+					double p2 = spline2.evaluate(xe[i]);
+					double p3 = spline3.evaluate(xe[i]);
+					WriteLine($"{xe[i]}	{p1}	{p2}	{p3}");
+				}
+			}
         }
 	}
 
@@ -69,13 +89,25 @@ class main{
 	}
 
 	public static vector xdat(int size, double start=0.0, double end=10.0){
-		double dx = (end - start)/size;
-		vector result = new vector(size + 1);
-		for(int i = 0; i < size+1;i++){
+		double dx = (end - start)/(size-1);
+		vector result = new vector(size);
+		for(int i = 0; i < size;i++){
 			double xi = start + dx*i;
 			result[i] = xi;
 		}
 	return result;
+	}
+
+	public static vector comp(vector xs){
+		vector ys = new vector(xs.size);
+		for(int i = 0; i < xs.size; i++){
+			if(xs[i] < 0){
+				ys[i] = -1.0;
+			} else {
+				ys[i] = 1.0;
+			}
+		}
+	return ys;
 	}
 
 }

@@ -1,9 +1,9 @@
 set terminal svg background "white"
 set output "Erf.svg"
 set xlabel "x" font "Times New Roman, 18"
-set ylabel "cos(x)" font "Times New Roman, 18"
+set ylabel "Erf(x)" font "Times New Roman, 18"
 set tics out font "Times New Roman, 15"
-set title "Lotka-Volterra simulation from scipy" font "Times New Roman, 20"
+set title "Errorfunction" font "Times New Roman, 20"
 set grid
  
 set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
@@ -11,5 +11,5 @@ set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
 set style line 2 lw 1.2 lc rgb "green" lt 1
 set style line 3 lw 1.2 lc rgb "blue" lt 1
 
-plot "erf.data" index 0  with lines notitle, \
-		"erf.data" index 1 with lines notitle
+plot "erf.data" index 0  with lines title "Integral", \
+		"erf.data" index 1 with lines title "Approximation"

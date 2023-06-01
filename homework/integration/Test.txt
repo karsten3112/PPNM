@@ -1,29 +1,42 @@
 Calculating the integrals with abs. precission; 1e-4 and rel. prec.; 1e-4
 -------------------------------------------------------------------
-Integral nr. 1 of sqrt(x) | should be 0.666666666666667 - Calculating via our integration methods
-From regular q4; I = 0.666680932893738 nr. of splits = 40
-From CC-trans; I = 0.666666552998899 nr. of splits = 64
+Integral nr. 1 of f(x) = sqrt(x) over x -> [0;1] | should be I = 0.666666666666667 - Calculating via our integration methods
+From regular q4; I = 0.666680932893738 ± 2.80634678567031E-05 nr. of splits = 40
+From CC-trans; I = 0.666666552998899 ± 1.69939996593646E-05 nr. of splits = 64
 Checking with approx method
 Comparing......
 True
 -------------------------------------------------------------------
-Integral nr. 2 of 1/sqrt(x) | should be 2 - Calculating via our integration methods
-From regular q4; I = 1.99999738796403 nr. of splits = 17140
-From CC-trans; I = 1.9999998903107 nr. of splits = 52
+Integral nr. 2 of f(x) = 1/sqrt(x) over x -> [0;1] | should be I = 2 - Calculating via our integration methods
+From regular q4; I = 1.99999738796403 ± 1.89956545681267E-05 nr. of splits = 17140
+From CC-trans; I = 1.9999998903107 ± 1.82518312374057E-05 nr. of splits = 52
 Checking with approx method
 Comparing......
 True
 -------------------------------------------------------------------
-Integral nr. 3 of 4*sqrt(1-x^2) | should be 3.14159265358979 - Calculating via our integration methods
-From regular q4; I = 3.14159750770263 nr. of splits = 80
-From CC-trans; I = 3.14159266117462 nr. of splits = 120
+Integral nr. 3 of f(x) = 4*sqrt(1-x^2) over x -> [0;1] | should be I = 3.14159265358979 - Calculating via our integration methods
+From regular q4; I = 3.14159750770263 ± 3.81841414160524E-05 nr. of splits = 80
+From CC-trans; I = 3.14159266117462 ± 1.25495962765207E-05 nr. of splits = 120
 Checking with approx method
 Comparing......
 True
 -------------------------------------------------------------------
-Integral nr. 4 of ln(x)/sqrt(x) | should be -4 - Calculating via our integration methods
-From regular q4; I = -3.99999834899021 nr. of splits = 29972
-From CC-trans; I = -3.99999813339603 nr. of splits = 272
+Integral nr. 4 of f(x) = ln(x)/sqrt(x) over x -> [0;1] | should be I = -4 - Calculating via our integration methods
+From regular q4; I = -3.99999834899021 ± 1.45508631602057E-05 nr. of splits = 29972
+From CC-trans; I = -3.99999813339603 ± 1.15227226709343E-05 nr. of splits = 272
 Checking with approx method
 Comparing......
 True
+==================================INFINITE INTEGRALS===========================================
+Integral nr. 1 of f(x) = x*e^(-x^2) over x -> [0;+inf] | should be I = 0.5 - Calculating via our integration method
+From regular q4; I = 0.499943618087949 ± 1.15860603622657E-05 nr. of splits = 84
+Checking with approx method
+Comparing......
+True
+-------------------------------------------------------------------
+Integral nr. 2 of f(x) = e^(-x^2) over x -> [-inf;+inf] | should be I = 1.77245385090552 - Calculating via our integration method
+From regular q4; I = 1.7724241314903 ± 1.09573792729548E-05 nr. of splits = 176
+Checking with approx method
+Comparing......
+True
+-------------------------------------------------------------------
