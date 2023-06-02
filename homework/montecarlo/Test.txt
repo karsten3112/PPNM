@@ -1,0 +1,26 @@
+Calculating different integrals with N=100000 for different functions
+
+1. integral of unit circle | Should return I = PI
+Result from plainMC-routine with error estimate
+I = 3.136 ± 0.00520616234860189
+Result from qausiMC-routine with error estimate
+I = 3.14116 ± 0.00187999999999988
+Analytic value being:
+I ~ 3.14159265358979
+---------------------------------------------------
+2. integral of half-sphere  | Should return I = 2/3*PI
+Result from plainMC-routine with error estimate
+I = 2.093 ± 0.0111195408365634
+Result from qausiMC-routine with error estimate
+I = 2.09608 ± 0.00127999999999995
+Analytic value being:
+I ~ 2.0943951023932
+---------------------------------------------------
+3. integral of function given in assignment | Should return I = ~1.393203929
+Result from plainMC-routine with error estimate
+I = 1.376 ± 0.011554278962087
+Result from qausiMC-routine with error estimate
+I = Infinity ± NaN
+Analytic value being:
+I ~ 1.393203929
+---------------------------------------------------

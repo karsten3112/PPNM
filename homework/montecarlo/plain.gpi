@@ -1,9 +1,10 @@
 set terminal svg background "white"
 set output "PlainMC.svg"
-set xlabel "N" font "Times New Roman, 18"
+set xlabel "N [Number of points]" font "Times New Roman, 18"
 set ylabel "error" font "Times New Roman, 18"
 set tics out font "Times New Roman, 15"
 set title "Error by plainMC" font "Times New Roman, 20"
+set key font "Times New Roman, 15"
 set grid
 set fit quiet
 set fit logfile '/dev/null'
@@ -15,15 +16,18 @@ f(x) = a/sqrt(x)
 g(x) = b/x
 
 
-fit f(x) "plain.data" using 1:2 via a
-fit g(x) "plain.data" using 1:2 via b
+fit f(x) "plain.data" using 1:4 via a
+fit g(x) "plain.data" using 1:4 via b
 
  
 set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
  
 set style line 2 lw 1.2 lc rgb "green" lt 1
 set style line 3 lw 1.2 lc rgb "blue" lt 1
+set style line 4 lw 1.2 lc rgb "red" lt 1
 
-plot[100:20000][0:0.026] f(x) with lines ls 2 title "fit of: 1/sqrt(N)", \
-	"plain.data" using 1:2 with lines ls 1 title "error estimate", \
+plot[1000:10000][0:0.03] f(x) with lines ls 2 title "fit of: 1/sqrt(N)", \
+	"plain.data" using 1:2 with lines ls 4 title "statistical error estimate", \
+	"plain.data" using 1:4 with lines ls 1 notitle, \
+	"plain.data" using 1:4 with lines ls 1 title "actual error", \
 	g(x) with lines ls 3 title "fit of: 1/N"

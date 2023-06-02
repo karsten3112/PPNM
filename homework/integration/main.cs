@@ -69,12 +69,8 @@ class main{
 			}
 
 			if(arg == "-erf"){
-				Func<double, double> f1 = delegate(double z){
-					return Exp(-z*z);
-				};
-
 				Func<double, double> erf = delegate(double z){
-					return erf1(z, f1);
+					return erf1(z);
 				};
 				double start = -3.0, end = 3.0; int npoints = 50; double dx = (end - start)/npoints;
 				for(int i = 0; i < npoints; i++){
@@ -93,9 +89,12 @@ class main{
 		}
 	}
 
-	public static double erf1(double z, Func<double, double> f1){
+	public static double erf1(double z){
+		Func<double, double> f1 = delegate(double x){
+			return Exp(-x*x);
+		};
 		if(z < 0.0){
-			return -erf1(-z, f1);
+			return -erf1(-z);
 		}
 		if(z <= 1.0 && z >= 0.0){
 			(double res, double err) = integrator.q4calc(f1, 0, z,1e-9,1e-9);

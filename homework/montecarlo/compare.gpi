@@ -1,0 +1,21 @@
+set terminal svg background "white"
+set output "Compare.svg"
+set xlabel "N [number of points]" font "Times New Roman, 18"
+set ylabel "error" font "Times New Roman, 18"
+set tics out font "Times New Roman, 15"
+set title "Actual error of both quasiMC and plainMC" font "Times New Roman, 20"
+set key font "Times New Roman, 15"
+set grid
+
+set xzeroaxis
+ 
+set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
+ 
+set style line 2 lw 1.2 lc rgb "green" lt 1 ps 0.60 pt 13 pi 1
+set style line 3 lw 1.2 lc rgb "blue" lt 1 ps 0.60 pt 13 pi 1
+set style line 4 lw 1.2 lc rgb "red" lt 1 
+
+plot[8000:10000][-0.002:0.005] "plain.data" using 1:4 with lines ls 2 notitle, \
+	"plain.data" using 1:4 with points ls 2 title "Error from PlainMC", \
+	"quasi.data" using 1:4 with points ls 3 title "Error from quasiMC", \
+	"quasi.data" using 1:4 with lines ls 3 notitle
