@@ -1,0 +1,27 @@
+Testing rootfinding routine for a few functions 
+
+Finding root of function ∇[(1-x)^2+100(y-x^2)^2] |
+with initial guess (x, y) =       0.83       0.83 
+Result from rootfinding method x0 =          1          1 
+With number of counts: 67
+-----------------------------------------------------------------
+Finding root of function ∇[(x-10)^2 + y^2] |
+with initial guess (x, y) =       0.83       0.83 
+Result from rootfinding method x0 =         10   3.36e-10 
+With number of counts: 1
+-----------------------------------------------------------------
+Finding root of function f(x) = 0.2x^5 + 2.0x^2 + 1.5x |
+with initial guess (x, y) =       -0.2 
+Result from rootfinding method x0 =    0.00281 
+With number of counts: 2
+-----------------------------------------------------------------
+Finding root of function f(x) = 0.2x^5 + 2.0x^2 + 1.5x |
+with initial guess (x, y) =       -0.5 
+Result from rootfinding method x0 =     -0.793 
+With number of counts: 1
+-----------------------------------------------------------------
+Finding root of function f(x) = 0.2x^5 + 2.0x^2 + 1.5x |
+with initial guess (x, y) =       -1.6 
+Result from rootfinding method x0 =       -1.8 
+With number of counts: 2
+-----------------------------------------------------------------

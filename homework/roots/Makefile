@@ -3,19 +3,34 @@ DIR2 = ../Linear-Equations
 DIR3 = ../ode
 DIR4 = ../../exercises/generic-list
 
-all:Out.txt En.txt Aux.svg
+all:Test.txt Rmax.svg Rmin.svg Psi.svg Conv2.svg
+
+Conv2.svg: conv2.gpi es2.data es1.data
+	gnuplot conv2.gpi
+
+es2.data: main.exe
+	mono main.exe -Shooting2 > es2.data
+
+Psi.svg: psi.gpi es1.data
+	gnuplot psi.gpi
+
+Rmin.svg: rmin.gpi es1.data
+	gnuplot rmin.gpi
+
+Rmax.svg: rmax.gpi es1.data
+	gnuplot rmax.gpi
+
+es1.data: main.exe
+	mono main.exe -Shooting1 > es1.data
+
+Test.txt: main.exe
+	mono main.exe -Test > Test.txt
 
 En.txt: main.exe
-	mono main.exe -Shooting: > En.txt
+	mono main.exe -Shooting1 > En.txt
 
 Out.txt: main.exe
 	mono main.exe -Test: > Out.txt
-
-Aux.svg: aux.gpi aux.data
-	gnuplot aux.gpi
-
-aux.data: main.exe
-	mono main.exe -Eigplot: > aux.data 
 
 
 main.exe: main.cs rootfinder.dll lib.dll

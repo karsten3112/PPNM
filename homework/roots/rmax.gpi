@@ -1,0 +1,19 @@
+set terminal svg background "white"
+set output "Rmax.svg"
+set xlabel "r_{max} [Bohr-radii]" font "Times New Roman, 18"
+set ylabel "E [Hartree]" font "Times New Roman, 18"
+set tics out font "Times New Roman, 15"
+set title "Calculated energy E as function of r_{max} with r_{min} = 0.1" font "Times New Roman, 20"
+set grid
+set key bottom right
+
+f(x) = -0.5
+
+set style line 1 lw 1.5 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
+set style line 2 lw 1.5 lc rgb "red" lt 1
+set style line 3 lw 1.2 lc rgb "green" lt 1
+set style line 4 lw 1.2 lc rgb "orange" lt 1
+
+plot[1:11][-0.7:-0.1] "es1.data" index 0 with errorbars ls 1 title "calculated E_{0}", \
+	"es1.data" index 0 with lines notitle ls 1, \
+	f(x) with lines ls 2 title "Exact E_{0}"

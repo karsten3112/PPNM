@@ -13,4 +13,4 @@ set style line 3 lw 1.2 lc rgb "blue" lt 1
 
 
 plot "fit.data" with lines ls 1, \
-	"higgs.data.txt" with errorbars title "Higgs data" ls 2, \
+	"higgs.data.txt" with errorbars title "Higgs data" ls 1, \
