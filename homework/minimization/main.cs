@@ -16,25 +16,34 @@ class main{
 					return (x*x+y-11)*(x*x+y-11)+(x+y*y-7)*(x+y*y-7);
 				};
 				vector xinitRs = new vector(2.0, 3.5);
-
+				vector xinitHs = new vector(-2.0, -4.0);
 				qnewtonMin minsRs = new qnewtonMin(Rs, xinitRs, 1e-3,10000);
-				qnewtonMin minsHs = new qnewtonMin(Hs, xinitRs, 1e-3,10000);
-				simplex fit1 = new simplex(Hs, xinitRs);
-				fit1.min.print();
-				int tHs = minsHs.count;
-				int tRs = minsRs.count;
-				vector xsRs = minsRs.xs;
-				vector xsHs = minsHs.xs;
-				WriteLine("RosenBrock function");
-				WriteLine(tRs);
-				for(int i = 0; i < xsRs.size; i++){
-					WriteLine($"{xsRs[i]}");
-				}
-				WriteLine("Himmelblau function");
-				WriteLine(tHs);
-				for(int i = 0; i < xsHs.size; i++){
-					WriteLine($"{xsHs[i]}");
-				}
+				qnewtonMin minsHs = new qnewtonMin(Hs, xinitHs, 1e-3,10000);
+				simplex fit1 = new simplex(Rs, xinitRs);
+				simplex fit2 = new simplex(Hs, xinitHs);
+				int tHsq = minsHs.count;
+				int tRsq = minsRs.count;
+				vector xsRsq = minsRs.xs;
+				vector xsHsq = minsHs.xs;
+				WriteLine("Finding minima of Himmelblau- and RosenBrock funtion");
+				WriteLine("-------------------RosenBrock function--------------------");
+				xinitRs.print("Initial vector (x, y) being: ");
+				WriteLine("Expected result: x = 1, y = 1");
+				WriteLine("Result using QuasiNewton method ....");
+				xsRsq.print("Result: ");
+				WriteLine($"nr. of iterations: {tRsq}");
+				WriteLine("Result using simplex method ....");
+				fit1.min.print("Result: ");
+				WriteLine($"nr. of iterations: {fit1.count}");
+				WriteLine("-------------------Himmelblau function--------------------");
+				xinitHs.print("Initial vector (x, y) being: ");
+				WriteLine("Expected result: x = -3.779310, y = -3.283186");
+				WriteLine("Result using QuasiNewton method ....");
+				xsHsq.print("Result: ");
+				WriteLine($"nr. of iterations: {tHsq}");
+				WriteLine("Result using simplex method ....");
+				fit2.min.print("Result: ");
+				WriteLine($"nr. of iterations: {fit2.count}");
 			}
 			if(inp[0]=="-higgs"){
 				string file = inp[1];
@@ -55,8 +64,18 @@ class main{
 					return result;
 				};
 				vector xinit = new vector(130.0, 3.0, 6.0);
+				WriteLine("---------------------Determined fitting parameters for Breitt-Wigner function---------------------");
+				xinit.print("Initial vector (m, gamma, A) = ");
+				WriteLine("Result using QuasiNewton method ....");
 				(vector xp, int c) = fit("qnewton", Bw, energy, signal, err, xinit);
+				xp.print("Result: ");
+				WriteLine($"nr. of iterations: {c}");
 				(vector xp1, int c1) = fit("simplex", Bw, energy, signal, err, xinit);
+				WriteLine("Result using simplex method ....");
+				xp1.print("Result: ");
+				WriteLine($"nr. of iterations: {c1}");
+
+				WriteLine("----------------------------------------------------------------------------------------------------\n");
 				(double[] xs, double[] ys) = genpoints(Bw, xp, 500, 100, 160);
 				(double[] xs1, double[] ys1) = genpoints(Bw, xp1, 500, 100, 160);
 				for(int i = 0; i < xs.Length; i++){

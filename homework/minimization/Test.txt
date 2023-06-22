@@ -1,9 +1,19 @@
-         3          2 
-RosenBrock function
-37
-0.99999561949249
-0.999991072316994
-Himmelblau function
-9
-3.58442831008563
--1.84812654924476
+Finding minima of Himmelblau- and RosenBrock funtion
+-------------------RosenBrock function--------------------
+Initial vector (x, y) being:          2        3.5 
+Expected result: x = 1, y = 1
+Result using QuasiNewton method ....
+Result:          1          1 
+nr. of iterations: 37
+Result using simplex method ....
+Result:          1          1 
+nr. of iterations: 93
+-------------------Himmelblau function--------------------
+Initial vector (x, y) being:         -2         -4 
+Expected result: x = -3.779310, y = -3.283186
+Result using QuasiNewton method ....
+Result:      -3.78      -3.28 
+nr. of iterations: 9
+Result using simplex method ....
+Result:      -3.78      -3.28 
+nr. of iterations: 50

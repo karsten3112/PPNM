@@ -1,3 +1,13 @@
+---------------------Determined fitting parameters for Breitt-Wigner function---------------------
+Initial vector (m, gamma, A) =        130          3          6 
+Result using QuasiNewton method ....
+Result:        126       2.09       9.88 
+nr. of iterations: 22
+Result using simplex method ....
+Result:        126       2.09       9.88 
+nr. of iterations: 145
+----------------------------------------------------------------------------------------------------
+
 100	0.0146173741982298	100	0.0146175146997776
 100.12	0.014753169129299	100.12	0.0147533109290359
 100.24	0.0148908641371117	100.24	0.0148910072530841
