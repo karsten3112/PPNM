@@ -5,12 +5,13 @@ set ylabel "Signal [arb.]" font "Times New Roman, 18"
 set tics out font "Times New Roman, 15"
 set title "Breit-Wigner fit for Higgs boson" font "Times New Roman, 20"
 set grid
+
+set style line 1 lw 1.2 lc rgb "black" lt 2 ps 0.60 pt 13 pi 1
  
-set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
- 
-set style line 2 lw 1.2 lc rgb "green" lt 1
-set style line 3 lw 1.2 lc rgb "blue" lt 1
+set style line 2 lw 1.2 lc rgb "blue" lt 2 dashtype 2
+set style line 3 lw 1.2 lc rgb "red" lt 1 dashtype 3
 
 
-plot "fit.data" with lines ls 1, \
+plot "fit.data" using 1:2 with lines ls 3 title "Fit from qnewton", \
+	"fit.data" using 3:4 with lines ls 2 title "Fit from simplex", \
 	"higgs.data.txt" with errorbars title "Higgs data" ls 1, \

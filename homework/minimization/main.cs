@@ -19,6 +19,8 @@ class main{
 
 				qnewtonMin minsRs = new qnewtonMin(Rs, xinitRs, 1e-3,10000);
 				qnewtonMin minsHs = new qnewtonMin(Hs, xinitRs, 1e-3,10000);
+				simplex fit1 = new simplex(Hs, xinitRs);
+				fit1.min.print();
 				int tHs = minsHs.count;
 				int tRs = minsRs.count;
 				vector xsRs = minsRs.xs;
@@ -52,11 +54,13 @@ class main{
 					double result = A/((E-m)*(E-m)+gam*gam/4.0);
 					return result;
 				};
-				vector xinit = new vector(123, 3.0, 6.0);
-				(vector xp, int c) = fit(Bw, energy, signal, err, xinit);
+				vector xinit = new vector(130.0, 3.0, 6.0);
+				(vector xp, int c) = fit("qnewton", Bw, energy, signal, err, xinit);
+				(vector xp1, int c1) = fit("simplex", Bw, energy, signal, err, xinit);
 				(double[] xs, double[] ys) = genpoints(Bw, xp, 500, 100, 160);
+				(double[] xs1, double[] ys1) = genpoints(Bw, xp1, 500, 100, 160);
 				for(int i = 0; i < xs.Length; i++){
-					WriteLine($"{xs[i]}	{ys[i]}");
+					WriteLine($"{xs[i]}	{ys[i]}	{xs1[i]}	{ys1[i]}");
 				}
 			}
 
@@ -65,7 +69,7 @@ class main{
 
 	}
 
-	public static (vector, int) fit(Func<vector, double, double> f, genlist<double> datax, genlist<double> datay, genlist<double> err, vector init){
+	public static (vector, int) fit(string routine, Func<vector, double, double> f, genlist<double> datax, genlist<double> datay, genlist<double> err, vector init){
 		Func<vector, double> chi2 = delegate(vector z){
 			double chi = 0.0;
 			for(int i = 0; i < datax.size; i++){
@@ -73,8 +77,16 @@ class main{
 			}
 			return chi;
 		};
-		qnewtonMin fit = new qnewtonMin(chi2, init, 1e-3, 10000);
-		return (fit.xs, fit.count);
+		if(routine == "simplex"){
+			simplex fit = new simplex(chi2, init);
+			return (fit.min, fit.count);
+		}
+		if(routine == "qnewton"){
+			qnewtonMin fit = new qnewtonMin(chi2, init, 1e-3, 10000);
+			return (fit.xs, fit.count);
+		} else {
+			throw new Exception("Method was not found");
+		}
 	}
 
 	public static (double[], double[]) genpoints(Func<vector, double, double> f, vector z, int N, double xstart, double xend){
