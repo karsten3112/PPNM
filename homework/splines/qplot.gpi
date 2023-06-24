@@ -5,6 +5,8 @@ set ylabel "y" font "Times New Roman, 18"
 set tics out font "Times New Roman, 15"
 set title "Quadtratic-Spline" font "Times New Roman, 20"
 set grid
+set key bottom right
+
  
 set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
  

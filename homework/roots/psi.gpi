@@ -3,7 +3,7 @@ set output "Psi.svg"
 set xlabel "r [Bohr-Radii]" font "Times New Roman, 18"
 set ylabel "Psi(r)" font "Times New Roman, 18"
 set tics out font "Times New Roman, 15"
-set title "Ground-state wavefunctions" font "Times New Roman, 20"
+set title "Reduced ground-state wavefunctions" font "Times New Roman, 20"
 set grid
 
 f(x) = x*exp(-x)

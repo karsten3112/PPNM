@@ -1,7 +1,10 @@
 DIR1 = ../../matlib/matrix
 DIR2 = ../../exercises/generic-list
 
-all: Osc.svg Damped.svg Lotka.svg Tbody.gif
+all: Osc.svg Damped.svg Lotka.svg Tbody.gif debug.txt
+
+debug.txt: main.exe
+	mono main.exe -debug > debug.txt
 
 Damped.svg: damped.gpi damped.data
 	gnuplot damped.gpi

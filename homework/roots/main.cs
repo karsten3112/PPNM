@@ -79,16 +79,27 @@ class main{
 				WriteLine("\n");
 			}
 		}
-		if(inp[0] == "-Shooting2"){
+		if(inp[0] == "-epsacc"){
+			double[] vals = {0.001,0.01,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0};
 			double rmin = 0.1;
 			double rmax = 10.0;
 			vector Einit = new vector(-0.9);
-			for(int i = 8; i < 16; i++){
-				double acc = 1e-20;
-				double eps = Pow(10.0,-i);
-				(vector e, int count) = shooting1(rmin, rmax, Einit, acc, eps);
-				WriteLine($"{eps}	{e[0]+0.5}");
+			foreach(double v in vals){
+				double acc = 0.01;
+				(vector e, int count) = shooting1(rmin, rmax, Einit, acc, v);
+				(vector e1, int count1) = shooting1(rmin, rmax, Einit, v, acc);
+				WriteLine($"{v}	{e[0]}	{e1[0]}");
 			}
+		}
+		if(inp[0] == "-conv2"){
+			double[] rmaxs = {3,3.5,4,4.5,5,6,7,8,9};
+			double rmin = 0.01;
+			for(int i = 0; i < rmaxs.Length; i++){
+				vector Einit = new vector(-0.9);
+				(vector e, int count) = shooting2(rmin, rmaxs[i], Einit, 0.001, 0.001);
+				(vector e1, int count1) = shooting1(rmin, rmaxs[i], Einit, 0.001, 0.001);
+				WriteLine($"{rmaxs[i]}	{e[0]}	{e1[0]}");
+ 			}
 		}
 	}
 	}
@@ -103,7 +114,7 @@ class main{
 				res[1] = -2.0*(E*x1 + x1/r);
 				return res;
 			};
-		odeint solution = new odeint(diffeq, rmin,yinit,rmax, false, 0.01, 0.01, acc, eps);
+		odeint solution = new odeint(diffeq, rmin,yinit,rmax, false, 2.0, 10.0, acc, eps);
 		double F = solution.ys[0][0];
 		vector result = new vector(F);
 		return result;
@@ -123,7 +134,7 @@ class main{
 					res[1] = -2.0*(E*x1 + x1/r);
 					return res;
 			};
-		odeint solution = new odeint(diffeq, rmin,yinit,rmax, false, 0.01, 0.01, acc, eps);
+		odeint solution = new odeint(diffeq, rmin,yinit,rmax, false, 2.0, 10.0, acc, eps);
         double F = solution.ys[0][0];
 		double rm = solution.xs[0];
 		double k = Sqrt(-2*E);

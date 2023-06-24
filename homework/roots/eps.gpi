@@ -1,0 +1,19 @@
+set terminal svg background "white"
+set output "Eps.svg"
+set xlabel "eps [Relative accuracy]" font "Times New Roman, 18"
+set ylabel "E [Hartree]" font "Times New Roman, 18"
+set tics out font "Times New Roman, 15"
+set title "Calculated energy E as function of eps with acc = 0.01" font "Times New Roman, 20"
+set grid
+set key bottom right
+
+f(x) = -0.5
+
+set style line 1 lw 1.5 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
+set style line 2 lw 1.5 lc rgb "red" lt 1
+set style line 3 lw 1.2 lc rgb "green" lt 1
+set style line 4 lw 1.2 lc rgb "orange" lt 1
+
+plot[0:1][-0.51:-0.49] "epsacc.data" index 0 using 1:2 with lines ls 1 notitle, \
+	"epsacc.data" index 0 using 1:2 with points ls 1 title "calculated E_{0}", \
+	f(x) with lines ls 2 title "analytical"
