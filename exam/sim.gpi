@@ -1,0 +1,16 @@
+set terminal png background "white"
+set output "Sim.png"
+
+set title "Complex Gamma-function - |G(z)|" font "Times New Roman, 18"
+set xlabel "x" font "Times New Roman, 18" offset 1.5
+set ylabel "y" font "Times New Roman, 18" offset -2.5
+set zlabel "F(x,y)" font "Times New Roman, 18" offset 1.5
+set tics out font "Times New Roman, 18"
+set grid
+
+set xrange [1:3]
+set yrange [1:3]
+set zrange [1:3]
+set view 60, 320	
+
+splot "sim.data" index 0 with points title "", \

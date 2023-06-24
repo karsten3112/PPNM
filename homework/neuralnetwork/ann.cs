@@ -73,7 +73,7 @@ public class ann{
 		vector pres = new vector(this.n*3);
 		vector ps = new vector(3*this.n);
 		for(int k = 0; k < 3*this.n; k++){
-			ps[k] = rnd.NextDouble();
+			ps[k] = -1.0 + rnd.NextDouble()*2.0;
 		}
 		if(min == "qnewton"){
 			qnewtonMin minp = new qnewtonMin(C, ps, 1e-3, 5000);
@@ -83,7 +83,17 @@ public class ann{
 			simplex minp = new simplex(C, ps);
 			pres = minp.min;
 		}
-		if(min != "qnewton" && min != "simplex"){
+		if(min == "pso"){
+			vector lbound = new vector(this.n*3);
+			vector ubound = new vector(this.n*3);
+			for(int i = 0; i < lbound.size; i++){
+				lbound[i] = -1.0;
+				ubound[i] = 1.0;
+			}
+			pso swarm = new pso(C, lbound, ubound, 100, 5000, 1e-2, 0.5);
+			pres = swarm.min;
+		}
+		if(min != "qnewton" && min != "simplex" && min != "pso"){
 			throw new Exception("Minimization routine does not exist");
 		}
 		Cres = C(pres);
@@ -105,23 +115,14 @@ public class ann{
 	}
 
 	public void traindiff(Func<double, double, double, double, double> phi, vector y, vector dy, double xstart, double xend, string min="qnewton", double a=1.0, double b=1.0){
-		Func<vector, double> C1 = delegate(vector ps){
+		Func<vector, double> C = delegate(vector ps){
 			double p1 = a*(response(y[0], ps) - y[1])*(response(y[0], ps) - y[1]);
-			return p1;
-		};
-		Func<vector, double> C2 = delegate(vector ps){
 			double p2 = b*(dresponse(dy[0], ps) - dy[1])*(dresponse(dy[0], ps) - dy[1]);
-			return p2;
-		};
-		Func<vector, double> C3 = delegate(vector ps){
 			Func<double, double> f = delegate(double x){
 				return phi(ddresponse(x, ps), dresponse(x, ps), response(x, ps), x)*phi(ddresponse(x, ps), dresponse(x, ps), response(x, ps), x);
 			};
 			(double result, double err) = integrator.integrate(f, xstart, xend);
-			return result;
-		};
-		Func<vector, double> C = delegate(vector ps){
-			return C1(ps) + C2(ps) + C3(ps);
+			return result + p1 + p2;
 		};
 		trainC(C, min);
 	}

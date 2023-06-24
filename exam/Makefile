@@ -1,10 +1,18 @@
 DIR = ../matlib/matrix
 
+all: Test.svg Sim.svg
+
 Test.svg: test.data test.gpi
 	gnuplot test.gpi
 
 test.data: main.exe
 	mono main.exe -Test > test.data
+
+Sim.svg: sim.data sim.gpi
+	gnuplot sim.gpi
+
+sim.data: main.exe
+	mono main.exe -Sim > sim.data
 
 main.exe: main.cs matrix.dll bilin.dll
 	mcs main.cs $(addprefix -reference:,$(filter %.dll,$^)) -target:exe -out:main.exe

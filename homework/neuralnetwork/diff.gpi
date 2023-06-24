@@ -1,0 +1,20 @@
+set terminal svg background "white"
+set output "Diffeq.svg"
+set xlabel "x" font "Times New Roman, 18"
+set ylabel "y" font "Times New Roman, 18"
+set tics out font "Times New Roman, 15"
+set title "u(x) = -u''(x) - Prediction" font "Times New Roman, 20"
+set grid
+ 
+set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
+ 
+set style line 2 lw 1.2 lc rgb "green" lt 1
+set style line 3 lw 1.2 lc rgb "blue" lt 1
+set style line 4 lw 1.2 lc rgb "red" lt 1
+
+f(x) = cos(x)
+
+plot[0:pi][-1.5:1.5] "diff.data" index 0 with lines ls 1 title "using PSO", \
+	"diff.data" index 1 with lines ls 2 title "using simplex; trained: 1", \
+	"diff.data" index 2 with lines ls 3 title "using qnewton; trained: 1", \
+	f(x) with lines ls 4 title "analytical"

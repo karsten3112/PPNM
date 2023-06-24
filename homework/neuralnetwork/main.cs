@@ -7,9 +7,11 @@ class main{
 		foreach(string arg in args){
 			string[] inp = arg.Split(":");
 			if(inp[0] == "-test"){
-				test();
+				test(inp[1]);
 			}
 			if(inp[0] == "-diffeq"){
+				string[] methods = {"pso", "simplex", "qnewton"};
+				foreach(string method in methods){
 				ann network = new ann(6);
 				vector yinit = new vector(0.0,1.0);
 				vector dyinit = new vector(0.0,0.0);
@@ -17,13 +19,15 @@ class main{
 					return y + ddy;
 				};
 				double xstart = 0; double xend = PI;
-				network.traindiff(phi, yinit, dyinit, xstart, xend, "simplex");
+				network.traindiff(phi, yinit, dyinit, xstart, xend, method);
 				Func<double, string, double> res = delegate(double z, string h){
 					return network.response(z);
 				};
 				(vector xres, vector yres) = genpoints(res, "none", 300, xstart, xend);
 				for(int i = 0; i < xres.size; i++){
 					WriteLine($"{xres[i]} {yres[i]}");
+				}
+				WriteLine("\n");
 				}
 
 
@@ -32,7 +36,7 @@ class main{
 	}
 
 
-	public static void test(){
+	public static void test(string method){
 		Func<double, string, double> g = delegate(double z, string h){
 			return Cos(5*z-1)*Exp(-z*z);
 		};
@@ -41,7 +45,7 @@ class main{
 			WriteLine($"{xs[i]}	{ys[i]}");
 		}
 		ann network = new ann(6);
-		network.trainint(xs, ys, "simplex");
+		network.trainint(xs, ys, method);
 		Func<double, string, double> res = delegate(double z, string type){
 			if(type == "derivative"){
 				return network.dresponse(z);
@@ -69,7 +73,7 @@ class main{
 
 	public static (vector, vector) genpoints(Func<double, string, double> f, string type, int N, double xstart, double xend){
 		vector xs = new vector(N); vector ys = new vector(N);
-		double deltax = Abs(xend - xstart)/N;
+		double deltax = Abs(xend - xstart)/(N-1);
 		for(int i = 0; i < N; i++){
 			xs[i] = xstart + i*deltax;
 			ys[i] = f(xstart + i*deltax, type);
