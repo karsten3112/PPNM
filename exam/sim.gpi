@@ -10,7 +10,7 @@ set grid
 
 set xrange [1:3]
 set yrange [1:3]
-set zrange [1:3]
-set view 60, 320	
+set zrange [0:2]
+set view 90, 360	
 
 splot "sim.data" index 0 with points title "", \
