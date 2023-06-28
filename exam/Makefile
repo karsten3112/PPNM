@@ -23,3 +23,7 @@ matrix.dll: $(DIR)/matrix.cs $(DIR)/vector.cs
 bilin.dll: bilin.cs matrix.dll
 	mcs bilin.cs -target:library -out:bilin.dll -reference:matrix.dll
 
+clean: 
+	rm -f *t.txt *.exe *.dll *.data *.svg
+
+

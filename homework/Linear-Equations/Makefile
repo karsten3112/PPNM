@@ -23,3 +23,7 @@ QRGS.dll: QRGS.cs matrix.dll
 
 matrix.dll: $(DIR)/matrix.cs $(DIR)/vector.cs
 	mcs -target:library -out:matrix.dll $^
+
+clean: 
+	rm -f *t.txt *.exe *.dll *.data *.svg
+

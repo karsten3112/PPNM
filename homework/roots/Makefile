@@ -48,3 +48,5 @@ rootfinder.dll: rootfinder.cs lib.dll
 lib.dll: $(DIR1)/matrix.cs $(DIR1)/vector.cs $(DIR2)/QRGS.cs $(DIR3)/odeint.cs $(DIR4)/genlist.cs
 	mcs -target:library -out:lib.dll $^
 
+clean: 
+	rm -f *t.txt *.exe *.dll *.data *.svg

@@ -81,7 +81,7 @@ class main{
 				vector yinit = new vector(10, 5);
 				double xinit = 0.0;
 				double xend = 15.0;
-				odeint solve = new odeint(F,xinit,yinit,xend, true, 2.0, 10.0);
+				odeint solve = new odeint(F,xinit,yinit,xend, true, 0.01, 0.1);
 				genlist<double> ts = solve.xs;
 				genlist<vector> ys = solve.ys;
 				for(int i = 0; i < ts.size; i++){

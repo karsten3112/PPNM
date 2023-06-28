@@ -6,3 +6,7 @@ vec.dll: vec.cs
 
 main.exe: main.cs vec.dll
 	mcs -target:exe -out:main.exe -reference:vec.dll main.cs
+
+clean: 
+	rm -f *t.txt *.exe *.dll *.data *.svg
+

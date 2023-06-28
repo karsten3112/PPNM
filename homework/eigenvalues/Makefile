@@ -37,3 +37,7 @@ matrix.dll: $(DIR)/vector.cs $(DIR)/matrix.cs
 
 EVD.dll: EVD.cs matrix.dll
 	mcs EVD.cs -reference:matrix.dll -target:library -out:EVD.dll
+
+
+clean: 
+	rm -f *t.txt *.exe *.dll *.data *.svg

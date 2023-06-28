@@ -23,3 +23,8 @@ min.dll: qnewtonMin.cs simplex.cs matrix.dll
 
 IOhandle.dll:IOhandle.cs $(DIR1)/genlist.cs
 	mcs $(filter %.cs,$^) -target:library -out:IOhandle.dll
+
+clean: 
+	rm -f *t.txt *.exe *.dll *.data *.svg
+
+

@@ -23,3 +23,6 @@ QRGS.dll: QRGS.cs matrix.dll
 
 IOhandle.dll: IOhandle.cs
 	mcs IOhandle.cs -target:library -out:IOhandle.dll
+
+clean:
+	rm -f *e.txt *.exe *.dll *.data *.svg

@@ -6,3 +6,7 @@ main.exe: main.cs sfuns.dll
 
 sfuns.dll: sfuns.cs
 	mcs sfuns.cs -out:sfuns.dll -target:library
+
+clean: 
+	rm -f *t.txt *.exe *.dll *.data *.svg
+

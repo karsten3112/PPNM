@@ -35,3 +35,7 @@ matrix.dll: $(DIR)/matrix.cs $(DIR)/vector.cs
 
 splines.dll: linspline.cs qspline.cs cspline.cs matrix.dll
 	mcs $(filter %.cs,$^) -target:library -out:splines.dll $(addprefix -reference:,$(filter %.dll,$^))
+
+clean: 
+	rm -f *t.txt *.exe *.dll *.data *.svg
+

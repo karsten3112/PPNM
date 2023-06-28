@@ -1,10 +1,7 @@
 DIR1 = ../../matlib/matrix
 DIR2 = ../../exercises/generic-list
 
-all: Osc.svg Damped.svg Lotka.svg Tbody.gif debug.txt
-
-debug.txt: main.exe
-	mono main.exe -debug > debug.txt
+all: Osc.svg Damped.svg Lotka.svg Tbody.gif
 
 Damped.svg: damped.gpi damped.data
 	gnuplot damped.gpi
@@ -41,3 +38,7 @@ matrix.dll: $(DIR1)/matrix.cs $(DIR1)/vector.cs
 
 genlist.dll: $(DIR2)/genlist.cs
 	mcs -target:library -out:genlist.dll $^
+
+clean: 
+	rm -f *t.txt *.exe *.dll *.data *.svg *.gif
+

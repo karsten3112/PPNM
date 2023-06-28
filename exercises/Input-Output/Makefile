@@ -11,3 +11,8 @@ IOhandle.dll: IOhandle.cs
 
 main.exe: main.cs IOhandle.dll
 	mcs main.cs -out:main.exe -target:exe -reference:IOhandle.dll
+
+clean: 
+	rm -f Out.txt Output_file.txt *.exe *.dll *.data *.svg
+
+

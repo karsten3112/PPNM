@@ -54,3 +54,8 @@ integrator.dll: $(DIR1)/integrator.cs lib.dll
 
 pso.dll: pso.cs lib.dll
 	mcs pso.cs $(addprefix -reference:,$(filter %.dll,$^)) -target:library -out:pso.dll
+
+
+clean: 
+	rm -f *t.txt *.exe *.dll *.data *.svg
+

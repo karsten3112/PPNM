@@ -30,3 +30,6 @@ matrix.dll: $(DIR)/vector.cs $(DIR)/matrix.cs
 mc.dll: mc.cs matrix.dll
 	mcs mc.cs -reference:matrix.dll -target:library -out:mc.dll
 
+clean: 
+	rm -f *t.txt *.exe *.dll *.data *.svg
+

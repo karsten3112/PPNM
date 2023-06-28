@@ -53,11 +53,10 @@ public class odeint{
 			if(x+h > xend){
 				h = xend - x;
 			}
-			(vector yh, vector err) = rkstep12(F, x, y, h);
+			(vector yh, vector err) = rkfstep45(F, x, y, h);
 			for(int i = 0; i < yh.size; i++){
 				tol[i] = (acc + eps*Abs(yh[i]))*Sqrt(h/(xend-xinit));
 			}
-			//tol.print();
 			for(int i = 0; i < err.size; i++){
 				if(Abs(err[i]) > tol[i]){
 					append = false;
