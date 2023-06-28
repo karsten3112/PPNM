@@ -9,7 +9,7 @@ class main{
 	public static double suma = 0;
 	public static double sumb = 0;
 	public static int numterm = (int)1e8;
-	public static int numthr = 1;
+	public static int numthr = 0;
 
 	public static void Main(string[] args){
 		foreach(string arg in args){
@@ -20,22 +20,32 @@ class main{
 			if(inp[0] == "-terms"){
 				numterm = (int)float.Parse(inp[1]);
 			}
+			if(inp[0] == "-sep" && numthr != 0){
+				WriteLine($"With nr. of threads: {numthr} - and nr. of terms in sum: {numterm}");
+				data[] dat = createdata(numthr, numterm);
+				var threads = new Thread[numthr];
+				for(int i = 0; i < numthr; i++){
+					threads[i] = new Thread(dat[i].harmonic);
+					threads[i].Start(dat[i]);
+				}
+				for(int i = 0; i < numthr; i++){
+					threads[i].Join();
+				}
+				for(int i = 0; i < numthr; i++){
+					suma+=dat[i].sum;
+				}
+			WriteLine("Calculated sum:");
+			WriteLine($"I = {suma}");
+			WriteLine("And time spent for calculation");
+			}
+			if(inp[0] == "-for" && numthr != 0){
+				WriteLine($"With nr. of threads: {numthr} - and nr. of terms in sum: {numterm}");
+				Parallel.For(1, numterm+1, delegate(int i){sumb+=1.0/i;});
+				WriteLine("Calculated sum:");
+				WriteLine($"I = {sumb}");
+				WriteLine("And time spent for calculation:");
+			}
 		}
-		Parallel.For(1, numterm+1, delegate(int i){sumb+=1.0/i;});
-		data[] dat = createdata(numthr, numterm);
-		var threads = new Thread[numthr];
-		for(int i = 0; i < numthr; i++){
-			threads[i] = new Thread(dat[i].harmonic);
-			threads[i].Start(dat[i]);
-		}
-		for(int i = 0; i < numthr; i++){
-			threads[i].Join();
-		}
-		for(int i = 0; i < numthr; i++){
-			suma+=dat[i].sum;
-		}
-		WriteLine(suma);
-		WriteLine(sumb);
 	}
 
 	public static data[] createdata(int nthreads, int nterms){

@@ -1,20 +1,54 @@
-18.9978964138526
-15.4706640223923
-real 0.97
-user 2.91
-sys 0.01
-18.997896413853
-15.5720148183681
-real 0.69
-user 2.22
+Calculation of harmonic sum using locally seperated threads
+With nr. of threads: 1 - and nr. of terms in sum: 100000000
+Calculated sum:
+I = 18.9978964138526
+And time spent for calculation
+real 0.23
+user 0.21
 sys 0.00
-18.9978964138495
-14.705525453702
-real 0.86
-user 2.99
+With nr. of threads: 2 - and nr. of terms in sum: 100000000
+Calculated sum:
+I = 18.997896413853
+And time spent for calculation
+real 0.25
+user 0.46
 sys 0.00
-18.9978964138499
-14.9133137463498
-real 0.87
-user 3.31
+With nr. of threads: 3 - and nr. of terms in sum: 100000000
+Calculated sum:
+I = 18.9978964138495
+And time spent for calculation
+real 0.26
+user 0.65
 sys 0.00
+With nr. of threads: 4 - and nr. of terms in sum: 100000000
+Calculated sum:
+I = 18.9978964138499
+And time spent for calculation
+real 0.19
+user 0.51
+sys 0.00
+-------------------------------------------------
+Calculation of harmonic sum using Parallel for-loop
+With nr. of threads: 1 - and nr. of terms in sum: 100000000
+Calculated sum:
+I = 14.3831035140437
+And time spent for calculation:
+real 0.54
+user 2.10
+sys 0.00
+With nr. of threads: 2 - and nr. of terms in sum: 100000000
+Calculated sum:
+I = 14.5499949922471
+And time spent for calculation:
+real 0.55
+user 2.14
+sys 0.00
+With nr. of threads: 3 - and nr. of terms in sum: 100000000
+Calculated sum:
+I = 14.4427165582324
+And time spent for calculation:
+real 0.55
+user 2.10
+sys 0.00
+The sum differs due to the variable is not local, which means all threads are writing to same variable giving rise to race conditions
+This also explains the slower speed of Parallel.For
