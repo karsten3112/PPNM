@@ -1,4 +1,4 @@
-'set terminal svg background "white"
+set terminal svg background "white"
 
 set output "Gamma.svg"
 set xlabel "x" font "Times New Roman, 18"
@@ -10,7 +10,11 @@ set title "Gamma function" font "Times New Roman, 18"
 set xzeroaxis
 set yzeroaxis
 set key bottom right
-
 set grid
 
-plot [-5:5][-5:5] "rgamma.data" with lines linetype 2 title "theory"
+set style line 1 lw 1.5 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
+set style line 2 lw 1.5 lc rgb "green" lt 1 ps 0.60 pt 13 pi 1
+
+
+plot[-5:5][-5:5] "rg.data" with lines ls 1 title "Gamma function", \
+	"gammtab.txt" with points ls 2 title "Tabulated values"

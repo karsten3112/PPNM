@@ -1,5 +1,5 @@
 Out.txt: main.exe
-	mono main.exe > Out.txt
+	mono main.exe -input:input.txt > Out.txt
 
 main.exe: main.cs lib.dll
 	mcs main.cs -reference:lib.dll -target:exe -out:main.exe

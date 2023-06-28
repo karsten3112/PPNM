@@ -1,0 +1,6 @@
+Printing the numbers read from input-file
+| 129.24 || 24.8 || 4.847 || 88.6 || 33.745 || 7.78 || 30.39 || 99.811 || 6.723 || -1.33 || 96.3 || 2.23 |
+Testing add function by adding these numbers to already existing list
+| 2 || 4 || 6 || 7 |
+The List after having added the numbers
+| 129.24 || 24.8 || 4.847 || 88.6 || 33.745 || 7.78 || 30.39 || 99.811 || 6.723 || -1.33 || 96.3 || 2.23 || 2 || 4 || 6 || 7 |

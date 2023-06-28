@@ -1,0 +1,18 @@
+set terminal svg background "white"
+
+set output "LnGamma.svg"
+set xlabel "x" font "Times New Roman, 18"
+set ylabel "y" font "Times New Roman, 18"
+
+set tics out font "Times New Roman, 18"
+set title "LnGamma(x)" font "Times New Roman, 18"
+set xzeroaxis
+set yzeroaxis
+set key bottom right
+
+set style line 1 lw 1.5 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
+set style line 2 lw 1.5 lc rgb "green" lt 1
+
+set grid
+
+plot [-0.5:5][-0.5:5] "ln.data" with lines ls 1 title "theory", \

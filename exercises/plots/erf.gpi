@@ -12,4 +12,9 @@ set yzeroaxis
 
 set title "Error-function" font "Times New Roman, 18"
 
-plot [-3:3][-1.05:1.05] "erf.data" with lines linetype 2 title "theory" 
+set style line 1 lw 1.5 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
+set style line 2 lw 1.5 lc rgb "green" lt 1 ps 0.60 pt 13 pi 1
+
+
+plot [-3:3][-1.05:1.05] "erf.data" with lines ls 1 title "theory", \
+	"erftab.txt" with points ls 2 title "Tabulated values"
