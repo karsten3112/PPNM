@@ -12,6 +12,6 @@ set style line 2 lw 1.2 lc rgb "blue" lt 2 dashtype 2
 set style line 3 lw 1.2 lc rgb "red" lt 1 dashtype 3
 
 
-plot "fit.data" using 1:2 with lines ls 3 title "Fit from qnewton", \
+plot[100:160] "fit.data" using 1:2 with lines ls 3 title "Fit from qnewton", \
 	"fit.data" using 3:4 with lines ls 2 title "Fit from simplex", \
 	"higgs.data.txt" with errorbars title "Higgs data" ls 1, \
