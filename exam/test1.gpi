@@ -1,0 +1,23 @@
+set term gif animate loop 0 delay 90
+set output "Test1.gif"
+
+set title "Bilinear Interpolation of f(x,y) = x²+y²" font "Times New Roman, 18"
+set xlabel "x" font "Times New Roman, 18" offset 1.5
+set ylabel "y" font "Times New Roman, 18" offset -2.5
+set zlabel "F(x,y)" font "Times New Roman, 18" offset 1.5
+set tics out font "Times New Roman, 18"
+set grid
+
+set style line 1 lw 1.5 lc rgb "black" lt 1 ps 0.80 pt 13 pi 1
+set style line 2 lw 1.5 lc rgb "green" lt 1 ps 0.60 pt 13 pi 1
+
+
+set xrange [-2.0:2.0]
+set yrange [-2.0:2.0]
+#set zrange [-2:2]
+
+do for [int=1:360:30]{
+	set view 60, int
+	splot "test1.data" index 1 with lines ls 2 title "Bilinear-grid", \
+		"test1.data" index 0 with linespoints ls 1 title "Tab-points", \
+}

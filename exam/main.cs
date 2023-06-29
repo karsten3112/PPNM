@@ -1,4 +1,4 @@
-using System;
+	using System;
 using static System.Console;
 using static System.Math;
 
@@ -6,28 +6,90 @@ class main{
 	static void Main(string[] args){
 		foreach(string arg in args){
 			string[] inp = arg.Split(":");
-			if(inp[0] == "-Test"){
-				test(-2.0, 2.0, -2.0, 2.0, 10);
+			if(inp[0] == "-Test1"){
+				test(-2.0, 2.0, -2.0, 2.0, 5);
 			}
-			if(inp[0] == "-Sim"){
-				vector d = new vector(2.0, 2.0, 1.0);
-				vector phi = genpoints(0, 2*PI, 10);
-				vector theta = genpoints(0, PI, 10);
-				double R = 1.0;
-				matrix F = new matrix(phi.size, theta.size);
-				for(int i = 0; i < phi.size; i++){
-					for(int j = 0; j < theta.size; j++){
+			if(inp[0] == "-Vol"){
+				int N = 500; double R = 1.0;
+				vector phi = genpoints(0, 2.0*PI, N);
+				vector theta = genpoints(0, PI, N);
+				matrix F = new matrix(N,N);
+				for(int i = 0; i < N; i++){
+					for(int j = 0; j < N; j++){
 						F[i,j] = R;
 					}
 				}
-				bilin interp = new bilin(phi, theta, F);
-				vector thetav = genpoints(0.0, PI, 8);
-				for(int i = 0; i < thetav.size; i++){
-					vector phie = genpoints(0.0, 2*PI, 100);
-					for(int j = 0; j < phie.size; j++){
-						double Re = interp.eval(phie[j], thetav[i]);
-						vector ev = sphere(Re, thetav[i], phie[j], d);
-						WriteLine($"{ev[0]}	{ev[1]}	{ev[2]}");
+				bilin interp = new bilin(theta, phi, F);
+				double res = interp.integrate(PI, 2.0*PI);
+				WriteLine(res);
+			}
+			if(inp[0] == "-Test3"){
+				double[] xs1 = {-2.0, -1.0,-0.5, -0.2,-0.1, 0, 0.1, 0.2, 1.0, 1.5, 2.0};
+				double[] ys1 = {-2.0, -1.0,-0.5, -0.2,-0.1, 0, 0.1, 0.3};
+				vector xs = new vector(xs1.Length);
+				vector ys = new vector(ys1.Length);
+				for(int i = 0; i < xs1.Length; i++){
+					xs[i] = xs1[i];
+				}
+				for(int i = 0; i < ys1.Length; i++){
+					ys[i] = ys1[i];
+				}
+				Func<double, double, double> f = delegate(double x, double y){
+					return 3*Exp(-4*(x*x+y*y));
+				};
+				matrix F = new matrix(xs.size, ys.size);
+				for(int i = 0; i < xs.size; i++){
+					for(int j = 0; j < ys.size; j++){
+						F[i,j] = f(xs[i], ys[j]);
+						WriteLine($"{xs[i]}	{ys[j]}	{F[i,j]}");
+					}
+					Write("\n");
+				}
+				WriteLine("\n");
+				bilin interp = new bilin(xs, ys, F);
+				int N = 30; int M = 25;
+				double xstart = -2.0; double xend = 2.0;
+				double dx = (xend - xstart)/(N -1);
+				double ystart = -2.0; double yend = 0.3;
+				double dy = (yend - ystart)/(M-1);
+				vector xval = genpoints(xstart, xend, N);
+				vector yval = genpoints(ystart, yend, M);
+				for(int i = 0; i < N; i++){
+					for(int j = 0; j < M; j++){
+						WriteLine($"{xval[i]}	{yval[j]}	{interp.eval(xval[i], yval[j])}");
+					}
+					Write("\n");
+				}
+			}
+
+			if(inp[0] == "-Test2"){
+				Func<double, double, double> f = delegate(double x, double y){
+					return x*x*x + y*y;
+				};
+				int size = 8; int N = 50;
+				double phistart = 0.0; double rstart = 0.0;
+				double phiend = 2.0*PI; double rend = 2.0;
+				vector phi = genpoints(phistart, phiend, size);
+				vector Rs = genpoints(rstart, rend, size);
+				matrix F = new matrix(size, size);
+				for(int i = 0; i < size; i++){
+					for(int j = 0; j < size; j++){
+						double xval = Rs[i]*Cos(phi[j]);
+						double yval = Rs[i]*Sin(phi[j]);
+						F[i,j] = f(xval, yval);
+						WriteLine($"{xval}	{yval}	{F[i,j]}");
+					}
+				}
+				WriteLine("\n");
+				bilin interp = new bilin(Rs, phi, F);
+				double dr = (rend - rstart)/(N-1);
+				double dphi = (phiend - phistart)/(N-1);
+				for(int i = 0; i < N; i++){
+					double rval = rstart + i*dr;
+					for(int j = 0; j < N; j++){
+						double phival = phistart + j*dphi;
+						double z = interp.eval(rval, phival);
+						WriteLine($"{rval*Cos(phival)}	{rval*Sin(phival)}	{z}");
 					}
 					WriteLine("");
 				}
@@ -44,7 +106,7 @@ class main{
 		vector ys = new vector(size);
 		matrix F = new matrix(size, size);
 		Func<double, double, double> f = delegate(double x, double y){
-			return 2.0*Exp(-x*x-y*y);
+			return x*x + y*y;
 		};
 		for(int i = 0; i < size; i++){
 			xs[i] = xstart + dx*i;
@@ -58,14 +120,17 @@ class main{
 			WriteLine("");
 		}
 		WriteLine("\n");
-		double[] xs1 = {-0.5,0,1};
-		dy = (yend-ystart)/300;
+		int N = 25;
+		double[] xs1 = {-2.0,-1.5555,1};
+		dy = (yend-ystart)/(N-1);
+		dx = (xend-xstart)/(N-1);
 		bilin interp = new bilin(xs, ys, F);
-		foreach(double x in xs1){
-			for(int i = 0; i < 250; i++){
-				double evaly1 = ystart + (i+1)*dy;
-				double val = interp.eval(x, evaly1);
-				WriteLine($"{x}	{evaly1}	{val}");
+		for(int i = 0; i < N; i++){
+			double evalx1 = xstart + i*dx;
+			for(int j = 0; j < N; j++){
+				double evaly1 = ystart + j*dy;
+				double val = interp.eval(evalx1, evaly1);
+				WriteLine($"{evalx1}	{evaly1}	{val}");
 			}
 			WriteLine("");
 		}

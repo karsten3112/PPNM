@@ -1,0 +1,23 @@
+set terminal png background "white"
+set output "Test3.png"
+
+set title "Bilinear Interpolation of f(r,phi) = x³+y² - in cyl. coords" font "Times New Roman, 18"
+set xlabel "x" font "Times New Roman, 18" offset 1.5
+set ylabel "y" font "Times New Roman, 18" offset -2.5
+set zlabel "F(x,y)" font "Times New Roman, 18" offset 1.5
+set tics out font "Times New Roman, 18"
+set grid
+
+set style line 1 lw 1.5 lc rgb "green" lt 1 ps 0.80 pt 13 pi 1
+set style line 2 lw 1.5 lc rgb "black" lt 1 ps 0.80 pt 13 pi 1
+
+set palette rgb 33,13,10
+
+set xrange [-2.0:2.0]
+set yrange [-2.0:0.3]
+#set zrange [-2:2]
+set view 50, 320	
+
+splot "test3.data" index 1 with lines ls 1 title "Bilinear-grid", \
+	"test3.data" index 0 with linespoints ls 2 title "Tab-points", \
+	
