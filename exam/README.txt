@@ -45,6 +45,6 @@ Cylside.png and Cyltop.png - shows bi-linear interpolation done in cylindrical c
 -----------------------------------------------------------------------------------
 Self-assesment:
 
-I would asses this project to 9/10, as the 2D-interpolation on a rectilinear grid works as intended, and returns satisfactory results.
+I would asses this project to 10/10, as the 2D-interpolation on a rectilinear grid works as intended, and returns satisfactory results.
 
 
