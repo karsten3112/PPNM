@@ -1,5 +1,5 @@
 set terminal png background "white"
-set output "Test3.png"
+set output "Irreg.png"
 
 set title "Bilinear Interpolation of F(x,y) = 3exp(-4(x²+y²))" font "Times New Roman, 18"
 set xlabel "x" font "Times New Roman, 16" offset 1.5
@@ -20,6 +20,6 @@ set yrange [-2.0:0.3]
 #set zrange [-2:2]
 set view 50, 320	
 
-splot "test3.data" index 1 with lines ls 1 title "Bilinear-grid", \
-	"test3.data" index 0 with linespoints ls 2 title "Tab-points", \
+splot "irr.data" index 1 with lines ls 1 title "Bilinear-grid", \
+	"irr.data" index 0 with linespoints ls 2 title "Tab-points", \
 	

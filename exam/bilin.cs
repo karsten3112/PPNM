@@ -50,33 +50,6 @@ public class bilin{
 		return result;
 	}
 
-	public double integrate(double px, double py){ //maybe implement this
-		double result = 0; double uy = 0; double ux = 0;
-		int i = binsearch(this.xs, px);
-		int j = binsearch(this.ys, py);
-		for(int k = 0; k <= i; k++){
-			for(int s = 0; s <= j; s++){
-				if(k == i && s != j){
-					ux = (px - this.xs[i]);
-					uy = (this.ys[j+1] - this.ys[j]);
-				}
-				if(k != i && s == j){
-					ux = (this.xs[i+1] - this.xs[i]);
-					uy = (py - this.ys[j]);
-				}
-				if(k == i && s == j) {
-					ux = (px - this.xs[i]);
-					uy = (py - this.ys[j]);
-				} else {
-					uy = (this.ys[j+1] - this.ys[j]);
-					ux = (this.xs[i+1] - this.xs[i]);
-				}
-				result+= uy*ux*(this.a[i,j] + 0.5*this.b[i,j]*ux + 0.5*this.c[i,j]*uy + 0.25*this.d[i,j]*ux*uy);
-			}
-		}
-		return result;
-	}
-
 	public static int binsearch(vector x, double z){
 		if(!(x[0] <=z && z <=x[x.size -1])){
 			throw new Exception("Binsearch; bad z");

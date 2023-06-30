@@ -9,7 +9,7 @@ class main{
 			if(inp[0] == "-Test1"){
 				test(-2.0, 2.0, -2.0, 2.0, 5);
 			}
-			if(inp[0] == "-Test3"){
+			if(inp[0] == "-Irreg"){
 				double[] xs1 = {-2.0, -1.0,-0.5, -0.2,-0.1, 0, 0.1, 0.2, 1.0, 1.5, 2.0};
 				double[] ys1 = {-2.0, -1.0,-0.5, -0.2,-0.1, 0, 0.1, 0.3};
 				vector xs = new vector(xs1.Length);
@@ -35,9 +35,7 @@ class main{
 				bilin interp = new bilin(xs, ys, F);
 				int N = 30; int M = 25;
 				double xstart = -2.0; double xend = 2.0;
-				double dx = (xend - xstart)/(N -1);
 				double ystart = -2.0; double yend = 0.3;
-				double dy = (yend - ystart)/(M-1);
 				vector xval = genpoints(xstart, xend, N);
 				vector yval = genpoints(ystart, yend, M);
 				for(int i = 0; i < N; i++){
@@ -52,7 +50,7 @@ class main{
 				Func<double, double, double> f = delegate(double x, double y){
 					return x*x*x + y*y;
 				};
-				int size1 = 8; int N = 50;
+				int size1 = 8; int N = 35;
 				int size2 = 8;
 				double phistart = 0.0; double rstart = 0.0;
 				double phiend = 2.0*PI; double rend = 2.0;
@@ -88,46 +86,31 @@ class main{
 
 
 	public static void test(double xstart, double xend, double ystart, double yend, int size){
-		double dx = (xend-xstart)/(size-1);
-		double dy = (yend-ystart)/(size-1);
-		vector xs = new vector(size);
-		vector ys = new vector(size);
+		vector xs = genpoints(xstart, xend, size);
+		vector ys = genpoints(ystart, yend, size);
 		matrix F = new matrix(size, size);
 		Func<double, double, double> f = delegate(double x, double y){
 			return x*x + y*y;
 		};
 		for(int i = 0; i < size; i++){
-			xs[i] = xstart + dx*i;
-			ys[i] = ystart + dy*i;
 			for(int j = 0; j < size; j++){
-				double evalx = xstart + dx*i;
-				double evaly = ystart + dy*j;
-				F[i,j] = f(evalx, evaly);
-				WriteLine($"{evalx}	{evaly}	{F[i,j]}");
+				F[i,j] = f(xs[i], ys[j]);
+				WriteLine($"{xs[i]}	{ys[j]}	{F[i,j]}");
 			}
 			WriteLine("");
 		}
 		WriteLine("\n");
 		int N = 25;
-		double[] xs1 = {-2.0,-1.5555,1};
-		dy = (yend-ystart)/(N-1);
-		dx = (xend-xstart)/(N-1);
+		vector x1 = genpoints(xstart, xend, N);
+		vector y1 = genpoints(ystart, yend, N);
 		bilin interp = new bilin(xs, ys, F);
 		for(int i = 0; i < N; i++){
-			double evalx1 = xstart + i*dx;
 			for(int j = 0; j < N; j++){
-				double evaly1 = ystart + j*dy;
-				double val = interp.eval(evalx1, evaly1);
-				WriteLine($"{evalx1}	{evaly1}	{val}");
+				double val = interp.eval(x1[i], y1[j]);
+				WriteLine($"{x1[i]}	{y1[j]}	{val}");
 			}
 			WriteLine("");
 		}
-	}
-	public static vector sphere(double R, double theta, double phi, vector offset){
-		double x = offset[0] + R*Sin(theta)*Cos(phi);
-		double y = offset[1] + R*Sin(theta)*Sin(phi);
-		double z = offset[2] + R*Cos(theta);
-		return new vector(x,y,z);
 	}
 	public static vector genpoints(double xstart, double xend, int N){
 		double dx = (xend - xstart)/(N - 1);

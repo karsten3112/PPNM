@@ -1,12 +1,12 @@
 DIR = ../matlib/matrix
 
-all: Test1.gif Cylside.png Cyltop.png Test3.png
+all: Test1.gif Cylside.png Cyltop.png Irreg.png
 
-Test3.png: test3.data test3.gpi
-	gnuplot test3.gpi
+Irreg.png: irr.data irreg.gpi
+	gnuplot irreg.gpi
 
-test3.data: main.exe
-	mono main.exe -Test3 > test3.data
+irr.data: main.exe
+	mono main.exe -Irreg > irr.data
 
 Cylside.png: cyl.data cylside.gpi
 	gnuplot cylside.gpi
@@ -33,6 +33,6 @@ bilin.dll: bilin.cs matrix.dll
 	mcs bilin.cs -target:library -out:bilin.dll -reference:matrix.dll
 
 clean: 
-	rm -f *t.txt *.exe *.dll *.data *.svg *.png *.gif
+	rm -f *.exe *.dll *.data *.svg *.png *.gif
 
 
