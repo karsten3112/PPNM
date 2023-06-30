@@ -10,6 +10,7 @@ set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
  
 set style line 2 lw 1.2 lc rgb "green" lt 1
 set style line 3 lw 1.2 lc rgb "blue" lt 1
-
+f(x) = cos(x)
 
 plot[0:10][-1.2:1.2] "osc.data" index 0 with lines title "u(x)" ls 2, \
+	f(x) ls 1 title "analytical"

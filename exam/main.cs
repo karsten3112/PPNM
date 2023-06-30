@@ -1,4 +1,4 @@
-	using System;
+using System;
 using static System.Console;
 using static System.Math;
 
@@ -8,20 +8,6 @@ class main{
 			string[] inp = arg.Split(":");
 			if(inp[0] == "-Test1"){
 				test(-2.0, 2.0, -2.0, 2.0, 5);
-			}
-			if(inp[0] == "-Vol"){
-				int N = 500; double R = 1.0;
-				vector phi = genpoints(0, 2.0*PI, N);
-				vector theta = genpoints(0, PI, N);
-				matrix F = new matrix(N,N);
-				for(int i = 0; i < N; i++){
-					for(int j = 0; j < N; j++){
-						F[i,j] = R;
-					}
-				}
-				bilin interp = new bilin(theta, phi, F);
-				double res = interp.integrate(PI, 2.0*PI);
-				WriteLine(res);
 			}
 			if(inp[0] == "-Test3"){
 				double[] xs1 = {-2.0, -1.0,-0.5, -0.2,-0.1, 0, 0.1, 0.2, 1.0, 1.5, 2.0};
@@ -62,22 +48,23 @@ class main{
 				}
 			}
 
-			if(inp[0] == "-Test2"){
+			if(inp[0] == "-Cyl"){
 				Func<double, double, double> f = delegate(double x, double y){
 					return x*x*x + y*y;
 				};
-				int size = 8; int N = 50;
+				int size1 = 8; int N = 50;
+				int size2 = 8;
 				double phistart = 0.0; double rstart = 0.0;
 				double phiend = 2.0*PI; double rend = 2.0;
-				vector phi = genpoints(phistart, phiend, size);
-				vector Rs = genpoints(rstart, rend, size);
-				matrix F = new matrix(size, size);
-				for(int i = 0; i < size; i++){
-					for(int j = 0; j < size; j++){
+				vector phi = genpoints(phistart, phiend, size2);
+				vector Rs = genpoints(rstart, rend, size1);
+				matrix F = new matrix(size1, size2);
+				for(int i = 0; i < size1; i++){
+					for(int j = 0; j < size2; j++){
 						double xval = Rs[i]*Cos(phi[j]);
 						double yval = Rs[i]*Sin(phi[j]);
 						F[i,j] = f(xval, yval);
-						WriteLine($"{xval}	{yval}	{F[i,j]}");
+						WriteLine($"{Rs[i]}	{phi[j]}	{xval}	{yval}	{F[i,j]}");
 					}
 				}
 				WriteLine("\n");
@@ -89,10 +76,11 @@ class main{
 					for(int j = 0; j < N; j++){
 						double phival = phistart + j*dphi;
 						double z = interp.eval(rval, phival);
-						WriteLine($"{rval*Cos(phival)}	{rval*Sin(phival)}	{z}");
+						WriteLine($"{rval}	{phival}	{rval*Cos(phival)}	{rval*Sin(phival)}	{z}");
 					}
 					WriteLine("");
 				}
+				WriteLine("\n");
 			}
 		}
 	}

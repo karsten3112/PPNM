@@ -1,9 +1,6 @@
 DIR = ../matlib/matrix
 
-all: Test1.gif Test2.png Test3.png Vol.txt
-
-Vol.txt: main.exe
-	mono main.exe -Vol > Vol.txt
+all: Test1.gif Cylside.png Cyltop.png Test3.png
 
 Test3.png: test3.data test3.gpi
 	gnuplot test3.gpi
@@ -11,11 +8,14 @@ Test3.png: test3.data test3.gpi
 test3.data: main.exe
 	mono main.exe -Test3 > test3.data
 
-Test2.png: test2.data test2.gpi
-	gnuplot test2.gpi
+Cylside.png: cyl.data cylside.gpi
+	gnuplot cylside.gpi
 
-test2.data: main.exe
-	mono main.exe -Test2 > test2.data
+Cyltop.png: cyl.data cyltop.gpi
+	gnuplot cyltop.gpi
+
+cyl.data: main.exe
+	mono main.exe -Cyl > cyl.data
 
 Test1.gif: test1.data test1.gpi
 	gnuplot test1.gpi

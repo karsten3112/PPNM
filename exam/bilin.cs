@@ -6,7 +6,7 @@ public class bilin{
 	public matrix a; public matrix b;
 	public matrix c; public matrix d;
 	public vector xs; public vector ys;
-	
+
 	public bilin(vector x, vector y, matrix F){
 		if(x.size < 1 || y.size < 1){
 			throw new Exception("Cannot create a grid from 1D series of points");
@@ -52,31 +52,26 @@ public class bilin{
 
 	public double integrate(double px, double py){ //maybe implement this
 		double result = 0; double uy = 0; double ux = 0;
-		double ut = 0;
 		int i = binsearch(this.xs, px);
 		int j = binsearch(this.ys, py);
 		for(int k = 0; k <= i; k++){
 			for(int s = 0; s <= j; s++){
 				if(k == i && s != j){
 					ux = (px - this.xs[i]);
-					ut = px;
 					uy = (this.ys[j+1] - this.ys[j]);
 				}
 				if(k != i && s == j){
 					ux = (this.xs[i+1] - this.xs[i]);
-					ut = this.xs[i+1];
 					uy = (py - this.ys[j]);
 				}
 				if(k == i && s == j) {
 					ux = (px - this.xs[i]);
-					ut = px;
 					uy = (py - this.ys[j]);
 				} else {
 					uy = (this.ys[j+1] - this.ys[j]);
 					ux = (this.xs[i+1] - this.xs[i]);
-					ut = this.xs[i+1];
 				}
-				result+= uy*((this.b[i,j] + 0.5*this.d[i,j])*(ux*Cos(ut)-Sin(ut))-Cos(ut)*(this.a[i,j] +0.5*this.b[i,j]));
+				result+= uy*ux*(this.a[i,j] + 0.5*this.b[i,j]*ux + 0.5*this.c[i,j]*uy + 0.25*this.d[i,j]*ux*uy);
 			}
 		}
 		return result;

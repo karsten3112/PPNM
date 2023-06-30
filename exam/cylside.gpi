@@ -1,0 +1,44 @@
+set terminal png background "white" size 1024,512
+set output "Cylside.png"
+
+set style line 1 lw 1.5 lc rgb "black" lt 1 ps 0.80 pt 13 pi 1
+set style line 2 lw 1.5 lc rgb "blue" lt 1 ps 1.2 pt 13 pi 1
+
+set palette rgb 33,13,10
+
+
+set multiplot layout 2,2 title "Bilinear interpolation of F(x,y) = x³+y² - in cylindrical coordinates (Side-view)" font "Times New Roman, 18" offset 0,-1;
+set title "Bilinear interpolation in cartesian";
+set xlabel "x" font "Times New Roman, 16" offset 1.5
+set ylabel "y" font "Times New Roman, 16" offset -2.5
+set zlabel "F(x,y)" font "Times New Roman, 16" offset 1.5
+set tics out font "Times New Roman, 12"
+
+set xrange [-2.0:2.0]
+set yrange [-2.0:2.0]
+set view 60, 320
+set size 0.45,0.98
+set grid
+set xzeroaxis
+set yzeroaxis
+set origin 0.02,-0.04
+splot "cyl.data" index 1 using 3:4:5 with pm3d ls 1 notitle, \
+	"cyl.data" index 1 using 3:4:5 with lines ls 1 title "Bilinear-grid", \
+	"cyl.data" index 0 using 3:4:5 with points ls 2 title "Tab-points", \
+
+set title "Bilinear interpolation in cylindrical";
+
+set xlabel "r" font "Times New Roman, 16" offset 1.5
+set ylabel "\phi" font "Times New Roman, 16" offset -2.5
+set zlabel "F(r,\phi)" font "Times New Roman, 16" offset 1.5
+set tics out font "Times New Roman, 12"
+
+set size 0.45,0.98
+set xrange [0:2.0]
+set yrange [0:2.01*pi]
+set origin 0.52,-0.04
+splot "cyl.data" index 1 using 1:2:5 with pm3d ls 1 notitle, \
+	"cyl.data" index 1 using 1:2:5 with lines ls 1 title "Bilinear-grid", \
+	"cyl.data" index 0 using 1:2:5 with points ls 2 title "Tab-points"
+	
+unset multiplot
