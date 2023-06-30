@@ -292,13 +292,15 @@
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 	<g id="gnuplot_plot_1" ><title>Integral</title>
-<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+<g fill="none" color="#FFFFFF" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(498.09,87.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
 		<text><tspan font-family="Arial" >Integral</tspan></text>
 	</g>
 </g>
-<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(148,   0, 211)'  d='M506.48,84.01 L549.04,84.01 M81.53,413.40 L91.22,413.39 L100.90,413.38 L110.59,413.37 L120.27,413.34 L129.96,413.28
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='rgb(  0,   0,   0)'  d='M506.48,84.01 L549.04,84.01 M81.53,413.40 L91.22,413.39 L100.90,413.38 L110.59,413.37 L120.27,413.34 L129.96,413.28
 		L139.64,413.18 L149.33,413.01 L159.02,412.72 L168.70,412.25 L178.39,411.51 L188.07,410.36 L197.76,408.65 L207.45,406.16
 		L217.13,402.64 L226.82,397.82 L236.50,391.40 L246.19,383.08 L255.87,372.61 L265.56,359.80 L275.25,344.59 L284.93,327.03
 		L294.62,307.33 L304.30,285.86 L313.99,263.11 L323.68,239.70 L333.36,216.30 L343.05,193.55 L352.73,172.08 L362.42,152.38
@@ -307,13 +309,13 @@
 		L527.08,66.07 L536.76,66.04 L546.45,66.03 L556.13,66.02  '/></g>
 	</g>
 	<g id="gnuplot_plot_2" ><title>Approximation</title>
-<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
 	<g transform="translate(498.09,105.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
 		<text><tspan font-family="Arial" >Approximation</tspan></text>
 	</g>
 </g>
-<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(  0, 158, 115)'  d='M506.48,102.01 L549.04,102.01 M81.53,413.40 L91.22,413.39 L100.90,413.38 L110.59,413.37 L120.27,413.34 L129.96,413.28
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.20" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='rgb(255,   0,   0)' stroke-dasharray='3.0,4.8'  d='M506.48,102.01 L549.04,102.01 M81.53,413.40 L91.22,413.39 L100.90,413.38 L110.59,413.37 L120.27,413.34 L129.96,413.28
 		L139.64,413.18 L149.33,413.01 L159.02,412.72 L168.70,412.25 L178.39,411.51 L188.07,410.36 L197.76,408.65 L207.45,406.16
 		L217.13,402.64 L226.82,397.82 L236.50,391.40 L246.19,383.08 L255.87,372.61 L265.56,359.80 L275.25,344.59 L284.93,327.03
 		L294.62,307.33 L304.30,285.86 L313.99,263.11 L323.68,239.70 L333.36,216.30 L343.05,193.55 L352.73,172.08 L362.42,152.38
@@ -321,7 +323,7 @@
 		L449.59,70.76 L459.28,69.05 L468.96,67.90 L478.65,67.16 L488.33,66.69 L498.02,66.40 L507.71,66.23 L517.39,66.13
 		L527.08,66.07 L536.76,66.04 L546.45,66.03 L556.13,66.02  '/></g>
 	</g>
-<g fill="none" color="#FFFFFF" stroke="rgb(  0, 158, 115)" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
+<g fill="none" color="#FFFFFF" stroke="rgb(255,   0,   0)" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>

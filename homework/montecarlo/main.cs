@@ -58,19 +58,19 @@ class main{
 				};
 				vector a = new vector(-1.0, -1.0);
 				vector b = new vector(1.0, 1.0);
-				double[] test1 = test(f1, a, b, 100000);
+				double[] test1 = test(f1, a, b, 5000000);
 				a = new vector(-1.0, -1.0, -1.0);
 				b = new vector(1.0, 1.0, 1.0);
-				double[] test2 = test(f2, a, b, 100000);
+				double[] test2 = test(f2, a, b, 5000000);
 				a = new vector(0,0,0);
 				b = new vector(PI, PI, PI);
-				double[] test3 = test(f, a, b, 100000);
+				double[] test3 = test(f, a, b, 5000000);
 				double[][] finale = {test1, test2, test3};
 				string[] integrals = {"1. integral of unit circle", "2. integral of half-sphere ", "3. integral of function given in assignment"};
 				string[] analytic = {"PI", "2/3*PI", "~1.393203929"};
 				double[] analytic1 = {PI, 2.0/3.0*PI, 1.393203929};
 				int i = 0;
-				WriteLine("Calculating different integrals with N=100000 for different functions");
+				WriteLine("Calculating different integrals with N=5000000 for different functions");
 				WriteLine();
 				foreach(double[] rest in finale){
 					WriteLine($"{integrals[i]} | Should return I = {analytic[i]}");

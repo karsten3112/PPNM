@@ -32,7 +32,7 @@ class main{
 			int m = 0;
 			while(n <= m){
 				n = rnd.Next(2,6);
-				m = rnd.Next(1,5);
+				m = rnd.Next(2,5);
 			}
 			matrix A = new matrix(n,m);
             for(int i = 0; i < A.size1; i++){

@@ -8,8 +8,8 @@ set grid
  
 set style line 1 lw 1.2 lc rgb "black" lt 1 ps 0.60 pt 13 pi 1
  
-set style line 2 lw 1.2 lc rgb "green" lt 1
+set style line 2 lw 1.2 lc rgb "red" lt 1
 set style line 3 lw 1.2 lc rgb "blue" lt 1
 
-plot "erf.data" index 0  with lines title "Integral", \
-		"erf.data" index 1 with lines title "Approximation"
+plot "erf.data" index 0  with lines ls 1 title "Integral", \
+		"erf.data" index 1 with lines ls 2 dashtype 2 title "Approximation"

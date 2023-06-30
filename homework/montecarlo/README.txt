@@ -6,3 +6,5 @@ Part B:
 QuasiMC.svg - contains a plot of the estimated error to show the scaling of 1/N
 Test.txt - contains testing of the quasiMC method in same manner as plainMC
 Compare.svg - compares the actual error of both quasiMC and plainMC methods
+
+NOTE: the integral given in the assignment was indeterminate with quasiNewton method

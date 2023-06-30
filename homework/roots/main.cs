@@ -86,8 +86,8 @@ class main{
 			vector Einit = new vector(-0.9);
 			foreach(double v in vals){
 				double acc = 0.01;
-				(vector e, int count) = shooting1(rmin, rmax, Einit, acc, v);
-				(vector e1, int count1) = shooting1(rmin, rmax, Einit, v, acc);
+				(vector e, int count) = shooting1(rmin, rmax, Einit, acc, v, 2.0, 10.0);
+				(vector e1, int count1) = shooting1(rmin, rmax, Einit, v, acc, 2.0, 10.0);
 				WriteLine($"{v}	{e[0]}	{e1[0]}");
 			}
 		}
@@ -104,7 +104,7 @@ class main{
 	}
 	}
 
-	public static (vector, int) shooting1(double rmin, double rmax, vector einit, double acc, double eps){ //
+	public static (vector, int) shooting1(double rmin, double rmax, vector einit, double acc, double eps, double stepsize=0.01, double stepmax=0.02){ //
 		vector yinit = new vector(rmin - rmin*rmin, 1.0-2.0*rmin);
 		Func<vector, vector> M = delegate(vector z){
 			double E = z[0];
@@ -114,7 +114,7 @@ class main{
 				res[1] = -2.0*(E*x1 + x1/r);
 				return res;
 			};
-		odeint solution = new odeint(diffeq, rmin,yinit,rmax, false, 2.0, 10.0, acc, eps);
+		odeint solution = new odeint(diffeq, rmin,yinit,rmax, false, stepsize, stepmax, acc, eps);
 		double F = solution.ys[0][0];
 		vector result = new vector(F);
 		return result;
@@ -134,7 +134,7 @@ class main{
 					res[1] = -2.0*(E*x1 + x1/r);
 					return res;
 			};
-		odeint solution = new odeint(diffeq, rmin,yinit,rmax, false, 2.0, 10.0, acc, eps);
+		odeint solution = new odeint(diffeq, rmin,yinit,rmax, false, 0.5, 1.0, acc, eps);
         double F = solution.ys[0][0];
 		double rm = solution.xs[0];
 		double k = Sqrt(-2*E);
@@ -146,7 +146,7 @@ class main{
     return (xf, count);
 	}
 
-	public static void psi(double E, double rmin, double rmax, double acc, double eps){
+	public static void psi(double E, double rmin, double rmax, double acc, double eps, double stepsize=0.01, double maxstep=0.02){
 		vector yinit = new vector(rmin - rmin*rmin, 1.0-2.0*rmin);
 		Func<double, vector, vector> diffeq = delegate(double r, vector ys){
 			vector res = new vector(ys.size); double x1 = ys[0]; double x2 = ys[1];
@@ -154,7 +154,7 @@ class main{
 				res[1] = -2.0*(E*x1 + x1/r);
 				return res;
 		};
-		odeint solution = new odeint(diffeq, rmin,yinit,rmax, true,0.01, 0.01, acc, eps);
+		odeint solution = new odeint(diffeq, rmin,yinit,rmax, true,stepsize, maxstep, acc, eps);
 		genlist<vector> F = solution.ys;
 		genlist<double> rs = solution.xs;
 		for(int i = 0; i < F.size;i++){

@@ -5,7 +5,7 @@ using static System.Math;
 public class ann{
 	public int n; public int count;
 	public vector bestPs;
-	static Random rnd = new System.Random();
+	static Random rnd = new System.Random(3);
 
 	Func<double, double> f = delegate(double z){
 		return z*Exp(-z*z);

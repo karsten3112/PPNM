@@ -1,3 +1,8 @@
+Student ID: 202107603
+
+Assignment nr. 3 % 26 = 3
+
+-----------------------------------------------------------------------------------
 Assigment:
 
 Bi-linear interpolation on a rectilinear grid in two dimensions
@@ -14,8 +19,8 @@ See the chapter "Bi-linear interpolation" in the book.
 The signature of the interpolating subroutine can be
 
 static double bilinear(double[] x, double[] y, matrix F, double px, double py)
------------------------------------------------------------------------------------
 
+-----------------------------------------------------------------------------------
 Solution:
 
 The solution is given by the file: bilin.cs - the approach was very similar to earlier interpolation homeworks, done with object oriented programming-style.
@@ -31,8 +36,11 @@ This is done by two quick binsearches over the x- and y-lists given in the begin
 of the function in the given area.
 
 The function used in the bi-linear interpolation is the one given in the "Bi-linear interpolation" chapter from the book. The coefficients that we solve for were obtained by
-solving analytically and then applying
+solving analytically and then applying.
 
+Test1.gif - shows the first test of the bi-linear interpolation routine.
+Irreg.png - shows bi-linear interpolation over f(x,y) over an "irregular" square grid.
+Cylside.png and Cyltop.png - shows bi-linear interpolation done in cylindrical coordinates and then trans. into cartesian. 
 
 -----------------------------------------------------------------------------------
 Self-assesment:

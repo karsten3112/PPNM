@@ -63,7 +63,7 @@ public class odeint{
 				}
 			}
 			if(append == true){
-				x+=h; y=yh;
+				x+=h; y=yh.copy();
 				if(record == true){
 					this.xs.add(x);
 					this.ys.add(y);

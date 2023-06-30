@@ -3,22 +3,10 @@ using static System.Console;
 using static System.Math;
 
 class main{
-	static double b=0.25, c=5.0;
 	static double m1=1.0, m2=1.0, m3=1.0;
 	static double G = 1.0;
 	static void Main(string[] args){
 		foreach(string arg in args){
-			if(arg == "-debug"){
-				Func<double, vector, vector> F = delegate(double t, vector y){
-					double theta = y[0]; double omega = y[1];
-					return new vector(omega, -0.25*omega-5.0*Sin(theta));
-				};
-				double xinit = 0.0;
-				double xend = 10.0;
-				vector yinit = new vector(PI-0.1,0.0);
-				odeint solve = new odeint(F, xinit,yinit, xend, true, 0.01,0.1, 10, 20);
-			}
-
 			if(arg == "-Tbody"){
 				vector yinit = new vector(12);
 				double tinit = 0.0; double tend = 6.32591398; //initial-conditions given from the paper in the assignment.

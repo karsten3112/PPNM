@@ -4,8 +4,8 @@ using System;
 
 
 public static class montecarlo{
-	public static int[] bs1 = {2,3,5,7,11,13};
-	public static int[] bs2 = {17,19,23,29,31};
+	public static int[] bs1 = {5,7,11,13};
+	public static int[] bs2 = {19,23,29,31};
 
 	public static (double, double) plainMC(Func<vector, double> f, vector a, vector b, int N){
 		double V = 1; double err = 0.0; Random rnd = new Random();

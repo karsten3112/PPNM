@@ -13,7 +13,6 @@ public static class LTSQ{
 				A[i,k] = fs[k](x[i])/dy[i];
 			}
 		}
-		matrix At = A.transpose();
 		(matrix Q, matrix R) = QRGS.decomp(A);
 		matrix Ainv = QRGS.inverse(Q, 	R);
 		cov = Ainv*Ainv.transpose();

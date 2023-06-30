@@ -5,7 +5,7 @@ using System;
 
 
 public partial class pso{
-	static Random rnd = new System.Random();
+	static Random rnd = new System.Random(1);
 	public vector min; public int count;
 	public vector g;
 	public pso(Func<vector, double> f, vector lbound, vector ubound, int N=100, int sat=10000, double conv=1e-2, double delt=1.0){

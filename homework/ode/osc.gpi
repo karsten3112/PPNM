@@ -13,4 +13,4 @@ set style line 3 lw 1.2 lc rgb "blue" lt 1
 f(x) = cos(x)
 
 plot[0:10][-1.2:1.2] "osc.data" index 0 with lines title "u(x)" ls 2, \
-	f(x) ls 1 title "analytical"
+	f(x) with lines ls 1 dashtype 2 title "analytical"
